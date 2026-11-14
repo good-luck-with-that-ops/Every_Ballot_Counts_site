@@ -44,7 +44,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
 img{max-width:100%;height:auto}
 a{color:inherit;text-decoration:underline;text-decoration-color:var(--ink-2);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{color:var(--red-ink)}
-:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--amber)}
 b,strong{font-weight:700}
 .wrap{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
 .skip{position:absolute;left:-9999px}
@@ -604,3 +604,13 @@ button.en-agency:hover,button.en-outside:hover{outline:3px solid var(--red);outl
 .corr-log li{padding:14px 0;border-top:1px solid var(--hair);list-style:none}
 .md .legend{margin:8px 0 20px}
 .md img{border:0}
+
+/* review fixes */
+@media (prefers-color-scheme: dark){ nav.main a[aria-current="page"],nav.main button.cur{background:var(--amber);color:#14213d} }
+.brow .ch button{min-height:32px;padding:6px 0}
+.quiet{display:inline-block;padding:5px 0}
+#ord{min-height:40px}
+.md h2.part{font:700 30px/1.15 var(--serif);letter-spacing:-.012em;border-top:1px solid var(--ink);padding-top:28px;margin-top:72px}
+.poi-card b{font-weight:700}
+.band :focus-visible,footer.site :focus-visible,.poi-card:focus-visible,.take:focus-visible{outline-color:#f4f1ea}
+@media (max-width:900px){ .marks-q{width:40px;height:40px} }

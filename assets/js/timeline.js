@@ -86,7 +86,7 @@
   }
   function selText() {
     if (!sel) return '';
-    var a = sel[0] < 0 ? 'the earliest entry' : nice(W0 + sel[0] * WK), b = sel[1] < 0 ? 'Jan 19, 2025' : nice(W0 + sel[1] * WK + 6 * 86400000);
+    var a = sel[0] < 0 ? 'the earliest entry' : nice(W0 + sel[0] * WK), b = sel[1] < 0 ? 'Jan 19, 2025' : nice(Math.min(W0 + sel[1] * WK + 6 * 86400000, utc(TODAY)));
     return a + ' to ' + b;
   }
   function drawDens(filtered) {

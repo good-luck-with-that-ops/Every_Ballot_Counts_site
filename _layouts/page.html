@@ -8,6 +8,6 @@ layout: default
     {% if page.dek %}<p class="dek prose">{{ page.dek }}</p>{% endif %}
   </header>
   <div class="md prose{% if page.wide %} wide{% endif %}"{% if page.wide %} style="max-width:none"{% endif %}>
-{{ content }}
+{{ content | replace: '<h1', '<h2 class="part"' | replace: '</h1>', '</h2>' }}
   </div>
 </div>
