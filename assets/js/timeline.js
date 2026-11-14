@@ -76,7 +76,7 @@
     var fut = (newest && !y && !sel) ? view.filter(function (r) { return r.d > TODAY; }) : [];
     if (fut.length) {
       view = view.filter(function (r) { return r.d <= TODAY; });
-      $('fut').innerHTML = '<tr class="fut-head"><td colspan="3"><button type="button" class="btn btn-2" id="futbtn" aria-expanded="' + futOpen + '">' +
+      $('fut').innerHTML = '<tr class="fut-head"><td colspan="3"><button type="button" class="linkish" id="futbtn" aria-expanded="' + futOpen + '">' +
         (futOpen ? 'Hide' : 'Show') + ' ' + fut.length + ' scheduled and future ' + (fut.length === 1 ? 'date' : 'dates') + '</button> <span class="label" style="margin-left:8px">Deadlines and effective dates, ' + fut[fut.length - 1].d.slice(0, 4) + ' to ' + fut[0].d.slice(0, 4) + '.</span></td></tr>' +
         (futOpen ? fut.slice().reverse().map(row).join('') : '');
       $('futbtn').addEventListener('click', function () { futOpen = !futOpen; apply(); });

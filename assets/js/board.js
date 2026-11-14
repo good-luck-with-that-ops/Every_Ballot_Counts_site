@@ -12,7 +12,7 @@
     rts.forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-route') === id ? 'true' : 'false'); });
     if (!state) return;
     state.textContent = '';
-    if (!id) { state.textContent = 'Showing all ' + total + ' rows.'; return; }
+    if (!id) return;
     state.appendChild(document.createTextNode('Showing ' + shown + ' of ' + total + ' (' + name.charAt(0).toLowerCase() + name.slice(1) + '). '));
     var all = document.createElement('button'); all.type = 'button'; all.textContent = 'Show all'; all.className = 'linkish';
     all.addEventListener('click', function () { apply('', ''); });

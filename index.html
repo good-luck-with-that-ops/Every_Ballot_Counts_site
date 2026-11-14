@@ -10,12 +10,7 @@ description: The sourced record of how federal power reaches elections, from the
 {%- assign nnot = b.rows | where: "status", "notyet" | size -%}
 {%- assign newest = b.rows | where: "num", b.newest_change | first -%}
 <div class="wrap">
-  <div class="frontline">
-    <p class="label" style="margin:0">The front page for the week of {{ h.week_of | date: "%b %-d, %Y" }}. Amanda Blackmer picks it by hand.</p>
-    <p class="label" style="margin:0;font:italic 16px var(--serif)">{{ h.masthead_line }}</p>
-  </div>
-
-  <div class="split" style="margin-top:28px">
+  <div class="split" style="margin-top:40px">
     <article class="lead">
       {%- assign kp = h.lead.kicker | split: " · " %}
       <p class="kicker"><a href="{{ '/tripwires/#row-' | append: h.lead.tripwire | relative_url }}">Tripwire {{ h.lead.tripwire }}</a>: {{ kp | last | downcase }}</p>
@@ -58,8 +53,7 @@ description: The sourced record of how federal power reaches elections, from the
         <a class="num {{ r.status }}{% if r.hinge %} hinge-sq{% endif %}" href="{{ '/tripwires/#row-' | append: r.num | relative_url }}" title="{{ r.num }}. {{ r.name }} ({{ r.status }})"><span class="vh">Tripwire </span>{{ r.num }}</a>
         {%- endfor %}
       </div>
-      <p class="label" style="margin:16px 0 0">{% include stamps.html %}</p>
-      <p class="label" style="margin:6px 0 0">The newest change is on <a href="{{ '/tripwires/#row-' | append: newest.num | relative_url }}">row {{ newest.num }}, {{ newest.name | downcase }}</a> ({{ newest.changed | date: "%a %b %-d" }}).</p>
+      <p class="label" style="margin:16px 0 0">The newest change is on <a href="{{ '/tripwires/#row-' | append: newest.num | relative_url }}">row {{ newest.num }}, {{ newest.name | downcase }}</a> ({{ newest.changed | date: "%a %b %-d" }}).</p>
     </div>
   </div>
 </section>
@@ -87,7 +81,7 @@ description: The sourced record of how federal power reaches elections, from the
 
   <div class="split section">
     <section aria-labelledby="cf-h">
-      <div class="section-head"><h2 id="cf-h">Case Files</h2><span class="label">Each one is a single story with its documents, people and dates.</span></div>
+      <div class="section-head"><h2 id="cf-h">Case Files</h2></div>
       <div class="cf-list">
         {%- for cf in site.data.casefiles %}
         <a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="id">{{ cf.id }}</span><span><span class="nm">{{ cf.name }}</span><span class="ln">{{ cf.line }}</span></span><span class="label">{% if cf.updated != "" %}Updated {{ cf.updated | date: "%b %-d" }}{% else %}{{ cf.state }}{% endif %}</span></a>
@@ -96,9 +90,9 @@ description: The sourced record of how federal power reaches elections, from the
     </section>
     <aside>
       <a class="poi-card" href="{{ h.opinion.url }}" style="display:block;text-decoration:none">
-        <span style="display:flex;gap:12px;align-items:center"><img src="{{ '/assets/img/poi_ir.png' | relative_url }}" alt="" width="40" height="40"><span class="label">Meanwhile, on the opinion side</span></span>
+        <span style="display:flex;gap:12px;align-items:center"><img src="{{ '/assets/img/poi_ir.png' | relative_url }}" alt="" width="40" height="40"><span class="label">Opinion</span></span>
         <div class="wm">Presumption of <u>ir</u>regularity</div>
-        <p style="margin:0 0 6px">The newest post is <b>{{ h.opinion.title }}</b>. The opinions over there are Amanda’s, and the receipts for them live here.</p>
+        <p style="margin:0 0 6px">The newest post is <b>{{ h.opinion.title }}</b>.</p>
         <div class="comment">Comment [A1]: {{ h.opinion.comment }}</div>
         <span class="ui" style="color:#ffbe2e;font-weight:600;text-decoration:underline;font-size:15.5px">Read it at presumptionofirregularity.com</span>
       </a>

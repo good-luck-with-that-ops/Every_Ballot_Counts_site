@@ -70,7 +70,7 @@ h3{font:700 18px/1.3 var(--sans);letter-spacing:0;margin:0 0 var(--s2)}
 .prose h3{margin-top:var(--s6)}
 .prose blockquote{margin:0 0 1em;padding:2px 0 2px 16px;border-left:3px solid var(--amber)}
 .muted{color:var(--ink-2)}
-.quiet{font:600 15px/1.3 var(--sans);text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+.quiet{font:600 15px/1.3 var(--sans);display:inline;padding:0}
 .quiet:hover{color:var(--red-ink)}
 
 /* ---------- marks ---------- */
@@ -341,7 +341,7 @@ footer.site li{margin:0 0 8px;font:15.5px var(--sans)}
 .md table tr:last-child td{border-bottom:1px solid var(--hair)}
 .md h2{margin-top:48px}
 .md code{font-family:var(--mono);font-size:.92em}
-.search{width:100%;max-width:520px;min-height:44px;border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);font:17px var(--sans);padding:0 2px;border-radius:0}
+.search{width:100%;max-width:520px;min-height:44px;border:1px solid var(--ink-2);background:transparent;color:var(--ink);font:17px var(--sans);padding:0 12px;border-radius:0}
 .phone-only{display:none}
 @media (max-width:760px){ .phone-only{display:inline} }
 @media (max-width:900px){ .desk-only{display:none} }
@@ -356,7 +356,7 @@ footer.site li{margin:0 0 8px;font:15.5px var(--sans)}
 .kb-person{background:var(--card);border:1.5px solid var(--ink)}
 .map-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .map-tools .btn{min-width:44px;justify-content:center}
-.map-shell{position:relative;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.map-shell{position:relative;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:20px}
 .map-view{height:min(78vh,820px);overflow:hidden;position:relative;cursor:grab;touch-action:none;background:var(--paper)}
 .map-view:active{cursor:grabbing}
 .map-stage{position:absolute;left:0;top:0;transform-origin:0 0}
@@ -576,7 +576,7 @@ tr:target>td{background:var(--amber-tint)}
 button.enode{font-family:var(--sans);cursor:pointer}
 button.en-agency:hover,button.en-outside:hover{outline:3px solid var(--red);outline-offset:1px}
 .en-sel{background:var(--card);color:#14213d;border:1.5px solid #14213d}
-#pindex{margin-top:36px;border-top:1px solid var(--ink)}
+#pindex{margin-top:28px}
 #pindex summary{font:700 18px var(--sans);padding:14px 0;cursor:pointer}
 .pm-list{list-style:none;margin:0;padding:0;columns:3 280px;column-gap:36px}
 .pm-list li{break-inside:avoid;border-top:1px solid var(--hair)}
@@ -608,9 +608,37 @@ button.en-agency:hover,button.en-outside:hover{outline:3px solid var(--red);outl
 /* review fixes */
 @media (prefers-color-scheme: dark){ nav.main a[aria-current="page"],nav.main button.cur{background:var(--amber);color:#14213d} }
 .brow .ch button{min-height:32px;padding:6px 0}
-.quiet{display:inline-block;padding:5px 0}
 #ord{min-height:40px}
 .md h2.part{font:700 30px/1.15 var(--serif);letter-spacing:-.012em;border-top:1px solid var(--ink);padding-top:28px;margin-top:72px}
 .poi-card b{font-weight:700}
 .band :focus-visible,footer.site :focus-visible,.poi-card:focus-visible,.take:focus-visible{outline-color:#f4f1ea}
 @media (max-width:900px){ .marks-q{width:40px;height:40px} }
+
+/* ---------- links: the highlighter ----------
+   A link you are meant to follow carries a low amber swipe (the same amber that marks a quoted line in a document);
+   it fills on hover. Source and citation links stay a thin underline so a table of them does not shout.
+   On navy grounds and in dark mode the swipe becomes a 2px amber underline. */
+main a:not([class]),.quiet,.linkish,.marks-pop a{text-decoration:none;color:var(--ink);background:linear-gradient(var(--amber),var(--amber)) 0 92%/100% .42em no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 1px;transition:background-size .12s}
+main a:not([class]):hover,.quiet:hover,.linkish:hover,.marks-pop a:hover{background-size:100% 100%;background-position:0 50%;color:var(--navy)}
+.linkish{border:0;cursor:pointer;font:inherit}
+.src a:not([class]),.sr a:not([class]),.srcs a:not([class]),.hist .sr a,.crumb a:not([class]){background:none;padding:0;color:inherit;text-decoration:underline;text-decoration-color:var(--ink-2);text-decoration-thickness:1px;text-underline-offset:3px}
+.src a:not([class]):hover,.sr a:not([class]):hover,.srcs a:not([class]):hover,.crumb a:not([class]):hover{color:var(--red-ink);background:none}
+.cf-list a,.rec-grid a,.tw-links a,.cstrip a,.cstrip .ct,.pm-list a,.kicker a{background:none;padding:0}
+.tw-links a{text-decoration:underline;text-decoration-color:var(--ink-2);text-decoration-thickness:1px;text-underline-offset:3px}
+.kicker a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.band a:not([class]),.band .linkish{background:none;color:var(--band-ink);text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+.band a:not([class]):hover{color:var(--amber)}
+footer.site a{text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+footer.site a.brand-foot{text-decoration:none}
+@media (prefers-color-scheme: dark){
+  main a:not([class]),.quiet,.linkish,.marks-pop a{background:none;padding:0;text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+  main a:not([class]):hover,.quiet:hover,.linkish:hover,.marks-pop a:hover{background:none;color:var(--amber)}
+  .src a:not([class]),.sr a:not([class]),.srcs a:not([class]),.hist .sr a,.crumb a:not([class]),.tw-links a{text-decoration-color:var(--ink-2);text-decoration-thickness:1px}
+}
+#futbtn{font:600 15px var(--sans);min-height:40px}
+.md hr{border:0;border-top:1px solid var(--hair);margin:40px 0}
+.md hr+h2.part{border-top:0;padding-top:0;margin-top:0}
+.brow .ch button{background-color:transparent}
+#pclose,#ord,#dens-clear{font-family:var(--sans)}
+td #futbtn{border:0;padding:0 1px;min-width:0;text-align:left;font:600 15px var(--sans)}
+td .linkish:not(#futbtn){background:none}
