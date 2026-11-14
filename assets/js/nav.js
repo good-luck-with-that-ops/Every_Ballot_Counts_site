@@ -28,4 +28,12 @@
     mb.textContent = open ? 'Menu' : 'Close';
     mn.classList.toggle('open', !open);
   });
+  // The "?" beside the menu: one legend for the whole page.
+  var q = document.querySelector('button.marks-q'), pop = document.getElementById('marks-pop');
+  function setPop(open) { pop.hidden = !open; q.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  if (q && pop) {
+    q.addEventListener('click', function (e) { e.stopPropagation(); setPop(pop.hidden); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) { setPop(false); q.focus(); } });
+    document.addEventListener('click', function (e) { if (!pop.hidden && !e.target.closest('#marks-pop')) setPop(false); });
+  }
 })();

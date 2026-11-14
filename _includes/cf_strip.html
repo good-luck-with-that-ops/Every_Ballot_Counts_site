@@ -1,0 +1,14 @@
+{%- comment -%} The case timeline as a strip. Reads page.strip: [{date, label, mark, row, gap, exhibit, img}] {%- endcomment -%}
+<figure class="cstrip-fig">
+  <ol class="cstrip">
+    {%- for s in page.strip %}
+    <li{% if s.gap %} class="gap"{% endif %}>
+      <span class="cx">{% if s.img %}<a href="#exh-{{ s.exhibit | downcase }}" title="Exhibit {{ s.exhibit }}"><img src="{{ '/assets/img/exhibits/' | append: s.img | append: '_detail.jpg' | relative_url }}" alt="" loading="lazy"><b>{{ s.exhibit }}</b><span class="vh">Exhibit {{ s.exhibit }}</span></a>{% endif %}</span>
+      <span class="dot {% if s.mark == 'R' %}r{% else %}d{% endif %}" title="{% if s.mark == 'R' %}Reporting{% else %}Document{% endif %}"></span>
+      <span class="cd">{{ s.date }}</span>
+      <a class="ct" href="#t{{ s.row }}">{{ s.label }}</a>
+    </li>
+    {%- endfor %}
+  </ol>
+  <figcaption class="label">A solid dot is a document and a hollow one is reporting. The pages are the exhibits above. Events are in order but not to scale (the first two are years apart){% if page.strip.size > 5 %}<span class="phone-only">, and the strip scrolls sideways</span>{% endif %}.</figcaption>
+</figure>

@@ -16,9 +16,20 @@
       <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} aria-current="page"{% endif %}>About</a>
       <a href="{{ site.opinion_url }}" rel="noopener">Opinion<svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" style="margin-left:5px"><path d="M2 8L8 2M3.5 2H8v4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg><span class="vh"> (opens Presumption of Irregularity)</span></a>
     </nav>
+    {%- if page.legend_inline %}
+    <a class="marks-q" href="#marks" aria-label="How to read the marks D, R and P" title="How to read the marks">?</a>
+    {%- else %}
+    <button type="button" class="marks-q" aria-expanded="false" aria-controls="marks-pop" aria-label="How to read the marks D, R and P" title="How to read the marks">?</button>
+    {%- endif %}
     <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button>
   </div>
-  <div class="wrap"><div class="dbl" aria-hidden="true"></div></div>
+  {%- unless page.legend_inline %}
+  <div class="marks-pop" id="marks-pop" hidden>
+    <h2>How to read the marks</h2>
+    {% include legend.html %}
+    <p class="ui" style="font-size:14.5px;margin:12px 0 0"><a href="{{ '/how-this-is-made/' | relative_url }}">How this is made</a></p>
+  </div>
+  {%- endunless %}
 
   <div class="panel" id="panel-cf">
     <div class="wrap">
@@ -42,15 +53,14 @@
 
   <nav class="mobile-nav wrap" id="mnav" aria-label="Main">
     <div class="row"><a href="{{ '/' | relative_url }}">Home</a></div>
-    <div class="row"><a href="{{ '/tripwires/' | relative_url }}">Tripwires <span style="display:flex;gap:6px;align-items:center"><span class="stamp st-fired" style="font-size:10px">Fired</span><span class="mono" style="font-size:13px;font-weight:700">{{ nfired }}</span><span class="stamp st-armed" style="font-size:10px">Armed</span><span class="mono" style="font-size:13px;font-weight:700">{{ narmed }}</span></span></a></div>
+    <div class="row"><a href="{{ '/tripwires/' | relative_url }}">Tripwires <span class="label">{{ nfired }} fired, {{ narmed }} armed</span></a></div>
     <div class="row"><a href="{{ '/case-files/' | relative_url }}">Case Files</a>
-      <div class="sub">{% for cf in site.data.casefiles %}<a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="mono" style="font-size:12px;font-weight:700">{{ cf.id }}</span><span>{{ cf.name }}</span></a>{% endfor %}</div>
+      <div class="sub">{% for cf in site.data.casefiles %}<a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="mono" style="font-size:13px;font-weight:700">{{ cf.id }}</span><span>{{ cf.name }}</span></a>{% endfor %}</div>
     </div>
     <div class="row"><a href="{{ '/record/' | relative_url }}">The Record</a>
-      <div class="sub">{% for r in site.data.record %}<a class="plain" href="{{ r.url | relative_url }}"><span>{{ r.name }}</span><span class="label">{{ r.status }}</span></a>{% endfor %}</div>
+      <div class="sub">{% for r in site.data.record %}<a class="plain" href="{{ r.url | relative_url }}"><span>{{ r.name }}</span></a>{% endfor %}</div>
     </div>
     <div class="row"><a href="{{ '/about/' | relative_url }}">About</a></div>
-    <div class="row"><a href="{{ site.opinion_url }}">Opinion <span class="label">Presumption of Irregularity ↗</span></a></div>
-    <div style="border-top:2px solid var(--ink);padding-top:16px;margin-top:4px">{% include legend.html %}</div>
+    <div class="row"><a href="{{ site.opinion_url }}">Opinion <span class="label">Presumption of Irregularity (opens Substack)</span></a></div>
   </nav>
 </header>

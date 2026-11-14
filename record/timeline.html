@@ -7,35 +7,40 @@ description: Every dated event behind Every Ballot Counts, from orders and contr
 ---
 <div class="wrap">
   <header class="page-head">
-    <p class="label"><a href="{{ '/record/' | relative_url }}">The Record</a> / Timeline</p>
+    <p class="crumb"><a href="{{ '/record/' | relative_url }}">The Record</a> / Timeline</p>
     <h1>The timeline</h1>
-    <p class="dek prose">Every dated event behind this project: orders, contracts, privacy notices, court filings and statements, each with its mark and its source.</p>
+    <p class="dek prose">Every dated event this project stands on, whether it’s an order, a contract, a privacy notice, a court filing or something an official said out loud. Each one carries its mark and its source.</p>
   </header>
+  <figure class="dens" id="dens" hidden>
+    <figcaption class="label"><span id="dens-cap">Entries per week since Jan 20, 2025.</span> Drag across the bars, or click one, to show only those weeks. <button type="button" class="linkish" id="dens-clear" hidden>Clear the dates</button></figcaption>
+    <div id="dens-plot" tabindex="0" role="group" aria-label="Entries per week. Use the left and right arrow keys to pick a week, Shift with an arrow to widen the range, and Escape to clear it."></div>
+  </figure>
   <div class="tl-controls">
     <label class="vh" for="q">Search the timeline</label>
-    <input id="q" class="search" type="search" placeholder="Search: SAVE, Palantir, California, subpoena…">
+    <input id="q" class="search" type="search" placeholder="Search for SAVE, Palantir, California, subpoena…">
     <div class="filters" role="group" aria-label="Filter by mark" id="fm">
       <button type="button" aria-pressed="true" data-m="">All marks</button>
       <button type="button" aria-pressed="false" data-m="D"><span class="m m-d">D</span> Documents</button>
       <button type="button" aria-pressed="false" data-m="R"><span class="m m-r">R</span> Reporting</button>
       <button type="button" aria-pressed="false" data-m="P"><span class="m m-p"><i>[</i>P<i>]</i></span> Presumed</button>
     </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+    <div class="tl-sel">
       <label class="label" for="fc">Type</label>
-      <select id="fc" class="search" style="max-width:260px"><option value="">All types</option></select>
+      <select id="fc" class="search" style="max-width:240px"><option value="">All types</option></select>
       <label class="label" for="fy">Year</label>
-      <select id="fy" class="search" style="max-width:140px"><option value="">All years</option></select>
-      <button id="ord" class="btn btn-2" type="button">Newest first</button>
+      <select id="fy" class="search" style="max-width:130px"><option value="">All years</option></select>
+      <button id="ord" class="linkish" type="button" style="font:600 15px var(--sans)">Newest first</button>
     </div>
   </div>
   <p class="label" id="count" aria-live="polite" style="margin:20px 0 10px">Loading the timeline…</p>
+  <noscript><p class="wip">The timeline needs JavaScript to search and filter. The whole thing is also available as <a href="{{ '/assets/data/timeline.json' | relative_url }}">a JSON file</a>.</p></noscript>
   <table class="docket" id="tl">
-    <thead><tr><th style="width:130px">Date</th><th>Entry</th><th style="width:28%">Source</th></tr></thead>
+    <thead><tr><th style="width:130px">Date</th><th>Entry</th><th style="width:26%">Source</th></tr></thead>
     <tbody id="fut"></tbody>
     <tbody id="list"></tbody>
   </table>
   <p style="margin-top:20px"><button id="more" class="btn" type="button" hidden>Show more</button></p>
-  <p class="muted" style="font-size:14px;margin-top:24px">A few entries still wait for a source to be attached; they say so. Download the whole timeline as <a href="{{ '/assets/data/timeline.json' | relative_url }}">JSON</a>.</p>
+  <p class="label" style="margin-top:24px">A few entries are still waiting on a source, and they say so. You can also download the whole timeline as <a href="{{ '/assets/data/timeline.json' | relative_url }}">JSON</a>.</p>
 </div>
 <script>window.TL_DATA = "{{ '/assets/data/timeline.json' | relative_url }}";</script>
 <script src="{{ '/assets/js/timeline.js' | relative_url }}" defer></script>

@@ -7,9 +7,9 @@ description: How voter, identity, tax and immigration data moves between federal
 ---
 <div class="wrap">
   <header class="page-head">
-    <p class="label"><a href="{{ '/record/' | relative_url }}">The Record</a> / Architecture map</p>
+    <p class="crumb"><a href="{{ '/record/' | relative_url }}">The Record</a> / Architecture map</p>
     <h1>The architecture map</h1>
-    <p class="dek prose">Where voter, identity, tax and immigration data goes. Read left to right: the sources, federal intake, matching, and what comes out. Select a box to light its flows.</p>
+    <p class="dek prose">This is where voter, identity, tax and immigration data goes. It reads left to right, from the sources through federal intake and matching to what comes out the other end. Pick a box to light up its flows.</p>
   </header>
   <div class="map-key">
     <span class="mk-item"><span class="kb kb-agency"></span>Agency or office</span>
@@ -20,7 +20,7 @@ description: How voter, identity, tax and immigration data moves between federal
   </div>
   <div class="map-tools">
     <label class="vh" for="mq">Find a system or agency</label>
-    <input id="mq" class="search" type="search" placeholder="Find a system or agency: SAVE, Numident, HSI…" list="mq-list">
+    <input id="mq" class="search" type="search" placeholder="Find a system or agency, like SAVE, Numident or HSI" list="mq-list">
     <datalist id="mq-list"></datalist>
     <button class="btn btn-2" type="button" id="zin" aria-label="Zoom in">+</button>
     <button class="btn btn-2" type="button" id="zout" aria-label="Zoom out">−</button>
@@ -36,9 +36,9 @@ description: How voter, identity, tax and immigration data moves between federal
 </div>
 <div class="wrap">
   <section class="section" aria-labelledby="fd-h">
-    <div class="section-head" style="border:0;padding:0;margin-bottom:12px"><h2 id="fd-h">The flow docket</h2><span class="label">Every line on the map, as a table</span></div>
+    <div class="section-head"><h2 id="fd-h">The flow docket</h2><span class="label">It’s every line on the map, as a table.</span></div>
     <table class="docket" id="flows">
-      <thead><tr><th style="width:56px">No.</th><th style="width:28%">From → to</th><th>What moves</th><th style="width:26%">Source</th></tr></thead>
+      <thead><tr><th style="width:56px">No.</th><th style="width:28%">From and to</th><th>What moves</th><th style="width:26%">Source</th></tr></thead>
       <tbody></tbody>
     </table>
   </section>

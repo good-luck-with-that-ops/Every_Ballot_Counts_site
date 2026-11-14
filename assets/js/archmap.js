@@ -6,7 +6,7 @@
   var NS = 'http://www.w3.org/2000/svg';
   var data, nodeEl = {}, edgeEls = {}, k = 1, tx = 0, ty = 0, sel = null;
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-  function chip(m) { return CH[m] || '<span class="label">source to come</span>'; }
+  function chip(m) { return CH[m] || '<span class="label">still waiting on a source</span>'; }
   function apply() { stage.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + k + ')'; }
   function fit() {
     var vw = view.clientWidth, vh = view.clientHeight;
@@ -55,7 +55,7 @@
       var el = document.createElement('button'); el.type = 'button';
       el.className = 'mnode mn-' + n.kind; el.id = 'n-' + n.id;
       el.style.cssText = 'left:' + n.x + 'px;top:' + n.y + 'px;width:' + n.w + 'px;height:' + n.h + 'px';
-      el.innerHTML = '<span class="o">' + esc(n.org) + '</span><b>' + esc(n.name) + '</b><span class="s">' + esc(n.desc) + (n.rid ? ' · ' + esc(n.rid) : '') + '</span>';
+      el.innerHTML = '<span class="o">' + esc(n.org) + '</span><b>' + esc(n.name) + '</b><span class="s">' + esc(n.desc) + (n.rid ? ', ' + esc(n.rid) : '') + '</span>';
       el.addEventListener('click', function (ev) { ev.stopPropagation(); selectNode(n); });
       stage.appendChild(el); nodeEl[n.id] = el;
       $('mq-list').insertAdjacentHTML('beforeend', '<option value="' + esc(n.name) + '">');

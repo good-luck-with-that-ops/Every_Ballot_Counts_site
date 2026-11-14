@@ -6,14 +6,14 @@ nav: record
 description: The primary documents behind the lead stories and Case Files, linked to the official copy where one exists.
 ---
 <div class="wrap">
-  <header class="page-head"><p class="label"><a href="{{ '/record/' | relative_url }}">The Record</a> / Documents</p><h1>Documents</h1><p class="dek prose">The primary documents behind the front page and the Case Files. We link the official copy; where we host a copy, it is a public record.</p></header>
+  <header class="page-head"><p class="crumb"><a href="{{ '/record/' | relative_url }}">The Record</a> / Documents</p><h1>Documents</h1><p class="dek prose">These are the primary documents behind the front page and the Case Files. Each one links to the official copy, and where a copy is hosted here, it’s a public record.</p></header>
   <table class="docket">
     <thead><tr><th style="width:120px">Date</th><th>Document</th><th style="width:30%">Where</th></tr></thead>
     <tbody>
       {%- for d in site.data.documents %}
-      <tr><td class="d">{{ d.date }}</td><td><b>{{ d.title }}</b> {% include mk.html t="{D}" %}<br><span class="muted" style="font-size:14.5px">{{ d.what }}</span></td><td class="src">{% for l in d.links %}<a href="{{ l.url | relative_url }}">{{ l.label }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</td></tr>
+      <tr><td class="d">{{ d.date }}</td><td><b>{{ d.title }}</b> {% include mk.html t="{D}" %}<br><span class="muted" style="font-size:14.5px">{{ d.what }}</span></td><td class="src">{% for l in d.links %}<a href="{{ l.url | relative_url }}">{{ l.label }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</td></tr>
       {%- endfor %}
     </tbody>
   </table>
-  <p class="muted" style="font-size:14.5px;margin-top:18px">Every other document is cited, with its link, in the <a href="{{ '/record/timeline/' | relative_url }}">timeline</a> and the <a href="{{ '/record/registry/' | relative_url }}">system registry</a>.</p>
+  <p class="label" style="margin-top:18px">Every other document is cited, with its link, in the <a href="{{ '/record/timeline/' | relative_url }}">timeline</a> and the <a href="{{ '/record/registry/' | relative_url }}">system registry</a>.</p>
 </div>

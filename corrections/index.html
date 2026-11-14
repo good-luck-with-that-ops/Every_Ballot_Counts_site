@@ -5,10 +5,10 @@ permalink: /corrections/
 description: Every correction to Every Ballot Counts and Presumption of Irregularity, dated, with the wrong words struck and the right words shown.
 ---
 <div class="wrap">
-  <header class="page-head"><h1>Corrections log</h1><p class="dek prose">Every correction, dated. The wrong words are struck; the right words follow. Send one to <a href="mailto:{{ site.contact }}">{{ site.contact }}</a>.</p></header>
+  <header class="page-head"><h1>Corrections log</h1><p class="dek prose">Every correction is here with its date. The wrong words are struck through and the right ones follow. If you’ve found another, send it to <a href="mailto:{{ site.contact }}">{{ site.contact }}</a>.</p></header>
   <ul class="corr-log prose" style="max-width:none">
     {%- for c in site.data.corrections %}
-    <li><span class="mono" style="color:var(--red-ink);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase">{{ c.date | date: "%b %-d, %Y" }}</span> · <span class="label">{% if c.url %}<a href="{{ c.url }}">{{ c.where }}</a>{% else %}{{ c.where }}{% endif %}</span><br><del>{{ c.wrong }}</del> <b>{{ c.right }}</b></li>
+    <li><span class="mono" style="font-weight:700;font-size:13.5px">{{ c.date | date: "%b %-d, %Y" }}</span> <span class="label" style="margin-left:8px">{% if c.url %}<a href="{{ c.url }}">{{ c.where }}</a>{% else %}{{ c.where }}{% endif %}</span><br><del>{{ c.wrong }}</del> <b>{{ c.right }}</b></li>
     {%- endfor %}
   </ul>
 </div>
