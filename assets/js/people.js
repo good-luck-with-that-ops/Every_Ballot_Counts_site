@@ -92,6 +92,7 @@
   function roleLine(r) {
     var o = orgName(r.org), role = r.role || '';
     if (!o) return '<b>' + esc(role) + '</b>' + (r.named ? '' : ' <span class="nosrc">organization not yet sourced</span>');
+    if (/^Prior:/.test(o)) return 'Earlier: ' + esc(o.replace(/^Prior:\s*/, ''));
     if (!role) return '<b>' + esc(o) + '</b>';
     if (mentions(role, r.org)) return '<b>' + esc(role) + '</b>';
     if (role.split(/\s+/).length > 7 || /[;:]/.test(role)) return 'At <b>' + esc(o) + '</b>: ' + esc(role);
