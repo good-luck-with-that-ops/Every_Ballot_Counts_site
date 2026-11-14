@@ -1,18 +1,14 @@
 - name: Timeline
   url: /record/timeline/
-  status: "1,709 entries"
+  status: "1,718 entries"
 - name: People map
   url: /record/people/
   status: Work in progress
 - name: Architecture map
   url: /record/architecture/
-  status: Interactive
 - name: System registry
   url: /record/registry/
-  status: Every system, sourced
 - name: Phrase trail
   url: /record/phrase-trail/
-  status: The words, traced
 - name: Documents
   url: /record/documents/
-  status: Primary sources
