@@ -5,11 +5,6 @@ name: Mark board reviewed
 
 on:
   workflow_dispatch:
-    inputs:
-      note:
-        description: "Optional note (not shown publicly)"
-        required: false
-        default: ""
 
 permissions:
   contents: write
@@ -24,8 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Write the review time (America/New_York)
-        env:
-          NOTE: ${{ github.event.inputs.note }}
         run: |
           TS=$(TZ=America/New_York date +%Y-%m-%dT%H:%M:00%:z)
           {
