@@ -1,0 +1,6 @@
+# The "Last reviewed by Amanda" stamp. Changes ONLY when Amanda confirms she reviewed the board:
+#  - the "Mark board reviewed" GitHub Action (she presses Run), or
+#  - her explicit confirmation in a Claude session ("board reviewed").
+# Scheduled publishes must never write this file.
+reviewed_at: ""
+reviewed_note: ""

@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Moved</title>
+{%- if page.to contains '://' -%}{% assign dest = page.to %}{%- else -%}{% assign dest = page.to | relative_url %}{%- endif -%}
+<link rel="canonical" href="{{ dest }}"><meta http-equiv="refresh" content="0; url={{ dest }}"><meta name="robots" content="noindex"></head>
+<body><p>This page moved: <a href="{{ dest }}">{{ dest }}</a></p></body></html>

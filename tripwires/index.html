@@ -1,0 +1,115 @@
+---
+layout: default
+title: The tripwire board
+permalink: /tripwires/
+description: Twenty-one signals across the ways federal power could reach this election and the next one, each with its newest sourced entry and full history.
+---
+{%- assign b = site.data.board -%}
+{%- assign nfired = b.rows | where: "status", "fired" | size -%}
+{%- assign narmed = b.rows | where: "status", "armed" | size -%}
+{%- assign nnot = b.rows | where: "status", "notyet" | size -%}
+<div class="wrap">
+  <div class="split" style="padding-top:40px">
+    <div>
+      <h1>The tripwire board</h1>
+      <p class="dek">Twenty-one signals across the ways federal power could reach this election and the next one.</p>
+      <div class="counts" aria-label="Board totals">
+        <div><span class="n">{{ nfired }}</span><span class="stamp st-fired">Fired</span></div>
+        <div><span class="n">{{ narmed }}</span><span class="stamp st-armed">Armed</span></div>
+        <div><span class="n">{{ nnot }}</span><span class="stamp st-notyet">Not yet</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="whobox" style="margin-top:12px">
+        <div>
+          <span class="label">Last updated by the monitor</span>
+          <div class="v">{% include stamp_time.html t=b.monitor_checked fmt="long" %}</div>
+          <div class="s">The monitor is Claude, Anthropic’s AI. It pulls and sorts documents.</div>
+        </div>
+        <div>
+          <span class="label">Last reviewed by Amanda</span>
+          <div class="v">{% if site.data.review.reviewed_at != "" %}{% include stamp_time.html t=site.data.review.reviewed_at fmt="long" %}{% else %}Not yet reviewed{% endif %}</div>
+          <div class="s">She decides what runs. This date changes only when she signs off.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:40px">
+    <section aria-labelledby="since">
+      <h2 class="kicker" id="since" style="font-size:12px;margin:0 0 10px">{{ b.since_label }}</h2>
+      <ul class="nextlist" style="border-top-width:2px">
+        {%- for s in b.since %}
+        <li style="grid-template-columns:1fr"><span>{% include mk.html t=s %}</span></li>
+        {%- endfor %}
+      </ul>
+    </section>
+    <section aria-labelledby="howto">
+      <h2 class="label" id="howto" style="font-size:12px;margin:0 0 10px">How to read it</h2>
+      <div class="legend" style="margin-bottom:14px">
+        <div><span class="stamp st-fired" style="font-size:10px">Fired</span><span>It happened.</span></div>
+        <div><span class="stamp st-armed" style="font-size:10px">Armed</span><span>The pieces are in place, or it is pending.</span></div>
+        <div><span class="stamp st-notyet" style="font-size:10px">Not yet</span><span>Nothing seen.</span></div>
+      </div>
+      {% include legend.html %}
+    </section>
+  </div>
+
+  <section class="section" aria-labelledby="board-h">
+    <h2 class="label" id="board-h" style="font-size:12px;margin:0">Filter by route</h2>
+    <div class="filters" role="group" aria-label="Filter by route">
+      <button type="button" aria-pressed="true" data-route="">All <span class="c">{{ b.rows | size }}</span></button>
+      {%- for r in b.routes %}
+      <button type="button" aria-pressed="false" data-route="{{ r.id }}">{{ r.name }} <span class="c">{{ r.rows | size }}</span></button>
+      {%- endfor %}
+    </div>
+
+    <div class="board-head" aria-hidden="true"><span>No.</span><span>Tripwire</span><span>Status</span><span>Newest entry</span><span style="text-align:right">Changed</span></div>
+    {%- for r in b.rows %}
+    <article class="brow" id="row-{{ r.num }}" data-routes="{{ r.routes | join: ' ' }}">
+      <span class="num {{ r.status }}" aria-label="Tripwire {{ r.num }}">{{ r.num }}</span>
+      <div class="nm"><h3 style="font:inherit;margin:0">{{ r.name }}</h3></div>
+      <div class="stc">
+        <span class="stamp st-{{ r.status }}">{% if r.status == 'fired' %}Fired{% elsif r.status == 'armed' %}Armed{% else %}Not yet{% endif %}</span>
+        {% if r.note != "" %}<div class="stn">{{ r.note }}</div>{% endif %}
+        {% if r.hinge %}<div><span class="hinge">Hinge</span></div>{% endif %}
+      </div>
+      <div class="new">{% include mk.html t=r.newest %}</div>
+      <div class="ch">
+        <span>{{ r.changed | date: "%b %-d" }}</span>
+        <button type="button" aria-expanded="false" aria-controls="hist-{{ r.num }}">History</button>
+      </div>
+      <div class="hist" id="hist-{{ r.num }}">
+        <span class="label">Entry history, newest first</span>
+        <ol>
+          {%- for h in r.history %}
+          <li><span class="d">{{ h.date }}</span><span>{% include mk.html t=h.html %}{% if h.source != "" %}<span class="sr">{{ h.source }}</span>{% endif %}</span></li>
+          {%- endfor %}
+        </ol>
+        {% if r.watch != "" %}<p class="watch"><b>Watch for:</b> {{ r.watch }}</p>{% endif %}
+        {% if r.casefile != "" %}{% assign cf = site.data.casefiles | where: "slug", r.casefile | first %}<p class="watch"><a class="quiet" href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}">Case File {{ cf.id }}: {{ cf.name }}</a></p>{% endif %}
+      </div>
+    </article>
+    {%- endfor %}
+  </section>
+
+  <div class="split" style="margin-top:56px">
+    <section>
+      <h2>What would mean it’s being switched on</h2>
+      <ol class="nextlist" style="list-style:none">
+        {%- for s in b.switch_on %}
+        <li><span class="d">{{ forloop.index }}</span><span>{{ s }}</span></li>
+        {%- endfor %}
+      </ol>
+    </section>
+    <section>
+      <h2>Next on the docket</h2>
+      <ul class="nextlist">
+        {%- for d in b.docket %}
+        <li><span class="d">{{ d.label }}</span><span>{{ d.text }}</span></li>
+        {%- endfor %}
+      </ul>
+    </section>
+  </div>
+</div>
+<script src="{{ '/assets/js/board.js' | relative_url }}" defer></script>

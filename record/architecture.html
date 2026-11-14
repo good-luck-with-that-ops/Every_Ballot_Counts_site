@@ -1,0 +1,47 @@
+---
+layout: default
+title: The architecture map
+permalink: /record/architecture/
+nav: record
+description: How voter, identity, tax and immigration data moves between federal agencies, states and vendors. Every line is a numbered, sourced flow.
+---
+<div class="wrap">
+  <header class="page-head">
+    <p class="label"><a href="{{ '/record/' | relative_url }}">The Record</a> / Architecture map</p>
+    <h1>The architecture map</h1>
+    <p class="dek prose">Where voter, identity, tax and immigration data goes. Read left to right: the sources, federal intake, matching, and what comes out. Select a box to light its flows.</p>
+  </header>
+  <div class="map-key">
+    <span class="mk-item"><span class="kb kb-agency"></span>Agency or office</span>
+    <span class="mk-item"><span class="kb kb-outside"></span>Vendor, dataset or outside group</span>
+    <span class="mk-item"><svg width="46" height="10" aria-hidden="true"><path d="M2 5H44" stroke="currentColor" stroke-width="2.5"/></svg><span class="m m-d">D</span> documented flow</span>
+    <span class="mk-item"><svg width="46" height="10" aria-hidden="true"><path d="M2 5H44" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 5"/></svg><span class="m m-r">R</span> reported flow</span>
+    <span class="mk-item"><svg width="46" height="10" aria-hidden="true"><path d="M2 5H44" stroke="var(--red-ink)" stroke-width="2.5" stroke-dasharray="2 5" stroke-linecap="round"/></svg><span class="m m-p"><i>[</i>P<i>]</i></span> presumed flow</span>
+  </div>
+  <div class="map-tools">
+    <label class="vh" for="mq">Find a system or agency</label>
+    <input id="mq" class="search" type="search" placeholder="Find a system or agency: SAVE, Numident, HSI…" list="mq-list">
+    <datalist id="mq-list"></datalist>
+    <button class="btn btn-2" type="button" id="zin" aria-label="Zoom in">+</button>
+    <button class="btn btn-2" type="button" id="zout" aria-label="Zoom out">−</button>
+    <button class="btn btn-2" type="button" id="zfit">Fit</button>
+    <button class="btn btn-2" type="button" id="zclear" hidden>Clear selection</button>
+  </div>
+</div>
+<div class="map-shell">
+  <div class="map-view" id="view" tabindex="0" aria-label="Architecture map. Drag to move, pinch or Ctrl-scroll to zoom. Use the flow docket below for the same information as a table.">
+    <div class="map-stage" id="stage"></div>
+  </div>
+  <aside class="filecard" id="card" hidden aria-live="polite"></aside>
+</div>
+<div class="wrap">
+  <section class="section" aria-labelledby="fd-h">
+    <div class="section-head" style="border:0;padding:0;margin-bottom:12px"><h2 id="fd-h">The flow docket</h2><span class="label">Every line on the map, as a table</span></div>
+    <table class="docket" id="flows">
+      <thead><tr><th style="width:56px">No.</th><th style="width:28%">From → to</th><th>What moves</th><th style="width:26%">Source</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</div>
+<script>window.ARCH_DATA = "{{ '/assets/data/architecture.json' | relative_url }}"; window.REG_BASE = "{{ '/record/registry/' | relative_url }}"; window.ARCH_TL = "{{ '/record/timeline/?q=' | relative_url }}";</script>
+<script src="{{ '/assets/js/archmap.js' | relative_url }}" defer></script>

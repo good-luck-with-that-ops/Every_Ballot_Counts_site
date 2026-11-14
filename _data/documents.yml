@@ -1,0 +1,36 @@
+- date: "Nov 10, 2026"
+  title: "U.S. v. California, C.D. Cal. 2:26-cv-12025, ECF 181"
+  what: "Order closing the case: “This lawsuit attempted to disrupt an ongoing election ...”"
+  links: [{label: "CourtListener", url: "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1043513/gov.uscourts.cacd.1043513.181.0.pdf"}]
+- date: "Sept 30, 2026"
+  title: "Georgia State Election Board letter to DHS, with the Sept 28 resolution"
+  what: "Resolution: the voting systems are “critical infrastructure” and the Dominion systems are “protected computers”; drive copies to DHS and DOJ."
+  links: [{label: "Our copy", url: "/assets/docs/ga-seb-letter-and-resolution-2026-09-30.pdf"}, {label: "DocumentCloud", url: "https://www.documentcloud.org/documents/28719568"}]
+- date: "Sept 22, 2026"
+  title: "Secretary of War, “Countering Foreign Threats to 2026 Elections”"
+  what: "Directs the defense intelligence enterprise to “mobilize every authorized asset” for elections."
+  links: [{label: "defense.gov", url: "https://media.defense.gov/2026/Sep/28/2004007844/-1/-1/1/COUNTERING-FOREIGN-THREATS-TO-2026-ELECTIONS.PDF"}]
+- date: "Sept 24, 2026"
+  title: "CISA, 2026 Election Infrastructure Security Plan"
+  what: "“Securing the Next 250.”"
+  links: [{label: "cisa.gov", url: "https://www.cisa.gov/sites/default/files/2026-09/2026-CISA-Election-Security-Plan-FINAL-508c.pdf"}]
+- date: "July 2026"
+  title: "DHS and CISA, “Recognizing and Addressing Threats to Statewide Voter Registration Databases”"
+  what: "“Recently declassified records revealed that China breached multiple state voter registration systems prior to the 2020 election.”"
+  links: [{label: "cisa.gov", url: "https://www.cisa.gov/sites/default/files/2026-09/Voter-Registration-Database-Threats-FINAL.pdf"}]
+- date: "Jul 17, 2026"
+  title: "White House, “Setting the Record Straight”"
+  what: "Declassification release on foreign election interference."
+  links: [{label: "whitehouse.gov", url: "https://www.whitehouse.gov/releases/2026/07/setting-the-record-straight-president-trump-declassifies-intel-on-foreign-election-interference-deep-state-coverup/"}]
+- date: "Jan 15, 2025"
+  title: "OMB Memorandum M-25-04"
+  what: "Defines a “major incident,” including the automatic 100,000-person rule."
+  links: [{label: "White House archive", url: "https://bidenwhitehouse.archives.gov/wp-content/uploads/2025/01/M-25-04-Fiscal-Year-2025-Guidance-on-Federal-Information-Security-and-Privacy-Management-Requirements.pdf"}]
+- date: "Jul 26, 2016"
+  title: "Presidential Policy Directive 41"
+  what: "United States Cyber Incident Coordination: the FBI leads threat response for a “significant cyber incident.”"
+  links: [{label: "White House archive", url: "https://obamawhitehouse.archives.gov/the-press-office/2016/07/26/presidential-policy-directive-united-states-cyber-incident"}]
+- date: "Statute"
+  title: "44 U.S.C. 3553(h) and 6 U.S.C. 677a-677b"
+  what: "The DHS Secretary’s emergency directive and “significant incident” powers."
+  links: [{label: "govinfo", url: "https://www.govinfo.gov/content/pkg/USCODE-2023-title44/html/USCODE-2023-title44-chap35-subchapII.htm"}, {label: "677b", url: "https://www.law.cornell.edu/uscode/text/6/677b"}]

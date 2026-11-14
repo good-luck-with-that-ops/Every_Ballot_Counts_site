@@ -1,0 +1,36 @@
+title: Every Ballot Counts
+tagline: In order to form a more perfect record.
+description: The sourced record of how federal power reaches elections, from the 2026 midterms through 2028. Documents, reporting and our marked inferences, so you can check every claim.
+url: https://everyballotcounts.io
+baseurl: ""
+timezone: America/New_York
+lang: en
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+exclude: [README.md, Gemfile, Gemfile.lock, vendor, CLAUDE.md, .github]
+include: [_redirects]
+contact: amanda.everyballotcounts@gmail.com
+opinion_url: https://presumptionofirregularity.com
+opinion_name: Presumption of Irregularity
+twitter:
+  username: Every_Ballot
+  card: summary_large_image
+social:
+  name: Every Ballot Counts
+  links:
+    - https://x.com/Every_Ballot
+    - https://bsky.app/profile/every-ballot.bsky.social
+    - https://www.youtube.com/@EveryBallotCounts
+defaults:
+  - scope: {path: ""}
+    values: {layout: page, image: /assets/img/ebc_share_card.png}
+  - scope: {path: "case-files"}
+    values: {nav: casefiles}
+  - scope: {path: "record"}
+    values: {nav: record}

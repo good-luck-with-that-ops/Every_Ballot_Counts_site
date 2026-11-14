@@ -1,0 +1,15 @@
+---
+layout: default
+title: Case Files
+permalink: /case-files/
+nav: casefiles
+description: One page per story, with the documents, the people and the dates. Case Files keep their numbers.
+---
+<div class="wrap">
+  <header class="page-head"><h1>Case Files</h1><p class="dek prose">One page per story: what’s going on, what the documents say, what we presume, the timeline, the people, the take and the sources. Files keep their numbers.</p></header>
+  <div class="cf-list" style="margin-top:24px">
+    {%- for cf in site.data.casefiles %}
+    <a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="id">{{ cf.id }}</span><span><span class="nm">{{ cf.name }}</span><span class="ln">{{ cf.dek }}</span></span><span class="label">{% if cf.updated != "" %}Updated {{ cf.updated | date: "%b %-d" }}{% else %}{{ cf.state }}{% endif %}</span></a>
+    {%- endfor %}
+  </div>
+</div>

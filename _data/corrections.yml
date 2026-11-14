@@ -1,0 +1,17 @@
+# Newest first. wrong/right are short phrases; where links to the page corrected.
+- date: "2026-11-12"
+  where: "The 7-day clock starts whenever they say it does"
+  url: "https://presumptionofirregularity.com/p/the-7-day-clock-starts-whenever-they"
+  file: CF-01
+  wrong: "a “national security system” label adds a second track"
+  right: "the statutes take those systems out of the DHS, OMB and 677b tracks."
+- date: "2026-11-12"
+  where: "CF-01"
+  file: CF-01
+  wrong: "cited 677a for the declaration power"
+  right: "It is 677b, with conditions."
+- date: "2026-11-12"
+  where: "CF-01"
+  file: CF-01
+  wrong: "described the 7-day clock as starting when the agency is sure"
+  right: "The statute says “a reasonable basis to conclude.”"

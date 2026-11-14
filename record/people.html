@@ -1,0 +1,37 @@
+---
+layout: default
+title: The (Not Very) Deep State
+permalink: /record/people/
+nav: record
+description: "The people map: who held which job, where they went next, and who worked with whom, each tie sourced and marked."
+---
+<div class="wrap">
+  <header class="page-head">
+    <p class="label"><a href="{{ '/record/' | relative_url }}">The Record</a> / People map</p>
+    <h1>The (Not Very) Deep State</h1>
+    <p class="dek prose">The people behind the systems: Project 2025 authors, DOGE staff, officials and the people who moved between government and vendors. Pick a person to see their jobs and their sourced ties.</p>
+    <p class="wip">Work in progress: sources not yet verified. Every line below carries the source it came from; we are checking each one.</p>
+  </header>
+  <div class="map-key">
+    <span class="mk-item"><span class="kb kb-person"></span>Person</span>
+    <span class="mk-item"><span class="kb kb-agency"></span>Agency or office</span>
+    <span class="mk-item"><span class="kb kb-outside"></span>Company, think tank or outside group</span>
+    <span class="mk-item"><svg width="46" height="10" aria-hidden="true"><path d="M2 5H44" stroke="currentColor" stroke-width="2.5"/></svg><span class="m m-d">D</span></span>
+    <span class="mk-item"><svg width="46" height="10" aria-hidden="true"><path d="M2 5H44" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 5"/></svg><span class="m m-r">R</span></span>
+  </div>
+  <div class="map-tools">
+    <label class="vh" for="pq">Find a person or employer</label>
+    <input id="pq" class="search" type="search" placeholder="Find a person or employer" autocomplete="off">
+  </div>
+  <div class="filters" role="group" aria-label="Filter people" id="pf"></div>
+  <div class="pm">
+    <ol class="pm-list" id="plist" aria-label="People"></ol>
+    <div class="pm-main">
+      <div class="pm-ego" id="ego"><p class="muted" style="padding:24px">Pick a person from the list.</p></div>
+      <div class="pm-card" id="pcard"></div>
+    </div>
+  </div>
+  <p class="muted" style="font-size:14px;margin-top:24px">Ties about family or private life are left off this public page. Download the public data as <a href="{{ '/assets/data/people.json' | relative_url }}">JSON</a>.</p>
+</div>
+<script>window.PEOPLE_DATA = "{{ '/assets/data/people.json' | relative_url }}"; window.PEOPLE_TL = "{{ '/record/timeline/?q=' | relative_url }}";</script>
+<script src="{{ '/assets/js/people.js' | relative_url }}" defer></script>

@@ -1,0 +1,46 @@
+# Amanda's sign-off button. Run it (GitHub > Actions > "Mark board reviewed" > Run workflow,
+# or from the GitHub mobile app) after she has reviewed the tripwire board.
+# It is the only automated path that sets the "Last reviewed by Amanda" stamp.
+name: Mark board reviewed
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note (not shown publicly)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mark-reviewed
+  cancel-in-progress: false
+
+jobs:
+  stamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write the review time (America/New_York)
+        env:
+          NOTE: ${{ github.event.inputs.note }}
+        run: |
+          TS=$(TZ=America/New_York date +%Y-%m-%dT%H:%M:00%:z)
+          {
+            echo '# The "Last reviewed by Amanda" stamp. Changes ONLY when Amanda confirms she reviewed the board:'
+            echo '#  - the "Mark board reviewed" GitHub Action (she presses Run), or'
+            echo '#  - her explicit confirmation in a Claude session ("board reviewed").'
+            echo '# Scheduled publishes must never write this file.'
+            echo "reviewed_at: \"$TS\""
+            echo 'reviewed_note: ""'
+          } > _data/review.yml
+          echo "Stamped $TS"
+      - name: Commit
+        run: |
+          git config user.name "Review stamp (Amanda)"
+          git config user.email "348624350+good-luck-with-that-ops@users.noreply.github.com"
+          git add _data/review.yml
+          git commit -m "Board reviewed by Amanda" || echo "nothing to commit"
+          git push

@@ -1,0 +1,62 @@
+{%- assign tl = site.data.board.rows -%}
+{%- assign nfired = tl | where: "status", "fired" | size -%}
+{%- assign narmed = tl | where: "status", "armed" | size -%}
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="util">
+    <div class="wrap">
+      <span class="label">The sourced record</span>
+      <span class="label">Board checked {% include stamp_time.html t=site.data.board.monitor_checked %} (monitor) · {% if site.data.review.reviewed_at != "" %}Reviewed by Amanda {% include stamp_time.html t=site.data.review.reviewed_at %}{% else %}Not yet reviewed by Amanda{% endif %}</span>
+    </div>
+  </div>
+  <div class="wrap top">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Every Ballot Counts, home">
+      <svg role="img" aria-hidden="true" width="46" height="46" viewBox="0 0 160 160"><rect x="12" y="12" width="136" height="136" fill="var(--card)" stroke="currentColor" stroke-width="10"/><path d="M46 44v72M68 44v72M90 44v72M112 44v72" stroke="#14213d" stroke-width="9" stroke-linecap="square" fill="none"/><path d="M32 112L128 48" stroke="#ff3b4d" stroke-width="9" stroke-linecap="square" fill="none"/></svg>
+      <span class="wm">EVERY BALLOT<br><span>COUNTS</span></span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+      <a href="{{ '/tripwires/' | relative_url }}"{% if page.url contains '/tripwires' %} aria-current="page"{% endif %}>Tripwires</a>
+      <button type="button" aria-expanded="false" aria-controls="panel-cf" class="{% if page.nav == 'casefiles' %}cur{% endif %}">Case Files<svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button>
+      <button type="button" aria-expanded="false" aria-controls="panel-rec" class="{% if page.nav == 'record' %}cur{% endif %}">The Record<svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} aria-current="page"{% endif %}>About</a>
+      <a href="{{ site.opinion_url }}" rel="noopener">Opinion<svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" style="margin-left:5px"><path d="M2 8L8 2M3.5 2H8v4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg><span class="vh"> (opens Presumption of Irregularity)</span></a>
+    </nav>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button>
+  </div>
+  <div class="wrap"><div class="dbl" aria-hidden="true"></div></div>
+
+  <div class="panel" id="panel-cf">
+    <div class="wrap">
+      <div class="cf-list">
+        {%- for cf in site.data.casefiles %}
+        <a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="id">{{ cf.id }}</span><span><span class="nm">{{ cf.name }}</span><span class="ln">{{ cf.line }}</span></span><span class="label">{% if cf.updated != "" %}Updated {{ cf.updated | date: "%b %-d" }}{% else %}{{ cf.state }}{% endif %}</span></a>
+        {%- endfor %}
+      </div>
+      <p style="margin:16px 0 0"><a class="quiet" href="{{ '/case-files/' | relative_url }}">All Case Files</a></p>
+    </div>
+  </div>
+  <div class="panel" id="panel-rec">
+    <div class="wrap">
+      <div class="rec-grid">
+        {%- for r in site.data.record %}
+        <a href="{{ r.url | relative_url }}"><b>{{ r.name }}</b><span class="label">{{ r.status }}</span></a>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+
+  <nav class="mobile-nav wrap" id="mnav" aria-label="Main">
+    <div class="row"><a href="{{ '/' | relative_url }}">Home</a></div>
+    <div class="row"><a href="{{ '/tripwires/' | relative_url }}">Tripwires <span style="display:flex;gap:6px;align-items:center"><span class="stamp st-fired" style="font-size:10px">Fired</span><span class="mono" style="font-size:13px;font-weight:700">{{ nfired }}</span><span class="stamp st-armed" style="font-size:10px">Armed</span><span class="mono" style="font-size:13px;font-weight:700">{{ narmed }}</span></span></a></div>
+    <div class="row"><a href="{{ '/case-files/' | relative_url }}">Case Files</a>
+      <div class="sub">{% for cf in site.data.casefiles %}<a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="mono" style="font-size:12px;font-weight:700">{{ cf.id }}</span><span>{{ cf.name }}</span></a>{% endfor %}</div>
+    </div>
+    <div class="row"><a href="{{ '/record/' | relative_url }}">The Record</a>
+      <div class="sub">{% for r in site.data.record %}<a class="plain" href="{{ r.url | relative_url }}"><span>{{ r.name }}</span><span class="label">{{ r.status }}</span></a>{% endfor %}</div>
+    </div>
+    <div class="row"><a href="{{ '/about/' | relative_url }}">About</a></div>
+    <div class="row"><a href="{{ site.opinion_url }}">Opinion <span class="label">Presumption of Irregularity ↗</span></a></div>
+    <div style="border-top:2px solid var(--ink);padding-top:16px;margin-top:4px">{% include legend.html %}</div>
+  </nav>
+</header>

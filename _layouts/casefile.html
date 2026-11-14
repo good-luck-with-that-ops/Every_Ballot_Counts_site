@@ -1,0 +1,31 @@
+---
+layout: default
+nav: casefiles
+---
+{%- assign cf = site.data.casefiles | where: "id", page.cf | first -%}
+<div class="wrap">
+  <p class="label" style="margin:24px 0 0"><a href="{{ '/case-files/' | relative_url }}">Case Files</a> / {{ cf.id }}</p>
+  <header class="cf-head">
+    <div class="cf-mark">{% if cf.mark %}<img src="{{ '/assets/img/' | append: cf.mark | relative_url }}" alt="{{ page.mark_alt | default: cf.name }}">{% else %}<span class="t">{{ cf.id }}</span>{% endif %}</div>
+    <div>
+      <p class="label" style="margin:0 0 12px;color:var(--ink);font-weight:700">Case File {{ cf.id }} · Opened {{ cf.opened | date: "%b %-d, %Y" }}{% if cf.updated != "" %} · Updated {{ cf.updated | date: "%b %-d" }}{% endif %} · {{ cf.state }}</p>
+      <h1>{{ cf.name }}</h1>
+      <p class="dek">{{ cf.dek }}</p>
+      <div class="tw-links"><span class="label" style="color:var(--ink);font-weight:700;margin-right:6px">By Amanda Blackmer</span>{% for t in cf.tripwires %}<a href="{{ '/tripwires/#row-' | append: t | relative_url }}">Tripwire {{ t }}</a>{% endfor %}</div>
+    </div>
+  </header>
+  <div class="cf-body">
+    <nav class="cf-index" aria-label="In this file">
+      <p class="label" style="margin:10px 0 6px">In this file</p>
+      <ol>
+        {%- for s in page.sections %}
+        <li><a href="#s{{ forloop.index }}"><span>{{ forloop.index }}</span>{{ s }}</a></li>
+        {%- endfor %}
+      </ol>
+      <div class="desk-only" style="margin-top:20px"><p class="label" style="margin:0 0 8px">Marks</p>{% include legend.html %}</div>
+    </nav>
+    <div>
+{{ content }}
+    </div>
+  </div>
+</div>

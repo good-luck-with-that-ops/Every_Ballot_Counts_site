@@ -1,0 +1,108 @@
+---
+layout: default
+title: Every Ballot Counts
+description: The sourced record of how federal power reaches elections, from the 2026 midterms through 2028. Every claim marked as a document, reporting, or our presumption.
+---
+{%- assign h = site.data.home -%}
+{%- assign b = site.data.board -%}
+{%- assign nfired = b.rows | where: "status", "fired" | size -%}
+{%- assign narmed = b.rows | where: "status", "armed" | size -%}
+{%- assign nnot = b.rows | where: "status", "notyet" | size -%}
+{%- assign newest = b.rows | where: "num", b.newest_change | first -%}
+<div class="wrap">
+  <div class="frontline">
+    <span class="label">Front page · Week of {{ h.week_of | date: "%b %-d, %Y" }} · Curated by Amanda Blackmer</span>
+    <span class="label">{{ h.masthead_line }}</span>
+  </div>
+
+  <div class="split" style="margin-top:32px">
+    <article class="lead">
+      <p class="kicker">{{ h.lead.kicker }}</p>
+      <h1>{{ h.lead.headline }}</h1>
+      <p class="dek">{% include mk.html t=h.lead.dek %}</p>
+      <p class="links"><a class="quiet" href="{{ h.lead.doc_url | relative_url }}">{{ h.lead.doc_label }}</a><a class="quiet" href="{{ '/tripwires/#row-' | append: h.lead.tripwire | relative_url }}">Open tripwire {{ h.lead.tripwire }}</a></p>
+      {% include exhibit.html img=h.lead.exhibit.img alt=h.lead.exhibit.alt caption=h.lead.exhibit.caption sticker="EXHIBIT A" crop=520 focus=h.lead.exhibit.focus %}
+    </article>
+    <aside>
+      <div class="note">
+        <span class="label">Editor’s note · {{ h.note.date | date: "%a %b %-d, %Y" }}</span>
+        <p>{{ h.note.text }}</p>
+        <img class="sig" src="{{ '/assets/img/ebc_signature_navy.png' | relative_url }}" alt="Amanda" width="156" height="58">
+        <p class="label" style="font:12px var(--mono);margin:16px 0 0">I pick this page by hand, weekly</p>
+      </div>
+      <h2 class="label" style="font-size:12px;margin:32px 0 8px">Next on the docket</h2>
+      <ul class="nextlist">
+        {%- for d in b.docket limit:6 %}
+        <li><span class="d">{{ d.label }}</span><span>{{ d.text }}</span></li>
+        {%- endfor %}
+      </ul>
+    </aside>
+  </div>
+</div>
+
+<section class="band" style="margin-top:72px" aria-labelledby="strip-h">
+  <div class="wrap strip">
+    <div>
+      <h2 class="label" id="strip-h" style="font-size:12px;margin:0">The tripwire board · {{ b.rows | size }} signals</h2>
+      <div class="counts">
+        <div><span class="n">{{ nfired }}</span><span class="stamp st-fired">Fired</span></div>
+        <div><span class="n">{{ narmed }}</span><span class="stamp st-armed">Armed</span></div>
+        <div><span class="n">{{ nnot }}</span><span class="stamp st-notyet">Not yet</span></div>
+      </div>
+      <p style="max-width:44ch;margin:0 0 20px">Red means it happened. Amber means the pieces are in place. The two underlined numbers, 3 and 17, are the hinges of the worst case, and they are checked by name every day.</p>
+      <a class="btn btn-amber" href="{{ '/tripwires/' | relative_url }}">Open the board</a>
+    </div>
+    <div>
+      <div class="grid21">
+        {%- for r in b.rows %}
+        <a class="num {{ r.status }}{% if r.hinge %} hinge-sq{% endif %}" href="{{ '/tripwires/#row-' | append: r.num | relative_url }}" title="{{ r.num }}. {{ r.name }} ({{ r.status }})"><span class="vh">Tripwire </span>{{ r.num }}</a>
+        {%- endfor %}
+      </div>
+      <p class="label" style="margin:16px 0 0">Newest change: {{ newest.num }}, {{ newest.name | downcase }} · {{ newest.changed | date: "%a %b %-d" }}</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="split section">
+    <section aria-labelledby="cf-h">
+      <div class="section-head"><h2 id="cf-h">Case Files</h2><span class="label">One page per story: the documents, the people, the dates</span></div>
+      <div class="cf-list">
+        {%- for cf in site.data.casefiles %}
+        <a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="id">{{ cf.id }}</span><span><span class="nm">{{ cf.name }}</span><span class="ln">{{ cf.line }}</span></span><span class="label">{% if cf.updated != "" %}Updated {{ cf.updated | date: "%b %-d" }}{% else %}{{ cf.state }}{% endif %}</span></a>
+        {%- endfor %}
+      </div>
+    </section>
+    <aside>
+      <a class="poi-card" href="{{ h.opinion.url }}" style="display:block;text-decoration:none">
+        <span style="display:flex;gap:12px;align-items:center"><img src="{{ '/assets/img/poi_ir.png' | relative_url }}" alt="" width="40" height="40"><span class="label">From the opinion side</span></span>
+        <div class="wm">Presumption of <u>ir</u>regularity</div>
+        <p style="margin:0 0 6px">Newest post: <b>{{ h.opinion.title }}</b>. Opinions are Amanda’s. The receipts for them live here.</p>
+        <div class="comment">Comment [A1]: {{ h.opinion.comment }}</div>
+        <span style="color:#ffbe2e;font-weight:600;text-decoration:underline">Read the opinion at presumptionofirregularity.com ↗</span>
+      </a>
+    </aside>
+  </div>
+
+  <section class="section" aria-labelledby="week-h">
+    <div class="section-head" style="border:0;padding:0;margin-bottom:12px"><h2 id="week-h">This week in the record</h2><a class="quiet" href="{{ '/record/timeline/' | relative_url }}">Full timeline, {{ site.data.record[0].status }}</a></div>
+    <table class="docket">
+      <thead><tr><th>Date</th><th>Entry</th><th>Source</th><th style="text-align:right">Tripwire</th></tr></thead>
+      <tbody>
+        {%- for w in h.week %}
+        <tr><td class="d">{{ w.date }}</td><td>{% include mk.html t=w.text %}</td><td class="src">{% if w.url %}<a href="{{ w.url }}">{{ w.src }}</a>{% else %}{{ w.src }}{% endif %}</td><td class="tw"><a href="{{ '/tripwires/#row-' | append: w.tw | relative_url }}">{{ w.tw }}</a></td></tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+    <div class="cns"><span class="stampbox">Checked, not seen</span><span>{{ h.checked_not_seen }}</span></div>
+  </section>
+
+  {%- assign c = site.data.corrections | first -%}
+  <section class="section" aria-label="Latest correction">
+    <div class="corr">
+      <div><span class="cd">Corrections log</span><br><span class="label" style="color:#4a5570">Latest: {{ c.date | date: "%b %-d, %Y" }}</span></div>
+      <div><del>{{ c.wrong }}</del> <b>{{ c.right }}</b> In: {% if c.url %}<a href="{{ c.url }}">{{ c.where }}</a>{% else %}{{ c.where }}{% endif %}.</div>
+      <a class="quiet" href="{{ '/corrections/' | relative_url }}">Every correction, dated</a>
+    </div>
+  </section>
+</div>

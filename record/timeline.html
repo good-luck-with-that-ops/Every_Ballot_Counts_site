@@ -1,0 +1,40 @@
+---
+layout: default
+title: The timeline
+permalink: /record/timeline/
+nav: record
+description: Every dated event behind Every Ballot Counts, from orders and contracts to court filings and statements, each marked and sourced.
+---
+<div class="wrap">
+  <header class="page-head">
+    <p class="label"><a href="{{ '/record/' | relative_url }}">The Record</a> / Timeline</p>
+    <h1>The timeline</h1>
+    <p class="dek prose">Every dated event behind this project: orders, contracts, privacy notices, court filings and statements, each with its mark and its source.</p>
+  </header>
+  <div class="tl-controls">
+    <label class="vh" for="q">Search the timeline</label>
+    <input id="q" class="search" type="search" placeholder="Search: SAVE, Palantir, California, subpoena…">
+    <div class="filters" role="group" aria-label="Filter by mark" id="fm">
+      <button type="button" aria-pressed="true" data-m="">All marks</button>
+      <button type="button" aria-pressed="false" data-m="D"><span class="m m-d">D</span> Documents</button>
+      <button type="button" aria-pressed="false" data-m="R"><span class="m m-r">R</span> Reporting</button>
+      <button type="button" aria-pressed="false" data-m="P"><span class="m m-p"><i>[</i>P<i>]</i></span> Presumed</button>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <label class="label" for="fc">Type</label>
+      <select id="fc" class="search" style="max-width:260px"><option value="">All types</option></select>
+      <label class="label" for="fy">Year</label>
+      <select id="fy" class="search" style="max-width:140px"><option value="">All years</option></select>
+      <button id="ord" class="btn btn-2" type="button">Newest first</button>
+    </div>
+  </div>
+  <p class="label" id="count" aria-live="polite" style="margin:20px 0 10px">Loading the timeline…</p>
+  <table class="docket" id="tl">
+    <thead><tr><th style="width:130px">Date</th><th>Entry</th><th style="width:28%">Source</th></tr></thead>
+    <tbody id="list"></tbody>
+  </table>
+  <p style="margin-top:20px"><button id="more" class="btn" type="button" hidden>Show more</button></p>
+  <p class="muted" style="font-size:14px;margin-top:24px">A few entries still wait for a source to be attached; they say so. Download the whole timeline as <a href="{{ '/assets/data/timeline.json' | relative_url }}">JSON</a>.</p>
+</div>
+<script>window.TL_DATA = "{{ '/assets/data/timeline.json' | relative_url }}";</script>
+<script src="{{ '/assets/js/timeline.js' | relative_url }}" defer></script>

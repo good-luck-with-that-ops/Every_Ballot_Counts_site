@@ -1,0 +1,27 @@
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand-foot" href="{{ '/' | relative_url }}"><svg aria-hidden="true" width="38" height="38" viewBox="0 0 160 160"><rect x="12" y="12" width="136" height="136" fill="#14213d" stroke="#f4f1ea" stroke-width="10"/><path d="M46 44v72M68 44v72M90 44v72M112 44v72" stroke="#f4f1ea" stroke-width="9" stroke-linecap="square" fill="none"/><path d="M32 112L128 48" stroke="#ff3b4d" stroke-width="9" stroke-linecap="square" fill="none"/></svg><span class="wm">EVERY BALLOT<br><span>COUNTS</span></span></a>
+        <p class="lead-line">Every Ballot Counts is the research; Presumption of Irregularity is the opinion. Same person, same receipts.</p>
+        <p class="fine">An independent, personal project. No organization funds it and no employer endorses it. Not legal advice.</p>
+      </div>
+      <div>
+        <span class="label">How to read the marks</span>
+        {% include legend.html %}
+      </div>
+      <div>
+        <span class="label">Send a correction or a source</span>
+        <ul>
+          <li><a href="mailto:{{ site.contact }}">{{ site.contact }}</a></li>
+          <li><a href="{{ '/corrections/' | relative_url }}">Corrections log</a></li>
+          <li><a href="{{ '/how-this-is-made/' | relative_url }}">How this is made</a></li>
+          <li><a href="{{ site.opinion_url }}">Opinion: Presumption of Irregularity ↗</a></li>
+          <li><a href="https://bsky.app/profile/every-ballot.bsky.social">Bluesky</a> · <a href="https://x.com/Every_Ballot">X</a> · <a href="https://www.youtube.com/@EveryBallotCounts">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base label">Text and maps: CC BY 4.0 · Government documents are public records</div>
+  </div>
+</footer>
+<script src="{{ '/assets/js/nav.js' | relative_url }}" defer></script>

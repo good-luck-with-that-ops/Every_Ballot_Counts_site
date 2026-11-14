@@ -1,0 +1,38 @@
+# Case Files keep their fixed numbers (decided Nov 14, 2026).
+- id: CF-01
+  slug: cf-01
+  name: "What’s the BS, Russ?"
+  line: "The emergency switch: how a suspicion becomes a “major incident.”"
+  dek: "Federal cyber law lets the government act on a suspicion and tell Congress only once it’s sure."
+  opened: "2026-11-11"
+  updated: "2026-11-12"
+  state: Open
+  mark: bsruss_square.png
+  tripwires: [1, 3, 17]
+- id: CF-02
+  slug: cf-02
+  name: "The citizen database"
+  line: "SAVE, Social Security, HUD and passports behind one door."
+  dek: "Voter, tax, Social Security, housing and immigration records are being wired to one federal check."
+  opened: "2026-11-14"
+  updated: ""
+  state: Being assembled
+  tripwires: [4, 11, 20, 21]
+- id: CF-03
+  slug: cf-03
+  name: "Mississippi’s commercial-data purge"
+  line: "A credit bureau’s address file and 230,000 inactive voters."
+  dek: "A partner state sidelined voters with an address file built for debt collectors."
+  opened: "2026-11-14"
+  updated: ""
+  state: Being assembled
+  tripwires: [16]
+- id: CF-04
+  slug: cf-04
+  name: "Pressuring the people who count"
+  line: "Letters, subpoenas and 18 U.S.C. 241 and 242."
+  dek: "Preservation letters, grand-jury subpoenas and civil-rights statutes aimed at the officials who count and certify."
+  opened: "2026-11-14"
+  updated: ""
+  state: Being assembled
+  tripwires: [2, 5, 6, 14]

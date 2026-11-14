@@ -1,0 +1,30 @@
+---
+layout: casefile
+cf: CF-04
+title: "CF-04"
+permalink: /case-files/cf-04/
+sections: ["Where this file stands", "On the board now", "Search the record"]
+---
+{%- assign cf = site.data.casefiles | where: "id", page.cf | first -%}
+<section class="cf-sec" id="s1">
+  <span class="no">1</span>
+  <h2>Where this file stands</h2>
+  <div class="prose"><p>This Case File is being assembled: the documents, the people and the dates, each marked. Until it opens, the board rows below carry the newest sourced entries, and the full timeline holds everything we have filed so far.</p></div>
+</section>
+<section class="cf-sec" id="s2">
+  <span class="no">2</span>
+  <h2>On the board now</h2>
+  <table class="docket">
+    <thead><tr><th>No.</th><th>Tripwire</th><th>Newest entry</th><th>Changed</th></tr></thead>
+    <tbody>
+    {%- for t in cf.tripwires %}{% assign r = site.data.board.rows | where: "num", t | first %}
+      <tr><td class="d"><a href="{{ '/tripwires/#row-' | append: r.num | relative_url }}">{{ r.num }}</a></td><td><b>{{ r.name }}</b><br><span class="stamp st-{{ r.status }}" style="font-size:10px;margin-top:6px">{% if r.status == 'fired' %}Fired{% elsif r.status == 'armed' %}Armed{% else %}Not yet{% endif %}</span></td><td>{% include mk.html t=r.newest %}</td><td class="d">{{ r.changed | date: "%b %-d" }}</td></tr>
+    {%- endfor %}
+    </tbody>
+  </table>
+</section>
+<section class="cf-sec" id="s3">
+  <span class="no">3</span>
+  <h2>Search the record</h2>
+  <p><a class="btn" href="{{ '/record/timeline/?q=preservation' | relative_url }}">Timeline entries for “preservation”</a></p>
+</section>

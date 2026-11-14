@@ -1,0 +1,5 @@
+{%- comment -%} Usage: include stamp_time.html t="2026-11-13T21:15:00-05:00" fmt="short|long" {%- endcomment -%}
+{%- if include.t and include.t != "" -%}
+{%- assign tt = include.t | date: "%s" | plus: 0 -%}
+{%- if include.fmt == "long" -%}{{ include.t | date: "%a %b %-d, %Y · %-I:%M %P" }} ET{%- else -%}{{ include.t | date: "%a %b %-d, %-I:%M %P" }} ET{%- endif -%}
+{%- else -%}not yet{%- endif -%}

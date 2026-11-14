@@ -1,0 +1,2 @@
+{%- assign mkD = "{" | append: "D" | append: "}" -%}{%- assign mkR = "{" | append: "R" | append: "}" -%}{%- assign mkP = "{" | append: "P" | append: "}" -%}
+{{- include.t | replace: mkD, '<span class="m m-d" title="Document">D</span>' | replace: mkR, '<span class="m m-r" title="Reporting">R</span>' | replace: mkP, '<span class="m m-p" title="Presumed"><i>[</i>P<i>]</i></span>' -}}

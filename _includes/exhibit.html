@@ -1,0 +1,11 @@
+{%- comment -%} include exhibit.html img="slug" alt="..." caption="..." sticker="EXHIBIT A" {%- endcomment -%}
+<figure class="exhibit">
+  <div class="sheet">
+    <span class="sticker">{{ include.sticker | default: "EXHIBIT" }}</span>
+    <picture>
+      <source media="(max-width:760px)" srcset="{{ '/assets/img/exhibits/' | append: include.img | append: '_detail.jpg' | relative_url }}">
+      <img{% if include.crop %} style="height:{{ include.crop }}px;object-fit:cover;object-position:50% {{ include.focus | default: 50 }}%"{% endif %} src="{{ '/assets/img/exhibits/' | append: include.img | append: '.jpg' | relative_url }}" alt="{{ include.alt | escape }}" loading="lazy">
+    </picture>
+  </div>
+  <figcaption>{{ include.caption }}<span class="phone-only"> Detail shown on small screens.</span></figcaption>
+</figure>
