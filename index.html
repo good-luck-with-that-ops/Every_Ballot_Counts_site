@@ -58,7 +58,8 @@ description: The sourced record of how federal power reaches elections, from the
         <a class="num {{ r.status }}{% if r.hinge %} hinge-sq{% endif %}" href="{{ '/tripwires/#row-' | append: r.num | relative_url }}" title="{{ r.num }}. {{ r.name }} ({{ r.status }})"><span class="vh">Tripwire </span>{{ r.num }}</a>
         {%- endfor %}
       </div>
-      <p class="label" style="margin:16px 0 0">Newest change: {{ newest.num }}, {{ newest.name | downcase }} · {{ newest.changed | date: "%a %b %-d" }}</p>
+      <p class="label" style="margin:16px 0 0">{% include stamps.html %}</p>
+      <p class="label" style="margin:8px 0 0">Newest change: {{ newest.num }}, {{ newest.name | downcase }} · {{ newest.changed | date: "%a %b %-d" }}</p>
     </div>
   </div>
 </section>

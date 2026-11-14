@@ -105,7 +105,7 @@ h3{font-size:29px;line-height:1.1;margin:0 0 var(--s3)}
 /* ---------- masthead ---------- */
 .util{border-bottom:1px solid var(--hair)}
 .util .wrap{display:flex;justify-content:space-between;gap:var(--s5);flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
-.mast .wrap.top{display:flex;align-items:center;gap:var(--s5);padding-top:18px;padding-bottom:14px}
+.mast .wrap.top{display:flex;align-items:center;gap:var(--s5);padding-top:22px;padding-bottom:14px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
 .brand svg{display:block;flex:none}
 .brand .wm{font:24px/.95 var(--black);letter-spacing:.01em;white-space:nowrap}
@@ -440,3 +440,5 @@ button.en-person:hover{outline:3px solid var(--red);outline-offset:1px}
 .md{overflow-wrap:anywhere}
 @media (max-width:760px){ .md table{display:block;overflow-x:auto;max-width:100%} .md pre{overflow-x:auto} }
 .pm-main{min-width:0}
+.band .btn-amber,.band .btn-amber:visited{color:var(--navy)}
+.band .btn-amber:hover{color:#fff}

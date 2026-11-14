@@ -3,12 +3,6 @@
 {%- assign narmed = tl | where: "status", "armed" | size -%}
 <a class="skip" href="#main">Skip to content</a>
 <header class="mast">
-  <div class="util">
-    <div class="wrap">
-      <span class="label">The sourced record</span>
-      <span class="label">Board checked {% include stamp_time.html t=site.data.board.monitor_checked %} (monitor) · {% if site.data.review.reviewed_at != "" %}Reviewed by Amanda {% include stamp_time.html t=site.data.review.reviewed_at %}{% else %}Not yet reviewed by Amanda{% endif %}</span>
-    </div>
-  </div>
   <div class="wrap top">
     <a class="brand" href="{{ '/' | relative_url }}" aria-label="Every Ballot Counts, home">
       <svg role="img" aria-hidden="true" width="46" height="46" viewBox="0 0 160 160"><rect x="12" y="12" width="136" height="136" fill="var(--card)" stroke="currentColor" stroke-width="10"/><path d="M46 44v72M68 44v72M90 44v72M112 44v72" stroke="#14213d" stroke-width="9" stroke-linecap="square" fill="none"/><path d="M32 112L128 48" stroke="#ff3b4d" stroke-width="9" stroke-linecap="square" fill="none"/></svg>
