@@ -8,7 +8,8 @@
     R: '<span class="m m-r" title="Reporting">R</span>',
     P: '<span class="m m-p" title="Presumed"><i>[</i>P<i>]</i></span>'
   };
-  var rows = [], view = [], shown = 0, PAGE = 120, newest = true, mark = '';
+  var rows = [], view = [], shown = 0, PAGE = 120, newest = true, mark = '', futOpen = false;
+  var TODAY = new Date().toISOString().slice(0, 10);
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
   function chips(s) {
     return esc(s)
@@ -52,8 +53,17 @@
       return true;
     });
     view.sort(function (a, b) { return newest ? (a.d < b.d ? 1 : a.d > b.d ? -1 : 0) : (a.d > b.d ? 1 : a.d < b.d ? -1 : 0); });
+    // Scheduled and future dates sit in a collapsed group at the top (newest first only).
+    var fut = (newest && !y) ? view.filter(function (r) { return r.d > TODAY; }) : [];
+    if (fut.length) {
+      view = view.filter(function (r) { return r.d <= TODAY; });
+      $('fut').innerHTML = '<tr class="fut-head"><td colspan="3"><button type="button" class="btn btn-2" id="futbtn" aria-expanded="' + futOpen + '">' +
+        (futOpen ? 'Hide' : 'Show') + ' ' + fut.length + ' scheduled and future ' + (fut.length === 1 ? 'date' : 'dates') + '</button> <span class="label" style="margin-left:8px">deadlines, effective dates, ' + fut[fut.length - 1].d.slice(0, 4) + '–' + fut[0].d.slice(0, 4) + '</span></td></tr>' +
+        (futOpen ? fut.slice().reverse().map(row).join('') : '');
+      $('futbtn').addEventListener('click', function () { futOpen = !futOpen; apply(); });
+    } else { $('fut').innerHTML = ''; }
     shown = 0; $('list').innerHTML = ''; more();
-    $('count').textContent = view.length.toLocaleString() + (view.length === 1 ? ' entry' : ' entries') + (view.length !== rows.length ? ' of ' + rows.length.toLocaleString() : '');
+    var n = view.length + fut.length; $('count').textContent = n.toLocaleString() + (n === 1 ? ' entry' : ' entries') + (n !== rows.length ? ' of ' + rows.length.toLocaleString() : '');
   }
   function more() {
     var html = ''; var end = Math.min(view.length, shown + PAGE);
