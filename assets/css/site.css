@@ -600,6 +600,7 @@ button.en-agency:hover,button.en-outside:hover{outline:3px solid var(--red);outl
   .pm-list button{padding:13px 2px}
 }
 .enode b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.en-person span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rec-list a{grid-template-columns:minmax(0,1fr) auto}
 .corr-log li{padding:14px 0;border-top:1px solid var(--hair);list-style:none}
 .md .legend{margin:8px 0 20px}
