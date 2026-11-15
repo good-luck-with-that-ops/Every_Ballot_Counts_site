@@ -15,7 +15,7 @@
     DHS: ['Homeland Security'], DOJ: ['Justice Department', 'Department of Justice', 'Attorney General', 'U.S. Attorney', 'AAG', 'Solicitor General', 'Office of Legal Counsel', 'Civil Rights Division'],
     DoD: ['Defense', 'Secretary of War', 'Pentagon'], SSA: ['Social Security'], OMB: ['Management and Budget'], State: ['State Department', 'Secretary of State'],
     EOP: ['White House', 'President', 'Oval Office', 'NSC'], 'White House': ['President', 'Oval Office'], ODNI: ['National Intelligence', 'DNI'], HUD: ['Housing and Urban'],
-    'Supreme Court': ['Chief Justice', 'Associate Justice'], 'U.S. Senate': ['Senator'], Education: ['Education Department', 'Secretary of Education'], Treasury: ['Treasury']
+    'Supreme Court': ['Chief Justice', 'Associate Justice'], 'U.S. Senate': ['Senator'], 'Center for Renewing America': ['CRA'], 'Conservative Partnership Institute (CPI) network': ['CPI', 'Conservative Partnership Institute'], 'Election Integrity Network': ['EIN'], Education: ['Education Department', 'Secretary of Education'], Treasury: ['Treasury']
   };
   var SELF = /\b(President|Senator|Representative|Justice|Attorney General|Governor|Federal Reserve|Heritage|Claremont|True the Vote|Election Integrity Network|Fannie Mae|FEMA|U\.S\. Attorney|Secretary of [A-Z]|Project 2025|State Election Board|Valor Equity)\b/;
 
@@ -408,17 +408,35 @@
         return '<li><span class="d">' + esc(when(r) || 'Undated') + '</span><span><button type="button" class="linkish" data-id="' + id + '"><b>' + esc(p.name) + '</b></button>' + (r.role ? ', ' + esc(r.role) : '') + (rs.length > 1 ? ' (and ' + (rs.length - 1) + ' more ' + (rs.length === 2 ? 'entry' : 'entries') + ')' : '') + ' ' + (CH[n.members[id]] || '') + '</span></li>';
       }).join('') + '</ol>';
   }
+  // What a tie box says under the name, kept very short (the card above has the detail and sources).
+  // For a working tie, "where" is the organization both people share (one the evidence names first);
+  // for an event, a document or money, it is an organization the evidence names, or its first few words.
+  // The full evidence is the tooltip.
+  var AFFIL = /worked|founded|authored|org tie|colleague|employ|board/i;
+  function shortOrg(o) { return orgName(o).replace(/\s*\([^)]*\)/g, ''); }
+  function tieWhere(t, p, o) {
+    var ev = t.ev || '', mine = {}, shared = [];
+    p.roles.forEach(function (r) { if (r.org && !SKIP.test(r.org) && !EVENT.test(r.org)) mine[r.org] = 1; });
+    (byId[o.id] ? byId[o.id].roles : []).forEach(function (r) { if (mine[r.org] && shared.indexOf(r.org) < 0) shared.push(r.org); });
+    var named = vocab.filter(function (x) { return !EVENT.test(x) && mentions(ev, x); }).sort(function (x, y) { return orgName(y).length - orgName(x).length; });
+    var hit = shared.filter(function (x) { return named.indexOf(x) >= 0; })[0] || (AFFIL.test(t.type) ? shared[0] : null) || named[0];
+    if (hit) return t.type + ' \u00b7 ' + shortOrg(hit);
+    var e = ev.split(';')[0].replace(/\.$/, '');
+    if (e.length > 30) e = e.slice(0, 30).replace(/\s+\S*$/, '') + '\u2026';
+    return e ? t.type + ' \u00b7 ' + e : t.type;
+  }
+  function tieTip(t) { return (t.date ? fmtDate(t.date) + ': ' : '') + (t.ev || t.type); }
   function ego(p) {
     var host = $('ego'), f = file(p), TT = tiesOf(p.id), T = TT.slice(0, 14), orgs = [], seen = {};
     f.cur.concat(f.hist).forEach(function (r) { var o = orgName(r.org); if (o && !seen[o] && !SKIP.test(r.org) && orgs.length < 10) { seen[o] = 1; orgs.push(r); } });
     if (!T.length && !orgs.length) { host.hidden = true; return; }
     host.hidden = false;
-    var rowH = 66, n = Math.max(T.length, orgs.length, 1), H = Math.max(n * rowH + 30, 200), W = 900, cx = 330, cw = 240, cy = H / 2 - 40, html = '';
+    var rowH = 76, n = Math.max(T.length, orgs.length, 1), H = Math.max(n * rowH + 30, 200), W = 900, cx = 330, cw = 240, cy = H / 2 - 40, html = '';
     var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" class="ego-lines" aria-hidden="true">';
     T.forEach(function (t, i) {
       var o = byId[t.a === p.id ? t.b : t.a]; if (!o) return; var y = 14 + i * rowH + (n - T.length) * rowH / 2;
       s += '<path d="M200 ' + (y + 22) + ' H260 V' + (cy + 40) + ' H' + cx + '" class="eline e-' + t.m + '"/>';
-      html += '<button type="button" class="enode en-person" style="left:0;top:' + y + 'px" data-id="' + o.id + '"><b>' + esc(o.name) + '</b><span>' + esc(t.type) + '</span></button>';
+      html += '<button type="button" class="enode en-person" style="left:0;top:' + y + 'px" data-id="' + o.id + '" title="' + esc(tieTip(t)) + '"><b>' + esc(o.name) + '</b><span>' + esc(tieWhere(t, p, o)) + '</span></button>';
     });
     orgs.forEach(function (r, i) {
       var y = 14 + i * rowH + (n - orgs.length) * rowH / 2, on = nodeById['org:' + r.org];
