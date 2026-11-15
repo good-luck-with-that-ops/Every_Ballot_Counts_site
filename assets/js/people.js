@@ -57,6 +57,8 @@
     var out = [];
     hist.forEach(function (r) {
       var n = norm(r.role), hit = null;
+      // one background line that names two employers ("Engineer at X and SpaceX") prints once
+      if (r.kind === 'background' && out.some(function (o) { return o.kind === 'background' && o.role === r.role; })) return;
       out.forEach(function (o) {
         if (hit || orgName(o.org).toLowerCase() !== orgName(r.org).toLowerCase()) return;
         var on = norm(o.role);
