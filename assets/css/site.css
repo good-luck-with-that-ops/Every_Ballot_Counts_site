@@ -552,6 +552,16 @@ tr:target>td{background:var(--amber-tint)}
 .has-focus .n:not(.on){opacity:.12}
 .has-focus .e:not(.on){opacity:.035}
 .has-focus .e.on{opacity:1;stroke-width:2}
+/* hovering keeps what the picks lit up: lit nodes stay readable, the hovered network comes forward */
+.has-filter.has-focus .n.in:not(.on){opacity:.55}
+.has-filter.has-focus .n.both:not(.on){opacity:.9}
+.has-filter.has-focus .e.in:not(.on){opacity:.3}
+.has-filter.has-focus .e.cross:not(.on){opacity:.8}
+.n.pick .sh{stroke:var(--red);stroke-width:3}
+.pm-how{margin:2px 0 8px}
+.pm-picks button.pk{background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700}
+.pm-picks .pk span{margin-left:4px;opacity:.8}
+.pm-picks button.pk-clear{font-weight:500}
 .n.sel .sh{stroke:var(--red);stroke-width:3.6}
 .lb{font:500 12.5px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round;pointer-events:none}
 .lb-o{font-weight:700}

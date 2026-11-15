@@ -21,7 +21,7 @@
 
   var P = [], byId = {}, ties = [], vocab = [], flags = [];
   var nodes = [], nodeById = {}, edges = [], adj = {}, orgList = [];
-  var groupsOn = [], sel = null, hov = null;
+  var groupsOn = [], picks = [], sel = null, hov = null;
   var svg, world, lab, T = { x: 0, y: 0, k: 1 }, K0 = 1, box = null, CW = 800, CHT = 600;
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
@@ -210,41 +210,48 @@
   function center(n) {
     var k = Math.max(T.k, K0 * 2.6); T.k = k; T.x = CW / 2 - n.x * k; T.y = CHT * .45 - n.y * k; apply();
   }
-  function inGroups(n) { if (n.t !== 'p') return 0; var c = 0; groupsOn.forEach(function (g) { if (n.p.groups.indexOf(g) >= 0) c++; }); return c; }
-  function orgSpan(n) { // how many of the selected groups have someone at this organization
-    var got = {}; Object.keys(n.members).forEach(function (id) { byId[id].groups.forEach(function (g) { if (groupsOn.indexOf(g) >= 0) got[g] = 1; }); });
-    return Object.keys(got).length;
+  // What is lit up: each picked group and each person or organization picked in the map is one "set".
+  // A group holds its people and the organizations they work at; a pick holds that node and everything tied to it.
+  function sets() {
+    return groupsOn.map(function (g) { return { g: g }; }).concat(picks.map(function (id) { return { id: id }; }));
   }
+  function inSet(n, s) {
+    if (s.g) return n.t === 'p' ? n.p.groups.indexOf(s.g) >= 0 : Object.keys(n.members).some(function (id) { return byId[id].groups.indexOf(s.g) >= 0; });
+    return n.id === s.id || !!adj[s.id][n.id];
+  }
+  function focusId() { return hov || (sel && picks.indexOf(sel) < 0 ? sel : null); }
   // classes for filter, hover and selection
   function paint() {
-    var focus = hov || sel, f = groupsOn.length > 0;
+    var S = sets(), focus = focusId(), f = S.length > 0;
     svg.classList.toggle('has-focus', !!focus); svg.classList.toggle('has-filter', f);
     nodes.forEach(function (n) {
       var c = 'n n-' + n.t;
+      n.sets = [];
       if (f) {
-        var k = n.t === 'p' ? inGroups(n) : orgSpan(n);
-        n.fin = n.t === 'p' ? k > 0 : k > 0; n.both = groupsOn.length > 1 && k > 1;
+        S.forEach(function (s, i) { if (inSet(n, s)) n.sets.push(i); });
+        n.fin = n.sets.length > 0; n.both = S.length > 1 && n.sets.length > 1;
         c += n.fin ? ' in' : ' out'; if (n.both) c += ' both';
       } else { n.fin = true; n.both = false; }
+      if (picks.indexOf(n.id) >= 0) c += ' pick';
       if (focus && (n.id === focus || adj[focus][n.id])) c += ' on';
       if (n.id === sel) c += ' sel';
       n.el.setAttribute('class', c);
     });
     edges.forEach(function (e) {
       var c = 'e e-' + e.k + ' e-' + e.m, a = nodeById[e.a], b = nodeById[e.b];
-      if (f) { c += (a.fin && b.fin) ? ' in' : ' out'; if (e.k === 'tie' && groupsOn.length > 1 && a.fin && b.fin && cross(a.p, b.p)) c += ' cross'; }
+      if (f) { c += (a.fin && b.fin) ? ' in' : ' out'; if (e.k === 'tie' && S.length > 1 && a.fin && b.fin && cross(a, b)) c += ' cross'; }
       if (focus && (e.a === focus || e.b === focus)) c += ' on';
       e.el.setAttribute('class', c);
     });
     labels();
   }
-  function cross(p, q) { // a tie that runs between two different selected groups
-    return groupsOn.some(function (g) { return p.groups.indexOf(g) >= 0 && groupsOn.some(function (h) { return h !== g && q.groups.indexOf(h) >= 0; }); });
+  function cross(a, b) { // a tie that runs between two different lit-up sets
+    return a.sets.some(function (i) { return b.sets.some(function (j) { return i !== j; }); });
   }
   function labels() {
     if (!lab) return;
     while (lab.firstChild) lab.removeChild(lab.firstChild);
-    var focus = hov || sel, f = groupsOn.length > 0, placed = [], count = 0;
+    var focus = focusId(), f = groupsOn.length + picks.length > 0, placed = [], count = 0;
     var cand = nodes.filter(function (n) {
       var x = n.x * T.k + T.x, y = n.y * T.k + T.y; n.sx = x; n.sy = y;
       return x > -20 && x < CW + 20 && y > 0 && y < CHT;
@@ -254,6 +261,7 @@
       if (n.lone) s -= 100;
       if (f && !n.fin) s -= 1000;
       if (n.both) s += 400;
+      if (picks.indexOf(n.id) >= 0) s += 3000;
       if (focus) { if (n.id === focus) s += 5000; else if (adj[focus][n.id]) s += 2000; else s -= 500; }
       return s;
     }
@@ -299,7 +307,7 @@
     function up(e) {
       if (!pts[e.pointerId]) return;
       delete pts[e.pointerId]; pinch = 0;
-      if (!moved && e.type === 'pointerup') { if (start.id) select(start.id, false); else if (sel) select(null); }
+      if (!moved && e.type === 'pointerup') { if (start.id) togglePick(start.id); else if (sel) select(null); }
       if (Object.keys(pts).length === 1) { var k = Object.keys(pts)[0]; start = { p: pts[k], tx: T.x, ty: T.y, id: null }; }
     }
     svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
@@ -327,21 +335,49 @@
       });
     });
   }
+  // People and organizations picked in the map, shown as chips you can take off again.
+  function pickChips() {
+    var box = $('ppicks');
+    if (!picks.length && !groupsOn.length) { box.hidden = true; box.innerHTML = ''; return; }
+    box.hidden = false;
+    box.innerHTML = picks.map(function (id) {
+      return '<button type="button" class="pk" aria-pressed="true" data-pick="' + esc(id) + '" aria-label="Take ' + esc(nodeById[id].name) + ' off the map">' + esc(nodeById[id].name) + ' <span aria-hidden="true">\u00d7</span></button>';
+    }).join('') + '<button type="button" class="pk-clear" data-clear="1">Clear all</button>';
+    box.querySelectorAll('button[data-pick]').forEach(function (b) { b.addEventListener('click', function () { togglePick(b.getAttribute('data-pick'), true); }); });
+    box.querySelector('[data-clear]').addEventListener('click', function () {
+      picks = []; groupsOn = []; $('pf').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); filtered();
+    });
+  }
+  function togglePick(id, fromChip) {
+    var i = picks.indexOf(id);
+    if (i >= 0) {
+      picks.splice(i, 1);
+      if (sel === id) { if (picks.length && !fromChip) select(picks[picks.length - 1], false, true); else if (sel) select(null, false, true); }
+      filtered();
+    } else {
+      picks.push(id); select(id, false, true); filtered();
+    }
+  }
+  function filteredLater() { setTimeout(filtered, 0); }
   function names(list, max) {
     return list.slice(0, max).map(function (n) { return '<button type="button" class="linkish" data-id="' + esc(n.id) + '">' + esc(n.name) + '</button>'; }).join(', ') + (list.length > max ? ' and ' + (list.length - max) + ' more' : '');
   }
   function filtered() {
-    paint(); index();
-    var s = $('psum'), html;
-    if (!groupsOn.length) { s.innerHTML = 'Pick one group to light it up, or two or more to see where they overlap.'; return; }
+    paint(); index(); pickChips();
+    var s = $('psum'), html, S = sets();
+    if (!S.length) { s.innerHTML = ''; return; }
     var inAny = nodes.filter(function (n) { return n.t === 'p' && n.fin; });
-    if (groupsOn.length === 1) { s.innerHTML = '<b>' + inAny.length + ' people</b> in ' + esc(groupsOn[0]) + '. Add another group to see who is in both.'; return; }
+    if (S.length === 1) {
+      s.innerHTML = S[0].g ? '<b>' + inAny.length + ' people</b> in ' + esc(S[0].g) + '. Add a group or click someone in the map to see who connects them.'
+        : '<b>' + esc(nodeById[S[0].id].name) + '</b> and the ' + (inAny.length - (nodeById[S[0].id].t === 'p' ? 1 : 0)) + ' people tied to them. Click someone else in the map, or pick a group, to see who connects them.';
+      return;
+    }
     var both = nodes.filter(function (n) { return n.t === 'p' && n.both; }), sharedOrgs = orgList.filter(function (n) { return n.both; }).sort(function (a, b) { return b.size - a.size; });
     var nx = edges.filter(function (e) { return /cross/.test(e.el.getAttribute('class')); }).length;
-    html = '<b>' + inAny.length + ' people</b> across ' + groupsOn.length + ' groups. ';
-    html += both.length ? '<b>' + both.length + (both.length === 1 ? ' is' : ' are') + ' in more than one</b> (ringed in amber): ' + names(both, 8) + '. ' : 'Nobody is in more than one of them. ';
-    html += nx ? '<b>' + nx + ' sourced ' + (nx === 1 ? 'tie runs' : 'ties run') + '</b> between people in different groups (the heavy lines). ' : '';
-    html += sharedOrgs.length ? 'Organizations with people from more than one group: ' + names(sharedOrgs, 8) + '.' : '';
+    html = '<b>' + inAny.length + ' people</b> lit up across ' + S.length + ' picks. ';
+    html += both.length ? '<b>' + both.length + (both.length === 1 ? ' connects' : ' connect') + ' two or more</b> (ringed in amber): ' + names(both, 8) + '. ' : 'Nobody sits in more than one of them. ';
+    html += nx ? '<b>' + nx + ' sourced ' + (nx === 1 ? 'tie runs' : 'ties run') + '</b> between them (the heavy lines). ' : '';
+    html += sharedOrgs.length ? 'Organizations in more than one: ' + names(sharedOrgs, 8) + '.' : '';
     s.innerHTML = html; bind(s);
   }
 
@@ -366,8 +402,8 @@
     bind(box, true);
   }
   function index() {
-    var rows = P.filter(function (p) { return !groupsOn.length || groupsOn.some(function (g) { return p.groups.indexOf(g) >= 0; }); });
-    $('pindex-n').textContent = groupsOn.length ? rows.length + ' people in the selected groups, A to Z' : 'All ' + P.length + ' people, A to Z';
+    var lit = groupsOn.length + picks.length > 0, rows = P.filter(function (p) { return !lit || nodeById[p.id].fin; });
+    $('pindex-n').textContent = lit ? rows.length + ' people lit up, A to Z' : 'All ' + P.length + ' people, A to Z';
     $('plist').innerHTML = rows.map(function (p) {
       return '<li><button type="button" data-id="' + p.id + '"' + (sel === p.id ? ' aria-current="true"' : '') + '><b>' + esc(p.name) + '</b><span>' + esc(p.now || p.groups.join(', ')) + '</span></button></li>';
     }).join('');
@@ -447,9 +483,12 @@
     host.innerHTML = '<h2>' + esc(p.name) + ', one person at a time</h2><p class="label" style="margin:-6px 0 12px">People with a sourced tie are on the left' + (TT.length > 14 ? ' (the first 14 of ' + TT.length + ')' : '') + ', and employers and offices are on the right, newest first. A dashed line means reporting.</p><div class="ego-scroll"><div class="ego-stage" style="height:' + H + 'px">' + s + '</svg>' + html + '</div></div>';
     bind(host);
   }
-  function select(id, go) {
+  // Opening someone from the list, the search or a card starts a fresh pick with just them;
+  // clicks in the map add to the picks instead (togglePick passes keep).
+  function select(id, go, keep) {
     var n = id ? nodeById[id] : null, card = $('pcard');
     sel = n ? n.id : null; hov = null;
+    if (n && !keep) { picks = [n.id]; pickChips(); filteredLater(); }
     document.body.classList.toggle('pm-open', !!n);
     if (!n) { card.hidden = true; $('ego').hidden = true; $('pintro').hidden = false; history.replaceState(null, '', location.pathname + location.search); paint(); index(); return; }
     $('pintro').hidden = true; card.hidden = false;
