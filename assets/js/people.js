@@ -21,7 +21,7 @@
 
   var P = [], byId = {}, ties = [], vocab = [], flags = [];
   var nodes = [], nodeById = {}, edges = [], adj = {}, orgList = [];
-  var groupsOn = [], picks = [], sel = null, hov = null;
+  var groupsOn = [], picks = [], agOn = [], tfOn = [], F = { agencies: {}, taskforces: {} }, sel = null, hov = null;
   var svg, world, lab, T = { x: 0, y: 0, k: 1 }, K0 = 1, box = null, CW = 800, CHT = 600;
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
@@ -212,13 +212,19 @@
   }
   // What is lit up: each picked group and each person or organization picked in the map is one "set".
   // A group holds its people and the organizations they work at; a pick holds that node and everything tied to it.
+  // Groups, agencies and task forces are lists of people; an organization lights up when one of them works there.
   function sets() {
-    return groupsOn.map(function (g) { return { g: g }; }).concat(picks.map(function (id) { return { id: id }; }));
+    function list(ids) { var o = {}; ids.forEach(function (id) { o[id] = 1; }); return o; }
+    return groupsOn.map(function (g) { return { label: g, ids: list(P.filter(function (p) { return p.groups.indexOf(g) >= 0; }).map(function (p) { return p.id; })) }; })
+      .concat(agOn.map(function (a) { return { label: a, ids: list(F.agencies[a] || []), ag: 1 }; }))
+      .concat(tfOn.map(function (t) { return { label: t, ids: list(F.taskforces[t] || []), tf: 1 }; }))
+      .concat(picks.map(function (id) { return { id: id }; }));
   }
   function inSet(n, s) {
-    if (s.g) return n.t === 'p' ? n.p.groups.indexOf(s.g) >= 0 : Object.keys(n.members).some(function (id) { return byId[id].groups.indexOf(s.g) >= 0; });
+    if (s.ids) return n.t === 'p' ? !!s.ids[n.id] : Object.keys(n.members).some(function (id) { return !!s.ids[id]; });
     return n.id === s.id || !!adj[s.id][n.id];
   }
+  function anyOn() { return groupsOn.length + agOn.length + tfOn.length + picks.length > 0; }
   function focusId() { return hov || (sel && picks.indexOf(sel) < 0 ? sel : null); }
   // classes for filter, hover and selection
   function paint() {
@@ -251,7 +257,7 @@
   function labels() {
     if (!lab) return;
     while (lab.firstChild) lab.removeChild(lab.firstChild);
-    var focus = focusId(), f = groupsOn.length + picks.length > 0, placed = [], count = 0;
+    var focus = focusId(), f = anyOn(), placed = [], count = 0;
     var cand = nodes.filter(function (n) {
       var x = n.x * T.k + T.x, y = n.y * T.k + T.y; n.sx = x; n.sy = y;
       return x > -20 && x < CW + 20 && y > 0 && y < CHT;
@@ -335,17 +341,32 @@
       });
     });
   }
+  // Agencies of this administration and the task forces, as two pickers beside the group chips.
+  function pickers() {
+    function fill(sel, obj, first, unit) {
+      sel.innerHTML = '<option value="">' + first + '</option>' + Object.keys(obj).sort(function (a, b) { return a.localeCompare(b); }).map(function (k) {
+        return '<option value="' + esc(k) + '">' + esc(k) + ' (' + obj[k].length + ' ' + (obj[k].length === 1 ? 'person' : 'people') + ')</option>';
+      }).join('');
+    }
+    fill($('pag'), F.agencies, 'Add an agency or office\u2026'); fill($('ptf'), F.taskforces, 'Add a task force\u2026');
+    $('pag').addEventListener('change', function () { var v = this.value; if (v && agOn.indexOf(v) < 0) agOn.push(v); this.value = ''; filtered(); });
+    $('ptf').addEventListener('change', function () { var v = this.value; if (v && tfOn.indexOf(v) < 0) tfOn.push(v); this.value = ''; filtered(); });
+  }
   // People and organizations picked in the map, shown as chips you can take off again.
   function pickChips() {
     var box = $('ppicks');
-    if (!picks.length && !groupsOn.length) { box.hidden = true; box.innerHTML = ''; return; }
+    if (!anyOn()) { box.hidden = true; box.innerHTML = ''; return; }
     box.hidden = false;
-    box.innerHTML = picks.map(function (id) {
+    box.innerHTML = agOn.map(function (a) { return '<button type="button" class="pk" aria-pressed="true" data-ag="' + esc(a) + '" aria-label="Take ' + esc(a) + ' off the map">' + esc(a) + ' <span aria-hidden="true">\u00d7</span></button>'; }).join('') +
+      tfOn.map(function (t) { return '<button type="button" class="pk" aria-pressed="true" data-tf="' + esc(t) + '" aria-label="Take ' + esc(t) + ' off the map">' + esc(t) + ' <span aria-hidden="true">\u00d7</span></button>'; }).join('') +
+      picks.map(function (id) {
       return '<button type="button" class="pk" aria-pressed="true" data-pick="' + esc(id) + '" aria-label="Take ' + esc(nodeById[id].name) + ' off the map">' + esc(nodeById[id].name) + ' <span aria-hidden="true">\u00d7</span></button>';
     }).join('') + '<button type="button" class="pk-clear" data-clear="1">Clear all</button>';
     box.querySelectorAll('button[data-pick]').forEach(function (b) { b.addEventListener('click', function () { togglePick(b.getAttribute('data-pick'), true); }); });
+    box.querySelectorAll('button[data-ag]').forEach(function (b) { b.addEventListener('click', function () { agOn.splice(agOn.indexOf(b.getAttribute('data-ag')), 1); filtered(); }); });
+    box.querySelectorAll('button[data-tf]').forEach(function (b) { b.addEventListener('click', function () { tfOn.splice(tfOn.indexOf(b.getAttribute('data-tf')), 1); filtered(); }); });
     box.querySelector('[data-clear]').addEventListener('click', function () {
-      picks = []; groupsOn = []; $('pf').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); filtered();
+      picks = []; groupsOn = []; agOn = []; tfOn = []; $('pf').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); filtered();
     });
   }
   function togglePick(id, fromChip) {
@@ -368,7 +389,7 @@
     if (!S.length) { s.innerHTML = ''; return; }
     var inAny = nodes.filter(function (n) { return n.t === 'p' && n.fin; });
     if (S.length === 1) {
-      s.innerHTML = S[0].g ? '<b>' + inAny.length + ' people</b> in ' + esc(S[0].g) + '. Add a group or click someone in the map to see who connects them.'
+      s.innerHTML = S[0].ids ? '<b>' + inAny.length + (inAny.length === 1 ? ' person' : ' people') + '</b> ' + (S[0].ag ? 'at ' : 'in ') + esc(S[0].label) + (S[0].ag ? ' in this administration' : '') + '. Add another pick, or click someone in the map, to see who connects them.'
         : '<b>' + esc(nodeById[S[0].id].name) + '</b> and the ' + (inAny.length - (nodeById[S[0].id].t === 'p' ? 1 : 0)) + ' people tied to them. Click someone else in the map, or pick a group, to see who connects them.';
       return;
     }
@@ -402,7 +423,7 @@
     bind(box, true);
   }
   function index() {
-    var lit = groupsOn.length + picks.length > 0, rows = P.filter(function (p) { return !lit || nodeById[p.id].fin; });
+    var lit = anyOn(), rows = P.filter(function (p) { return !lit || nodeById[p.id].fin; });
     $('pindex-n').textContent = lit ? rows.length + ' people lit up, A to Z' : 'All ' + P.length + ' people, A to Z';
     $('plist').innerHTML = rows.map(function (p) {
       return '<li><button type="button" data-id="' + p.id + '"' + (sel === p.id ? ' aria-current="true"' : '') + '><b>' + esc(p.name) + '</b><span>' + esc(p.now || p.groups.join(', ')) + '</span></button></li>';
@@ -501,9 +522,9 @@
 
   fetch(window.PEOPLE_DATA).then(function (r) { return r.json(); }).then(function (d) {
     P = d.people.slice().sort(function (a, b) { return a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0]); });
-    ties = d.ties; P.forEach(function (p) { byId[p.id] = p; });
+    ties = d.ties; F = d.filters || F; P.forEach(function (p) { byId[p.id] = p; });
     var seen = {}; P.forEach(function (p) { p.roles.forEach(function (r) { if (r.org && !seen[r.org] && !SKIP.test(r.org) && !EVENT.test(r.org)) { seen[r.org] = 1; vocab.push(r.org); } }); });
-    buildGraph(); layout(); draw(); wire(); chips(); filtered();
+    buildGraph(); layout(); draw(); wire(); chips(); pickers(); filtered();
     $('pcount').textContent = P.length + ' people, ' + orgList.length + ' organizations that two or more of them share, and ' + edges.filter(function (e) { return e.k === 'tie'; }).length + ' sourced person-to-person ties.';
     // for the build session: roles that do not name an organization
     P.forEach(function (p) { var f = file(p); f.cur.concat(f.hist).forEach(function (r) { if (!r.named) flags.push({ id: p.id, name: p.name, role: r.role }); }); });

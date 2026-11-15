@@ -559,6 +559,8 @@ tr:target>td{background:var(--amber-tint)}
 .has-filter.has-focus .e.cross:not(.on){opacity:.8}
 .n.pick .sh{stroke:var(--red);stroke-width:3}
 .pm-how{margin:2px 0 8px}
+.pm-pickers{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 10px}
+.pm-select{font:500 15px var(--sans);min-height:40px;padding:0 10px;color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:0;max-width:100%}
 .pm-picks button.pk{background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700}
 .pm-picks .pk span{margin-left:4px;opacity:.8}
 .pm-picks button.pk-clear{font-weight:500}

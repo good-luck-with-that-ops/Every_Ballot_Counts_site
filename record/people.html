@@ -20,8 +20,12 @@ description: "The people map: who held which job, where they went next, and who 
     </div>
     <p class="label" id="pcount" style="margin:0 0 8px">Loading the map…</p>
   </div>
-  <p class="label pm-how" id="phow">Light up a group here, or click people and organizations in the map. Pick two or more to see who connects them.</p>
+  <p class="label pm-how" id="phow">Light up a group, an agency or a task force, or click people and organizations in the map. Pick two or more to see who connects them.</p>
   <div class="filters chips" role="group" aria-label="Groups. Pick more than one, or add people from the map, to see where they overlap." id="pf"></div>
+  <div class="pm-pickers">
+    <label class="vh" for="pag">Add an agency or office of this administration</label><select id="pag" class="pm-select"></select>
+    <label class="vh" for="ptf">Add a task force</label><select id="ptf" class="pm-select"></select>
+  </div>
   <div class="filters chips pm-picks" role="group" aria-label="Your picks" id="ppicks" hidden></div>
   <p class="label" id="psum" aria-live="polite"></p>
   <div class="pmap" id="pmap">
