@@ -655,3 +655,119 @@ footer.site a.brand-foot{text-decoration:none}
 #pclose,#ord,#dens-clear{font-family:var(--sans)}
 td #futbtn{border:0;padding:0 1px;min-width:0;text-align:left;font:600 15px var(--sans)}
 td .linkish:not(#futbtn){background:none}
+
+/* People page filters, tiers and marks (approved Nov 16, 2026) */
+
+/* =====================================================================================
+   People map, Nov 16 draft: what this page adds to site.css. Everything above is the live file.
+   ===================================================================================== */
+/* the two marks. Each is one symbol, used at every size: on the map, in the key, in the menus, the lists and the file.
+   The Person of Interest mark is the POI seal as supplied (not redrawn); the Monitor Mark is its counterpart in navy. */
+svg.mk{width:1.5em;height:1.5em;vertical-align:-.4em;flex:none;overflow:visible}
+.m-p{white-space:nowrap}
+
+/* the general search sits above; a hairline and a heading open the filters */
+.pm-tools{margin-bottom:0}
+.pm-fh{font:700 18px/1.25 var(--sans);letter-spacing:0;margin:26px 0 4px;padding-top:20px;border-top:1px solid var(--ink)}
+.pm-fh + .pm-how{margin:0 0 12px}
+svg.ebc-i{width:22px;height:22px;flex:none;box-shadow:0 0 0 1px var(--paper)}
+.pm-panel-head h2 svg.ebc-i{width:24px;height:24px;vertical-align:-5px;margin-right:8px}
+@media (prefers-color-scheme: dark){ svg.ebc-i{box-shadow:0 0 0 1px var(--ink-2)} }
+
+/* the row of filters: each is a boxed control that opens a list to tick through */
+.pm-fbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.pm-fbtn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;font:500 15px var(--sans);color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);border-radius:0;cursor:pointer}
+.pm-fbtn svg{flex:none;transition:transform .12s}
+.pm-fbtn .k{font-weight:700}
+.pm-fbtn.has{background:var(--amber);color:var(--navy);border-color:var(--navy);font-weight:700}
+.pm-fbtn[aria-expanded="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pm-fbtn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.pm-fbtn[disabled]{border-style:dashed;border-color:var(--ink-2);color:var(--ink-2);cursor:default}
+.pm-fbtn[disabled] .k{font-weight:400}
+.pm-panel{background:var(--paper);border:1.5px solid var(--ink);box-shadow:6px 6px 0 rgba(20,33,61,.12);padding:14px 16px 16px;margin:0 0 16px}
+.pm-panel[hidden]{display:none}
+.pm-panel-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 8px}
+.pm-panel-head h2{font:700 17px/1.2 var(--sans);letter-spacing:0;margin:0;min-width:150px}
+.pm-panel-head .search{flex:1 1 260px;max-width:460px;min-height:40px;font-size:15.5px}
+.pm-panel-head .linkish{margin-left:auto;font:600 15px var(--sans)}
+.pm-panel .label{margin:0 0 8px}
+.pm-opts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:0 28px;max-height:336px;overflow-y:auto;border-top:1px solid var(--hair)}
+.pm-opts.wide{grid-template-columns:minmax(0,1fr)}
+.pm-opts li{border-bottom:1px solid var(--hair)}
+.pm-opts label{display:flex;gap:10px;align-items:flex-start;padding:9px 4px;min-height:40px;font:15px/1.35 var(--sans);cursor:pointer}
+.pm-opts label:hover{background:var(--file)}
+.pm-opts input{flex:none;width:18px;height:18px;margin:1px 0 0;accent-color:var(--navy)}
+.pm-opts input:checked + .t{font-weight:700}
+.pm-opts .t{min-width:0;overflow-wrap:anywhere}
+.pm-opts .d{font:700 12.5px/1.6 var(--mono);white-space:nowrap}
+.pm-opts .c{margin-left:auto;padding-left:10px;font:13.5px/1.5 var(--sans);color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pm-opts .zero{opacity:.45}
+.pm-more{margin:10px 0 0!important}
+.pm-dates{display:flex;flex-wrap:wrap;gap:12px 24px;margin:4px 0 12px}
+.pm-dates label{font:500 15px var(--sans);display:flex;align-items:center;gap:10px}
+.pm-dates .search{width:auto;min-height:40px;font-size:15.5px}
+@media (prefers-color-scheme: dark){ .pm-opts input{accent-color:var(--amber)} .pm-dates .search{color-scheme:dark} }
+
+/* inside a menu: sub-headings, notes, a second line under a name */
+.pm-sub{font:700 15px/1.3 var(--sans);letter-spacing:0;margin:18px 0 6px}
+.pm-sub:first-child{margin-top:4px}
+.pm-note{margin:10px 0 0!important;max-width:96ch}
+.pm-opts .sub{display:block;font:13.5px/1.35 var(--sans);font-weight:400;color:var(--ink-2);margin-top:1px}
+.pm-opts input:disabled + .t{font-weight:400}
+.pm-fbtn .m{margin:0 1px;height:19px;font-size:12.5px;padding:0 3px;vertical-align:-1px}
+.pm-fbtn.has .m-p,.pm-fbtn[aria-expanded="true"] .m-p{box-shadow:inset 0 0 0 1.5px var(--navy)}
+.pm-panel-head h2 .m{height:19px;font-size:12.5px;vertical-align:-2px}
+
+/* what is ticked: chips with the words that say how they combine */
+.pm-picks{align-items:center;margin:4px 0 8px}
+.pm-picks .fl{font:600 13.5px var(--sans);color:var(--ink-2);margin:0 2px 0 0;white-space:nowrap}
+.pm-picks .jn{font:italic 15px var(--serif);color:var(--ink-2);padding:0 2px;white-space:nowrap}
+.pm-picks .jn-and{font:700 13.5px var(--sans);font-style:normal;color:var(--ink);padding:0 8px}
+.pm-picks button.pk{min-height:34px;font-size:14.5px;max-width:100%;text-align:left}
+#pevery{margin:0 0 8px}
+#psum{font-size:15.5px;color:var(--ink);max-width:110ch;margin:0 0 12px}
+#psum:empty{display:none}
+
+/* the map: an amber ring means "in all of it"; a Person of Interest or a Monitor Mark is drawn as its mark */
+.n .halo{fill:none;stroke:none;pointer-events:none}
+.n use.mk{pointer-events:none}
+.hide-P .n.t-P use.mk,.hide-M .n.t-M use.mk{display:none}
+.has-filter .n-p.both .halo{fill:none;stroke:var(--amber);stroke-width:11px;vector-effect:non-scaling-stroke}
+.has-filter .n-p.both .sh{fill:var(--ink);stroke:var(--paper);stroke-width:1.4}
+.has-multi .n.in:not(.both){opacity:.42}
+.has-multi .n.pick{opacity:1!important}
+.has-multi .e.in:not(.cross){opacity:.1}
+.has-multi.has-focus .n.in.on{opacity:1}
+.has-multi.has-focus .n.both:not(.on){opacity:.9}
+.pm-key svg.mk{width:22px;height:22px;vertical-align:0}
+#pintro svg.mk{width:1.4em;height:1.4em;vertical-align:-.36em}
+
+/* two or more people ticked: what they share */
+.pm-ov{border-top:1px solid var(--ink);margin:6px 0 12px;padding-top:12px;max-width:1000px}
+.pm-ov h2{font:700 19px/1.25 var(--sans);letter-spacing:0;margin:0 0 6px}
+.pm-ov p{font:15.5px/1.45 var(--sans);margin:0 0 8px}
+.pm-ov .label{margin:8px 0 0}
+.pm-ov .pm-rows li{grid-template-columns:190px minmax(0,1fr)}
+.pm-ov .ok{color:var(--ink-2)}
+#pover:empty{display:none}
+
+/* the file */
+.pc-tier{font:15px/1.45 var(--sans);margin:8px 0 0}
+.pm-rows li[hidden]{display:none}
+.pm-rows .fk{font:600 13px/1.6 var(--sans);color:var(--ink-2)}
+.pm-why{background:var(--amber-tint);padding:0 10px;margin:0 -10px}
+.pm-why li:first-child{border-top:0}
+.pm-list .m,.pm-res .m{vertical-align:0}
+@media (max-width:900px){
+  .pm-fbar{flex-wrap:nowrap;overflow-x:auto;margin-right:calc(var(--gutter) * -1);padding-right:var(--gutter);scrollbar-width:none}
+  .pm-fbar::-webkit-scrollbar{display:none}
+  .pm-fbtn{flex:0 0 auto;white-space:nowrap}
+  .pm-opts{grid-template-columns:minmax(0,1fr);max-height:46vh}
+  .pm-ov .pm-rows li{grid-template-columns:1fr}
+  .pm-panel{box-shadow:none}
+}
+
+/* Timeline: appointments toggle (Nov 17, 2026) */
+.tl-appt[hidden]{display:none}
+.tl-appt{display:inline-flex;align-items:center;gap:6px;margin:0 6px;cursor:pointer}
+.tl-appt input{width:16px;height:16px;accent-color:var(--navy, #14213d)}

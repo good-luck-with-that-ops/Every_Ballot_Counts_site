@@ -1,5 +1,5 @@
 // People map. The whole network first (people, agencies, companies, think tanks; solid line = document,
-// dashed = reporting), group filters that combine, and one person's file as the detail view.
+// dashed = reporting), filters you can tick several values in and combine, two tiers, and one person's file as the detail view.
 // No outside libraries. The layout is computed here, the same way every time, from people.json.
 (function () {
   var $ = function (id) { return document.getElementById(id); };
@@ -21,7 +21,34 @@
 
   var P = [], byId = {}, ties = [], vocab = [], flags = [];
   var nodes = [], nodeById = {}, edges = [], adj = {}, orgList = [];
-  var groupsOn = [], picks = [], agOn = [], tfOn = [], F = { agencies: {}, taskforces: {} }, sel = null, hov = null;
+  var picks = [], F = {}, TLR = [], sel = null, hov = null, RQ = [];
+  // The menus in the filter row, left to right. People and the project's own filters come first; the rest are
+  // things on the record (an office, a body, a system, a document), never a description of a person.
+  var FDEF = [
+    { k: 'people', label: 'People', find: 'Find a person by name or job' },
+    { k: 'ebc', label: 'EBC & [POI] filters' },
+    { k: 'agency', label: 'Agency or office', find: 'Find an agency or office' },
+    { k: 'organization', label: 'Organization', find: 'Find an organization' },
+    { k: 'body', label: 'Task force or body', find: 'Find a task force or body' },
+    { k: 'system', label: 'System', find: 'Find a system' },
+    { k: 'document', label: 'Document or event', find: 'Find a document or event by a word, a name or a year' },
+    { k: 'date', label: 'Date' }
+  ];
+  // The kinds of thing a person can be in. Each kind with something ticked is one requirement.
+  var KINDS = [
+    { k: 'flag', label: 'Group' }, { k: 'agency', label: 'Agency or office' }, { k: 'organization', label: 'Organization' },
+    { k: 'body', label: 'Task force or body' }, { k: 'system', label: 'System' }, { k: 'document', label: 'Document or event' }
+  ];
+  var CASEFILES = [['CF-01', 'What’s the BS, Russ?'], ['CF-02', 'The citizen database'], ['CF-03', 'Mississippi’s commercial-data purge'], ['CF-04', 'Pressuring the people who count']];
+  var on = { flag: [], agency: [], organization: [], body: [], system: [], document: [] }, marksOn = { P: true, M: true }, dFrom = '', dTo = '', every = false, openF = null, optQ = '';
+  var TIER = {}, MM = {}, tierIds = { P: {}, M: {} };
+  // The two marks, drawn from the same two symbols everywhere: the map, the key, the menus, the lists and the file.
+  function glyph(t) { return '<svg class="mk" aria-hidden="true" viewBox="7 7 86 86"><use href="#' + (t === 'P' ? 'poi-seal' : 'mm-seal') + '" x="0" y="0" width="100" height="100"/></svg>'; }
+  var MP = glyph('P'), MK = glyph('M'), POICHIP = '<span class="m m-p"><i>[</i>POI<i>]</i></span>';
+  // the EBC avatar as supplied (not redrawn)
+  var EBCICON = '<svg class="ebc-i" aria-hidden="true" viewBox="0 0 100 100"><use href="#ebc-avatar" x="0" y="0" width="100" height="100"/></svg>';
+  function mark(id) { var t = TIER[id]; return t && marksOn[t] ? ' ' + (t === 'P' ? MP : MK) + '<span class="vh">' + (t === 'P' ? ' (Person of Interest)' : ' (Monitor Mark)') + '</span>' : ''; }
+  var CARET = '<svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>';
   var svg, world, lab, T = { x: 0, y: 0, k: 1 }, K0 = 1, box = null, CW = 800, CHT = 600;
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
@@ -128,7 +155,7 @@
       pair[key] = { a: t.a, b: t.b, m: t.m, k: 'tie' }; edges.push(pair[key]);
     });
     edges.forEach(function (e) { adj[e.a][e.b] = e; adj[e.b][e.a] = e; deg[e.a] = (deg[e.a] || 0) + 1; deg[e.b] = (deg[e.b] || 0) + 1; });
-    nodes.forEach(function (n) { n.deg = deg[n.id] || 0; n.r = n.t === 'p' ? 3.4 + 1.25 * Math.sqrt(n.deg) : 4 + 1.15 * Math.sqrt(n.size); });
+    nodes.forEach(function (n) { n.deg = deg[n.id] || 0; n.r = n.t === 'p' ? 3.4 + 1.25 * Math.sqrt(n.deg) : 4 + 1.15 * Math.sqrt(n.size); if (n.t === 'p' && TIER[n.id]) n.r = Math.max(n.r, TIER[n.id] === 'P' ? 11 : 8.5); });
   }
   function layout() {
     var live = nodes.filter(function (n) { return n.deg > 0; }), lone = nodes.filter(function (n) { return n.deg === 0; });
@@ -162,16 +189,23 @@
     var yb = lone.length ? top + Math.ceil(lone.length / cols) * 16 : y1;
     box = { x0: x0 - 30, y0: y0 - 30, x1: x1 + 30, y1: yb + 20, loneY: lone.length ? top - 22 : null, loneN: lone.length };
   }
+  function ncls(n) { return 'n n-' + n.t + (n.t === 'p' && TIER[n.id] ? ' t-' + TIER[n.id] : ''); }
   function shape(n) {
-    var r = n.r, g = el('g', { 'class': 'n n-' + n.t, 'data-id': n.id, transform: 'translate(' + n.x.toFixed(1) + ',' + n.y.toFixed(1) + ')' }), s;
+    var r = n.r, g = el('g', { 'class': ncls(n), 'data-id': n.id, transform: 'translate(' + n.x.toFixed(1) + ',' + n.y.toFixed(1) + ')' }), s;
     if (n.t === 'p') s = el('circle', { r: r.toFixed(1) });
     else if (n.t === 'agency') s = el('rect', { x: -r, y: -r, width: 2 * r, height: 2 * r });
     else if (n.t === 'company') s = el('rect', { x: -r, y: -r, width: 2 * r, height: 2 * r, transform: 'rotate(45)' });
     else if (n.t === 'tank') s = el('path', { d: 'M0 ' + (-r * 1.25) + 'L' + (r * 1.15) + ' ' + (r * .8) + 'L' + (-r * 1.15) + ' ' + (r * .8) + 'Z' });
     else s = el('circle', { r: r.toFixed(1) });
     s.setAttribute('class', 'sh');
+    var tier = n.t === 'p' ? TIER[n.id] : null;
+    g.appendChild(el('circle', { r: (r * 1.08).toFixed(1), 'class': 'halo' }));
     g.appendChild(el('circle', { r: Math.max(r + 6, 11), 'class': 'hit' })); g.appendChild(s);
-    var t = el('title', {}); t.textContent = n.name + (n.t === 'p' ? (n.p.now ? ', ' + n.p.now : '') : ' (' + KIND[n.t].toLowerCase() + ', ' + n.size + ' people on file)'); g.appendChild(t);
+    if (tier) { // the mark itself sits on the dot, from the same symbol the key and the menus use
+      var w = (2 * r / .86).toFixed(1), o = (-r / .86).toFixed(1);
+      g.appendChild(el('use', { 'class': 'mk', href: '#' + (tier === 'P' ? 'poi-seal' : 'mm-seal'), x: o, y: o, width: w, height: w }));
+    }
+    var t = el('title', {}); t.textContent = n.name + (n.t === 'p' ? (n.p.now ? ', ' + n.p.now : '') + (tier ? (tier === 'P' ? ' (Person of Interest)' : ' (Monitor Mark)') : '') : ' (' + KIND[n.t].toLowerCase() + ', ' + n.size + ' people on file)'); g.appendChild(t);
     n.el = g; return g;
   }
   function draw() {
@@ -188,7 +222,7 @@
     if (box.loneY !== null) {
       var t = el('text', { x: box.x0 + 30, y: box.loneY, 'class': 'lone-t', 'font-size': (12.5 / k0).toFixed(1) }); t.textContent = 'No tie or shared organization on file yet (' + box.loneN + ' people)'; world.appendChild(t);
     }
-    nodes.slice().sort(function (a, b) { return (a.t === 'p' ? 1 : 0) - (b.t === 'p' ? 1 : 0); }).forEach(function (n) { gn.appendChild(shape(n)); });
+    nodes.slice().sort(function (a, b) { function z(n) { return (n.t === 'p' ? 1 : 0) + (n.t === 'p' && TIER[n.id] ? 1 : 0); } return z(a) - z(b); }).forEach(function (n) { gn.appendChild(shape(n)); });
     world.appendChild(ge); world.appendChild(gn); svg.appendChild(world); svg.appendChild(lab);
     size(); fit(); paint();
   }
@@ -210,32 +244,48 @@
   function center(n) {
     var k = Math.max(T.k, K0 * 2.6); T.k = k; T.x = CW / 2 - n.x * k; T.y = CHT * .45 - n.y * k; apply();
   }
-  // What is lit up: each picked group and each person or organization picked in the map is one "set".
-  // A group holds its people and the organizations they work at; a pick holds that node and everything tied to it.
-  // Groups, agencies and task forces are lists of people; an organization lights up when one of them works there.
-  function sets() {
-    function list(ids) { var o = {}; ids.forEach(function (id) { o[id] = 1; }); return o; }
-    return groupsOn.map(function (g) { return { label: g, ids: list(P.filter(function (p) { return p.groups.indexOf(g) >= 0; }).map(function (p) { return p.id; })) }; })
-      .concat(agOn.map(function (a) { return { label: a, ids: list(F.agencies[a] || []), ag: 1 }; }))
-      .concat(tfOn.map(function (t) { return { label: t, ids: list(F.taskforces[t] || []), tf: 1 }; }))
-      .concat(picks.map(function (id) { return { id: id }; }));
+  // What is lit up. Every filter in use is one requirement: a person meets it by being in any value ticked there
+  // (or, with "every" on, each ticked value is its own requirement). The tiers, the dates and each network added
+  // from a file are requirements too. Lit = meets at least one. Ringed in amber = meets all of them.
+  function idsOf(k, vals) { var o = {}; vals.forEach(function (v) { var m = (F[k] || {})[v] || {}; for (var id in m) o[id] = 1; }); return o; }
+  function within(s, e) { return (!dTo || s <= dTo) && (!dFrom || (e + '~') >= dFrom); }
+  function dateIds() {
+    var o = {};
+    P.forEach(function (p) {
+      if (p.roles.some(function (r) { return r.date && within(r.date, r.end || r.date); }) || p.tl.some(function (i) { return within(TLR[i].d, TLR[i].d); })) o[p.id] = 1;
+    });
+    ties.forEach(function (t) { if (t.date && within(t.date, t.date)) { o[t.a] = 1; o[t.b] = 1; } });
+    return o;
+  }
+  function reqs() {
+    var R = [];
+    picks.forEach(function (id) { R.push({ id: id }); });   // each person ticked is a requirement of their own: tied to them
+    KINDS.forEach(function (f) {
+      var v = on[f.k]; if (!v.length) return;
+      if (every) v.forEach(function (x) { R.push({ f: f, vals: [x], ids: idsOf(f.k, [x]) }); });
+      else R.push({ f: f, vals: v.slice(), ids: idsOf(f.k, v) });
+    });
+    if (dFrom || dTo) R.push({ date: 1, ids: dateIds() });
+    return R;
   }
   function inSet(n, s) {
     if (s.ids) return n.t === 'p' ? !!s.ids[n.id] : Object.keys(n.members).some(function (id) { return !!s.ids[id]; });
     return n.id === s.id || !!adj[s.id][n.id];
   }
-  function anyOn() { return groupsOn.length + agOn.length + tfOn.length + picks.length > 0; }
-  function focusId() { return hov || (sel && picks.indexOf(sel) < 0 ? sel : null); }
+  function anyOn() { return RQ.length > 0; }
+  function focusId() { return hov || sel; }
   // classes for filter, hover and selection
   function paint() {
-    var S = sets(), focus = focusId(), f = S.length > 0;
-    svg.classList.toggle('has-focus', !!focus); svg.classList.toggle('has-filter', f);
+    RQ = reqs(); var S = RQ, focus = focusId(), f = S.length > 0;
+    svg.classList.toggle('has-focus', !!focus); svg.classList.toggle('has-filter', f); svg.classList.toggle('has-multi', S.length > 1); svg.classList.toggle('hide-P', !marksOn.P); svg.classList.toggle('hide-M', !marksOn.M);
     nodes.forEach(function (n) {
-      var c = 'n n-' + n.t;
+      var c = ncls(n);
       n.sets = [];
       if (f) {
         S.forEach(function (s, i) { if (inSet(n, s)) n.sets.push(i); });
-        n.fin = n.sets.length > 0; n.both = S.length > 1 && n.sets.length > 1;
+        n.fin = n.sets.length > 0;
+        // a person is ringed when they meet everything; an organization when every person ticked sits in it
+        n.both = n.t === 'p' ? S.length > 1 && n.sets.length === S.length : picks.length > 1 && picks.every(function (id) { return !!adj[id][n.id]; });
         c += n.fin ? ' in' : ' out'; if (n.both) c += ' both';
       } else { n.fin = true; n.both = false; }
       if (picks.indexOf(n.id) >= 0) c += ' pick';
@@ -264,9 +314,13 @@
     });
     function pri(n) {
       var s = n.t === 'p' ? n.deg : n.size * 1.6;
+      // with filters on, the people they light come before the organizations those people sit in
+      if (f && n.t !== 'p') s *= .2;
+      if (f && n.t === 'p' && n.fin) s += 40 + n.sets.length * 60;
       if (n.lone) s -= 100;
       if (f && !n.fin) s -= 1000;
       if (n.both) s += 400;
+      if (TIER[n.id] === 'P' && marksOn.P) s += 60;
       if (picks.indexOf(n.id) >= 0) s += 3000;
       if (focus) { if (n.id === focus) s += 5000; else if (adj[focus][n.id]) s += 2000; else s -= 500; }
       return s;
@@ -313,7 +367,7 @@
     function up(e) {
       if (!pts[e.pointerId]) return;
       delete pts[e.pointerId]; pinch = 0;
-      if (!moved && e.type === 'pointerup') { if (start.id) togglePick(start.id); else if (sel) select(null); }
+      if (!moved && e.type === 'pointerup') { if (start.id) select(sel === start.id ? null : start.id, false); else if (sel) select(null); }
       if (Object.keys(pts).length === 1) { var k = Object.keys(pts)[0]; start = { p: pts[k], tx: T.x, ty: T.y, id: null }; }
     }
     svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
@@ -327,78 +381,217 @@
     var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { var k = T.k / K0; size(); if (k < 1.08) fit(); else apply(); }, 150); });
   }
 
-  // ---------- filters ----------
-  function chips() {
-    var gs = {}; P.forEach(function (p) { p.groups.forEach(function (g) { gs[g] = (gs[g] || 0) + 1; }); });
-    $('pf').innerHTML = Object.keys(gs).sort(function (a, b) { return gs[b] - gs[a]; }).map(function (g) {
-      return '<button type="button" aria-pressed="false" data-g="' + esc(g) + '">' + esc(g) + ' <span class="c">' + gs[g] + '</span></button>';
+  // ---------- filters: set them in the row above the map, then move around the map freely ----------
+  function clip(s, n) { s = s || ''; return s.length <= n ? s : s.slice(0, n).replace(/\s+\S*$/, '').replace(/[,;:]$/, '') + '…'; }
+  function optText(k, v) { return k === 'document' ? TLR[+v].e : v; }
+  function chipText(k, v) { return k === 'document' ? fmtDate(TLR[+v].d) + ': ' + clip(TLR[+v].e, 44) : v; }
+  function fdef(k) { return FDEF.filter(function (f) { return f.k === k; })[0]; }
+  function kdef(k) { return KINDS.filter(function (f) { return f.k === k; })[0]; }
+  function fname(f) { return f.k === 'ebc' ? EBCICON + 'EBC &amp; ' + POICHIP + ' filters' : esc(f.label); }
+  // The row of menus. Each opens a list you can tick through; the list stays open until you close it.
+  function bar() {
+    $('pfbar').innerHTML = FDEF.map(function (f) {
+      var n = f.k === 'date' ? (dFrom || dTo ? 1 : 0) : f.k === 'people' ? picks.length : f.k === 'ebc' ? on.flag.length : on[f.k].length;
+      return '<button type="button" class="pm-fbtn' + (n ? ' has' : '') + '" data-f="' + f.k + '" aria-expanded="' + (openF === f.k ? 'true' : 'false') + '" aria-controls="pfp">' + fname(f) + (n ? ' <span class="k">' + (f.k === 'date' ? 'set' : n) + '</span>' : '') + CARET + '</button>';
     }).join('');
-    $('pf').querySelectorAll('button').forEach(function (b) {
+    $('pfbar').querySelectorAll('button[data-f]').forEach(function (b) {
       b.addEventListener('click', function () {
-        var g = b.getAttribute('data-g'), i = groupsOn.indexOf(g);
-        if (i >= 0) groupsOn.splice(i, 1); else groupsOn.push(g);
-        b.setAttribute('aria-pressed', i >= 0 ? 'false' : 'true'); filtered();
+        var k = b.getAttribute('data-f'); openF = openF === k ? null : k; optQ = ''; bar(); panel();
+        if (openF) { var q = $('pfq') || $('pdf'); if (q && window.innerWidth > 900) q.focus(); }
       });
     });
   }
-  // Agencies of this administration and the task forces, as two pickers beside the group chips.
-  function pickers() {
-    function fill(sel, obj, first, unit) {
-      sel.innerHTML = '<option value="">' + first + '</option>' + Object.keys(obj).sort(function (a, b) { return a.localeCompare(b); }).map(function (k) {
-        return '<option value="' + esc(k) + '">' + esc(k) + ' (' + obj[k].length + ' ' + (obj[k].length === 1 ? 'person' : 'people') + ')</option>';
-      }).join('');
-    }
-    fill($('pag'), F.agencies, 'Add an agency or office\u2026'); fill($('ptf'), F.taskforces, 'Add a task force\u2026');
-    $('pag').addEventListener('change', function () { var v = this.value; if (v && agOn.indexOf(v) < 0) agOn.push(v); this.value = ''; filtered(); });
-    $('ptf').addEventListener('change', function () { var v = this.value; if (v && tfOn.indexOf(v) < 0) tfOn.push(v); this.value = ''; filtered(); });
+  // Everything in use except kind k: the count beside each value says how many of its people also meet these.
+  function others(k) { return RQ.filter(function (s) { return !(s.f && s.f.k === k); }); }
+  function meets(id, S) { var n = nodeById[id]; return !!n && S.every(function (s) { return inSet(n, s); }); }
+  function head(title, find) {
+    return '<div class="pm-panel-head"><h2>' + title + '</h2>' + (find ? '<label class="vh" for="pfq">' + esc(find) + '</label><input id="pfq" class="search" type="search" placeholder="' + esc(find) + '" autocomplete="off">' : '') + '<button type="button" class="linkish" id="pfdone">Close</button></div>';
   }
-  // People and organizations picked in the map, shown as chips you can take off again.
-  function pickChips() {
-    var box = $('ppicks');
-    if (!anyOn()) { box.hidden = true; box.innerHTML = ''; return; }
-    box.hidden = false;
-    box.innerHTML = agOn.map(function (a) { return '<button type="button" class="pk" aria-pressed="true" data-ag="' + esc(a) + '" aria-label="Take ' + esc(a) + ' off the map">' + esc(a) + ' <span aria-hidden="true">\u00d7</span></button>'; }).join('') +
-      tfOn.map(function (t) { return '<button type="button" class="pk" aria-pressed="true" data-tf="' + esc(t) + '" aria-label="Take ' + esc(t) + ' off the map">' + esc(t) + ' <span aria-hidden="true">\u00d7</span></button>'; }).join('') +
-      picks.map(function (id) {
-      return '<button type="button" class="pk" aria-pressed="true" data-pick="' + esc(id) + '" aria-label="Take ' + esc(nodeById[id].name) + ' off the map">' + esc(nodeById[id].name) + ' <span aria-hidden="true">\u00d7</span></button>';
-    }).join('') + '<button type="button" class="pk-clear" data-clear="1">Clear all</button>';
-    box.querySelectorAll('button[data-pick]').forEach(function (b) { b.addEventListener('click', function () { togglePick(b.getAttribute('data-pick'), true); }); });
-    box.querySelectorAll('button[data-ag]').forEach(function (b) { b.addEventListener('click', function () { agOn.splice(agOn.indexOf(b.getAttribute('data-ag')), 1); filtered(); }); });
-    box.querySelectorAll('button[data-tf]').forEach(function (b) { b.addEventListener('click', function () { tfOn.splice(tfOn.indexOf(b.getAttribute('data-tf')), 1); filtered(); }); });
-    box.querySelector('[data-clear]').addEventListener('click', function () {
-      picks = []; groupsOn = []; agOn = []; tfOn = []; $('pf').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); filtered();
+  function panel() {
+    var box = $('pfp');
+    if (!openF) { box.hidden = true; box.innerHTML = ''; return; }
+    var f = fdef(openF); box.hidden = false;
+    if (f.k === 'date') {
+      box.innerHTML = head('Date') +
+        '<div class="pm-dates"><label for="pdf">From <input id="pdf" class="search" type="date" value="' + esc(dFrom) + '"></label><label for="pdt">To <input id="pdt" class="search" type="date" value="' + esc(dTo) + '"></label></div>' +
+        '<p class="label">Lights up the people who have a role, a tie or a timeline row dated in this range. Leave one end empty for everything before or after.</p>';
+      $('pdf').addEventListener('change', function () { dFrom = this.value; filtered(); });
+      $('pdt').addEventListener('change', function () { dTo = this.value; filtered(); });
+    } else if (f.k === 'ebc') {
+      box.innerHTML = head(fname(f)) + '<div id="pfopts"></div>'; ebcOpts();
+    } else {
+      box.innerHTML = head(esc(f.label), f.find) + '<p class="label" id="pfhow"></p><div id="pfopts"></div>';
+      var t; $('pfq').addEventListener('input', function () { var v = this.value; clearTimeout(t); t = setTimeout(function () { optQ = v.trim(); redrawOpts(); }, 100); });
+      redrawOpts();
+    }
+    $('pfdone').addEventListener('click', function () { openF = null; bar(); panel(); });
+  }
+  function redrawOpts() { if (!openF || openF === 'date') return; (openF === 'ebc' ? ebcOpts : openF === 'people' ? peopleOpts : opts)(); }
+  function tickRow(k, r, S, wide) {
+    return '<li' + (S.length && !r.x ? ' class="zero"' : '') + '><label><input type="checkbox" data-k="' + k + '" value="' + esc(r.v) + '"' + (on[k].indexOf(r.v) >= 0 ? ' checked' : '') + '><span class="t">' + (r.d ? '<span class="d">' + esc(fmtDate(r.d)) + '</span> ' : '') + esc(wide ? clip(r.t, 170) : r.t) + '</span><span class="c">' + (S.length ? r.x + ' of ' + r.n : r.n) + '</span></label></li>';
+  }
+  function wireTicks() {
+    $('pfopts').querySelectorAll('input[data-k]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var a = on[c.getAttribute('data-k')], i = a.indexOf(c.value);
+        if (c.checked && i < 0) a.push(c.value); else if (!c.checked && i >= 0) a.splice(i, 1);
+        filtered();
+      });
     });
   }
-  function togglePick(id, fromChip) {
-    var i = picks.indexOf(id);
-    if (i >= 0) {
-      picks.splice(i, 1);
-      if (sel === id) { if (picks.length && !fromChip) select(picks[picks.length - 1], false, true); else if (sel) select(null, false, true); }
-      filtered();
-    } else {
-      picks.push(id); select(id, false, true); filtered();
+  function rowsOf(k, S) {
+    return Object.keys(F[k]).map(function (v) {
+      var ids = Object.keys(F[k][v]), doc = k === 'document';
+      return { v: v, n: ids.length, x: S.length ? ids.filter(function (id) { return meets(id, S); }).length : ids.length, t: optText(k, v), d: doc ? TLR[+v].d : '', a: doc ? TLR[+v].a : '' };
+    });
+  }
+  function opts() {
+    var f = fdef(openF), S = others(f.k), q = optQ.toLowerCase(), isDoc = f.k === 'document', rows = rowsOf(f.k, S);
+    if (q) rows = rows.filter(function (r) { return (r.t + ' ' + r.a + ' ' + fmtDate(r.d) + ' ' + r.d).toLowerCase().indexOf(q) >= 0; });
+    rows.sort(function (a, b) {
+      var ca = on[f.k].indexOf(a.v) >= 0, cb = on[f.k].indexOf(b.v) >= 0;
+      if (ca !== cb) return ca ? -1 : 1;
+      if (S.length && (a.x > 0) !== (b.x > 0)) return a.x > 0 ? -1 : 1;
+      if (isDoc) return (S.length ? b.x - a.x : 0) || (a.d < b.d ? 1 : a.d > b.d ? -1 : 0);
+      return (S.length ? b.x - a.x : 0) || b.n - a.n || a.t.localeCompare(b.t);
+    });
+    var MAX = isDoc ? 60 : 120, more = rows.length - MAX;
+    $('pfhow').textContent = 'Tick as many as you like. ' + (S.length ? 'The number beside each one is how many of its people are also in your other filters.' : 'The number beside each one is how many people are on file under it.');
+    $('pfopts').innerHTML = rows.length ? '<ul class="pm-opts' + (isDoc ? ' wide' : '') + '">' + rows.slice(0, MAX).map(function (r) { return tickRow(f.k, r, S, isDoc); }).join('') + '</ul>' + (more > 0 ? '<p class="label pm-more">' + more + ' more. Type in the box above to narrow the list.</p>' : '') : '<p class="label">Nothing on file matches that. Try a shorter word.</p>';
+    wireTicks();
+  }
+  // EBC & [POI] filters: the two marks (on by default; untick to take them off the map), the groups the project
+  // sorts people into, and the Case Files (not tagged on the timeline yet).
+  function ebcOpts() {
+    var S = others('flag'), rows = rowsOf('flag', S).sort(function (a, b) { return b.n - a.n; }), h = '';
+    h += '<h3 class="pm-sub">Marks</h3><ul class="pm-opts">' + ['P', 'M'].map(function (t) {
+      return '<li><label><input type="checkbox" data-mark="' + t + '"' + (marksOn[t] ? ' checked' : '') + '><span class="t">' + (t === 'P' ? MP + ' Persons of Interest' : MK + ' Monitor Marks') + '</span><span class="c">' + Object.keys(tierIds[t]).length + '</span></label></li>';
+    }).join('') + '</ul>';
+    h += '<p class="label pm-note">' + MP + ' marks a Person of Interest: someone Amanda has chosen to watch. ' + MK + ' is a Monitor Mark: the monitor adds it by count when a person keeps turning up in the record. Neither one says anyone broke a law. Both are on the map to start with; untick one to take its marks off.</p>';
+    h += '<h3 class="pm-sub">Groups</h3><p class="label">' + (S.length ? 'The number beside each one is how many of its people are also in your other filters.' : 'The number beside each one is how many people are on file under it.') + '</p><ul class="pm-opts">' + rows.map(function (r) { return tickRow('flag', r, S); }).join('') + '</ul>';
+    h += '<h3 class="pm-sub">Case Files</h3><ul class="pm-opts">' + CASEFILES.map(function (c) {
+      return '<li class="zero"><label><input type="checkbox" disabled><span class="t"><span class="d">' + c[0] + '</span> ' + esc(c[1]) + '</span></label></li>';
+    }).join('') + '</ul><p class="label pm-note">The timeline rows aren’t tagged by Case File yet, so these can’t be ticked.</p>';
+    $('pfopts').innerHTML = h; wireTicks();
+    $('pfopts').querySelectorAll('input[data-mark]').forEach(function (c) {
+      c.addEventListener('change', function () { marksOn[c.getAttribute('data-mark')] = c.checked; filtered(); ebcOpts(); });
+    });
+  }
+  // People: tick two or more to see what they share.
+  function peopleOpts() {
+    var S = RQ.filter(function (s) { return !s.id; }), q = optQ.toLowerCase();
+    var rows = P.filter(function (p) { return !q || (p.name + ' ' + p.now + ' ' + p.groups.join(' ')).toLowerCase().indexOf(q) >= 0; })
+      .map(function (p) { return { p: p, c: picks.indexOf(p.id) >= 0, x: !S.length || meets(p.id, S) }; });
+    rows.sort(function (a, b) { if (a.c !== b.c) return a.c ? -1 : 1; if (a.x !== b.x) return a.x ? -1 : 1; return 0; });
+    var MAX = 150, more = rows.length - MAX;
+    $('pfhow').textContent = 'Tick two or more people to see what they share: offices, organizations, bodies, systems and timeline rows, and anyone tied to all of them.' + (S.length ? ' People in your other filters come first.' : '');
+    $('pfopts').innerHTML = rows.length ? '<ul class="pm-opts">' + rows.slice(0, MAX).map(function (r) {
+      return '<li' + (r.x ? '' : ' class="zero"') + '><label><input type="checkbox" value="' + esc(r.p.id) + '"' + (r.c ? ' checked' : '') + '><span class="t">' + esc(r.p.name) + mark(r.p.id) + '<span class="sub">' + esc(r.p.now || r.p.groups.join(', ')) + '</span></span></label></li>';
+    }).join('') + '</ul>' + (more > 0 ? '<p class="label pm-more">' + more + ' more. Type a name in the box above.</p>' : '') : '<p class="label">Nobody by that name is on file. Try a last name.</p>';
+    $('pfopts').querySelectorAll('input').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var i = picks.indexOf(c.value);
+        if (c.checked && i < 0) picks.push(c.value); else if (!c.checked && i >= 0) picks.splice(i, 1);
+        filtered();
+      });
+    });
+  }
+  // What is ticked, as chips you can take off again. The words between them say how they combine.
+  function pk(attrs, label, plain) {
+    return '<button type="button" class="pk" aria-pressed="true" ' + attrs + ' aria-label="Take ' + esc(plain) + ' off">' + label + ' <span aria-hidden="true">×</span></button>';
+  }
+  function pickChips() {
+    var box = $('ppicks'), ev = $('pevery');
+    if (!RQ.length) { box.hidden = true; box.innerHTML = ''; ev.hidden = true; return; }
+    var parts = [], multi = false, jn = '<span class="jn">' + (every ? 'and' : 'or') + '</span>';
+    if (picks.length) parts.push('<span class="fl">People</span>' + picks.map(function (id) { return pk('data-pick="' + esc(id) + '"', esc(byId[id].name), byId[id].name); }).join('<span class="jn">and</span>'));
+    KINDS.forEach(function (f) {
+      var v = on[f.k]; if (!v.length) return; if (v.length > 1) multi = true;
+      parts.push('<span class="fl">' + esc(f.label) + '</span>' + v.map(function (x) { return pk('data-k="' + f.k + '" data-v="' + esc(x) + '"', esc(chipText(f.k, x)), chipText(f.k, x)); }).join(jn));
+    });
+    if (dFrom || dTo) { var dl = dFrom && dTo ? fmtDate(dFrom) + ' to ' + fmtDate(dTo) : dFrom ? 'From ' + fmtDate(dFrom) : 'Up to ' + fmtDate(dTo); parts.push('<span class="fl">Date</span>' + pk('data-date="1"', esc(dl), dl)); }
+    box.hidden = false;
+    box.innerHTML = parts.join('<span class="jn jn-and">and</span>') + '<button type="button" class="pk-clear" data-clear="1">Clear all</button>';
+    box.querySelectorAll('button[data-k]').forEach(function (b) { b.addEventListener('click', function () { var a = on[b.getAttribute('data-k')]; a.splice(a.indexOf(b.getAttribute('data-v')), 1); filtered(true); }); });
+    box.querySelectorAll('button[data-date]').forEach(function (b) { b.addEventListener('click', function () { dFrom = dTo = ''; filtered(true); }); });
+    box.querySelectorAll('button[data-pick]').forEach(function (b) { b.addEventListener('click', function () { togglePick(b.getAttribute('data-pick')); }); });
+    box.querySelector('[data-clear]').addEventListener('click', function () {
+      picks = []; dFrom = dTo = ''; every = false; KINDS.forEach(function (f) { on[f.k] = []; }); filtered(true);
+    });
+    ev.hidden = !multi;
+    if (multi) {
+      ev.innerHTML = every ? 'Two ticks in the same filter now count only a person who is in both. <button type="button" class="linkish">Count a person in either one</button>'
+        : 'Two ticks in the same filter count a person who is in either one. <button type="button" class="linkish">Count only people in both</button>';
+      ev.querySelector('button').addEventListener('click', function () { every = !every; filtered(true); });
     }
+  }
+  function togglePick(id) {
+    var i = picks.indexOf(id);
+    if (i >= 0) picks.splice(i, 1); else picks.push(id);
+    filtered(true);
   }
   function filteredLater() { setTimeout(filtered, 0); }
   function names(list, max) {
-    return list.slice(0, max).map(function (n) { return '<button type="button" class="linkish" data-id="' + esc(n.id) + '">' + esc(n.name) + '</button>'; }).join(', ') + (list.length > max ? ' and ' + (list.length - max) + ' more' : '');
+    return list.slice(0, max).map(function (n) { return '<button type="button" class="linkish" data-id="' + esc(n.id) + '">' + esc(n.name) + '</button>' + mark(n.id); }).join(', ') + (list.length > max ? ' and ' + (list.length - max) + ' more' : '');
   }
-  function filtered() {
-    paint(); index(); pickChips();
-    var s = $('psum'), html, S = sets();
-    if (!S.length) { s.innerHTML = ''; return; }
-    var inAny = nodes.filter(function (n) { return n.t === 'p' && n.fin; });
-    if (S.length === 1) {
-      s.innerHTML = S[0].ids ? '<b>' + inAny.length + (inAny.length === 1 ? ' person' : ' people') + '</b> ' + (S[0].ag ? 'at ' : 'in ') + esc(S[0].label) + (S[0].ag ? ' in this administration' : '') + '. Add another pick, or click someone in the map, to see who connects them.'
-        : '<b>' + esc(nodeById[S[0].id].name) + '</b> and the ' + (inAny.length - (nodeById[S[0].id].t === 'p' ? 1 : 0)) + ' people tied to them. Click someone else in the map, or pick a group, to see who connects them.';
-      return;
+  function byLast(a, b) { return a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0]); }
+  function nameList(ids) { var a = ids.map(function (id) { return byId[id].name; }); return a.length < 3 ? a.join(' and ') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
+  // Two or more people ticked: what the record puts them in together, most of them first.
+  function overlap() {
+    if (picks.length < 2) return '';
+    var groups = {}, order = [], kinds = KINDS.slice(1);
+    kinds.forEach(function (f) {
+      Object.keys(F[f.k]).forEach(function (v) {
+        var who = picks.filter(function (id) { return !!F[f.k][v][id]; });
+        if (who.length < 2) return;
+        var key = who.join('|'); if (!groups[key]) { groups[key] = { who: who, items: {} }; order.push(key); }
+        (groups[key].items[f.k] = groups[key].items[f.k] || []).push(v);
+      });
+    });
+    order.sort(function (a, b) { return groups[b].who.length - groups[a].who.length; });
+    function val(k, v) { return '<button type="button" class="linkish" data-k="' + k + '" data-v="' + esc(v) + '">' + esc(k === 'document' ? fmtDate(TLR[+v].d) + ': ' + clip(TLR[+v].e, 70) : v) + '</button>'; }
+    function vals(k, arr) {
+      if (k !== 'document') return arr.map(function (v) { return val(k, v); }).join(', ');
+      arr.sort(function (a, b) { return TLR[+a].d < TLR[+b].d ? 1 : -1; });
+      return arr.length + (arr.length === 1 ? ' row' : ' rows') + ' (' + arr.slice(0, 2).map(function (v) { return val(k, v); }).join('; ') + (arr.length > 2 ? '; and ' + (arr.length - 2) + ' more' : '') + ')';
     }
-    var both = nodes.filter(function (n) { return n.t === 'p' && n.both; }), sharedOrgs = orgList.filter(function (n) { return n.both; }).sort(function (a, b) { return b.size - a.size; });
+    var lines = order.slice(0, 8).map(function (key) {
+      var g = groups[key], w = g.who.length === picks.length ? (picks.length === 2 ? 'Both' : 'All ' + picks.length) : nameList(g.who);
+      return '<li><span class="fk">' + esc(w) + '</span><span>' + kinds.filter(function (f) { return g.items[f.k]; }).map(function (f) { return '<span class="ok">' + esc(f.k === 'document' ? 'Timeline' : f.label) + ':</span> ' + vals(f.k, g.items[f.k]); }).join('<br>') + '</span></li>';
+    });
+    ties.forEach(function (t) {
+      if (picks.indexOf(t.a) < 0 || picks.indexOf(t.b) < 0 || t.a === t.b) return;
+      lines.push('<li><span class="fk">Sourced tie</span><span><b>' + esc(byId[t.a].name) + ' and ' + esc(byId[t.b].name) + '</b> <span class="tt">(' + esc(t.type) + ')</span> ' + esc(clip(t.ev, 160)) + ' ' + (CH[t.m] || '') + '<span class="sr">' + srcs(t.s) + '</span></span></li>');
+    });
+    if (!lines.length) return '<div class="pm-ov"><p><b>Nothing on file puts ' + esc(nameList(picks)) + ' in the same place yet.</b> There is no shared office, organization, body, system or timeline row, and no sourced tie between them.</p></div>';
+    return '<div class="pm-ov"><h2>What ' + esc(nameList(picks)) + ' share</h2><ol class="pm-rows">' + lines.join('') + '</ol>' + (order.length > 8 ? '<p class="label">' + (order.length - 8) + ' more combinations of two. Take someone off to narrow it down.</p>' : '') + '<p class="label">Click anything they share to add it as a filter and see who else is in it.</p></div>';
+  }
+  function filtered(redraw) {
+    paint(); index(); bar(); pickChips();
+    if (redraw) redrawOpts();
+    if (sel) card();
+    var s = $('psum'), ov = $('pover'), S = RQ, html;
+    ov.innerHTML = overlap(); bind(ov);
+    ov.querySelectorAll('button[data-k]').forEach(function (b) { b.addEventListener('click', function () { var a = on[b.getAttribute('data-k')], v = b.getAttribute('data-v'); if (a.indexOf(v) < 0) a.push(v); filtered(true); }); });
+    if (!S.length) { s.innerHTML = ''; return; }
+    var ppl = nodes.filter(function (n) { return n.t === 'p'; }), lit = ppl.filter(function (n) { return n.fin; }).sort(byLast);
+    var onlyPicks = S.every(function (x) { return !!x.id; });
+    if (S.length === 1) {
+      html = onlyPicks ? '<b>' + esc(byId[picks[0]].name) + '</b> and the ' + (lit.length - 1) + ' people tied to them. Tick a second person to see what they share, or tick something in another filter.'
+        : '<b>' + lit.length + (lit.length === 1 ? ' person' : ' people') + '</b> lit up' + (lit.length && lit.length <= 16 ? ': ' + names(lit, 16) : '') + '. Tick something in another filter to see who is in both.';
+      s.innerHTML = html; bind(s); return;
+    }
+    var all = ppl.filter(function (n) { return n.both; }).sort(byLast), phrase = onlyPicks ? 'tied to ' + (S.length === 2 ? 'both' : 'all ' + S.length) : 'in all of it';
     var nx = edges.filter(function (e) { return /cross/.test(e.el.getAttribute('class')); }).length;
-    html = '<b>' + inAny.length + ' people</b> lit up across ' + S.length + ' picks. ';
-    html += both.length ? '<b>' + both.length + (both.length === 1 ? ' connects' : ' connect') + ' two or more</b> (ringed in amber): ' + names(both, 8) + '. ' : 'Nobody sits in more than one of them. ';
-    html += nx ? '<b>' + nx + ' sourced ' + (nx === 1 ? 'tie runs' : 'ties run') + '</b> between them (the heavy lines). ' : '';
-    html += sharedOrgs.length ? 'Organizations in more than one: ' + names(sharedOrgs, 8) + '.' : '';
+    if (all.length) html = '<b>' + all.length + (all.length === 1 ? ' person is ' : ' people are ') + phrase + '</b> (ringed in amber): ' + names(all, 14) + '. ';
+    else {
+      var best = 0; ppl.forEach(function (n) { if (n.sets.length > best) best = n.sets.length; });
+      var near = best > 1 ? ppl.filter(function (n) { return n.sets.length === best; }).sort(byLast) : [];
+      html = '<b>Nobody on file is ' + (onlyPicks ? 'tied to all ' : 'in all ') + S.length + '.</b> ' + (near.length ? 'The closest ' + (near.length === 1 ? 'is' : 'are') + (onlyPicks ? ' tied to ' : ' in ') + best + ' of the ' + S.length + ': ' + names(near, 10) + '. ' : '');
+    }
+    var rest = lit.length - all.length;
+    html += rest ? rest + (all.length ? ' more ' : ' ') + (rest === 1 ? 'person is' : 'people are') + (onlyPicks ? ' tied to at least one' : ' in at least one') + ' and stay faintly lit. ' : '';
+    html += nx && !onlyPicks ? nx + ' sourced ' + (nx === 1 ? 'tie runs' : 'ties run') + ' between people in different filters (the heavy lines).' : '';
     s.innerHTML = html; bind(s);
   }
 
@@ -418,15 +611,16 @@
     var m = matches(q);
     box.hidden = false;
     box.innerHTML = m.length ? m.slice(0, 8).map(function (n) {
-      return '<li><button type="button" data-id="' + esc(n.id) + '"><b>' + esc(n.name) + '</b><span>' + esc(n.t === 'p' ? (n.p.now || n.p.groups.join(', ')) : KIND[n.t] + ', ' + n.size + ' people on file') + '</span></button></li>';
+      return '<li><button type="button" data-id="' + esc(n.id) + '"><b>' + esc(n.name) + '</b>' + mark(n.id) + '<span>' + esc(n.t === 'p' ? (n.p.now || n.p.groups.join(', ')) : KIND[n.t] + ', ' + n.size + ' people on file') + '</span></button></li>';
     }).join('') + (m.length > 8 ? '<li class="more">' + (m.length - 8) + ' more. Keep typing to narrow it down.</li>' : '') : '<li class="more">Nobody by that name is on file. Try a last name or an agency.</li>';
     bind(box, true);
   }
   function index() {
-    var lit = anyOn(), rows = P.filter(function (p) { return !lit || nodeById[p.id].fin; });
-    $('pindex-n').textContent = lit ? rows.length + ' people lit up, A to Z' : 'All ' + P.length + ' people, A to Z';
+    var lit = anyOn(), all = RQ.length > 1 && P.some(function (p) { return nodeById[p.id].both; });
+    var rows = P.filter(function (p) { return !lit || (all ? nodeById[p.id].both : nodeById[p.id].fin); });
+    $('pindex-n').textContent = all ? rows.length + (rows.length === 1 ? ' person' : ' people') + ' in all of it, A to Z' : lit ? rows.length + ' people lit up, A to Z' : 'All ' + P.length + ' people, A to Z';
     $('plist').innerHTML = rows.map(function (p) {
-      return '<li><button type="button" data-id="' + p.id + '"' + (sel === p.id ? ' aria-current="true"' : '') + '><b>' + esc(p.name) + '</b><span>' + esc(p.now || p.groups.join(', ')) + '</span></button></li>';
+      return '<li><button type="button" data-id="' + p.id + '"' + (sel === p.id ? ' aria-current="true"' : '') + '><b>' + esc(p.name) + '</b>' + mark(p.id) + '<span>' + esc(p.now || p.groups.join(', ')) + '</span></button></li>';
     }).join('');
     bind($('plist'), true);
   }
@@ -435,14 +629,52 @@
   }
 
   // ---------- the card ----------
+  function host(u) { return u.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]; }
+  function tierLine(p) {
+    var t = TIER[p.id]; if (!t) return '';
+    if (t === 'P') return '<p class="pc-tier">' + MP + ' <b>Person of Interest.</b> Chosen by Amanda to watch.</p>';
+    var m = MM[p.id], bits = [];
+    if (m.rows) bits.push('named in ' + m.rows + ' timeline ' + (m.rows === 1 ? 'row' : 'rows'));
+    if (m.signed) bits.push('signed ' + m.signed + (m.signed === 1 ? ' document' : ' documents') + ' on the timeline');
+    if (m.links) bits.push('tied to ' + m.links.split(/;\s*/).join(' and '));
+    return '<p class="pc-tier">' + MK + ' <b>Monitor Mark.</b> Added by count: ' + esc(bits.join('; ')) + '.</p>';
+  }
+  // For each ticked value this person is in: what puts them there, its mark and the timeline row behind it.
+  function whyLit(p) {
+    var rows = [];
+    KINDS.forEach(function (f) {
+      on[f.k].forEach(function (v) {
+        var b = F[f.k][v][p.id]; if (!b) return;
+        var r = b.r >= 0 ? TLR[b.r] : null, isDoc = f.k === 'document', w = b.d ? (b.c ? 'as of ' + fmtDate(b.d) : when({ date: b.d, end: b.e })) : '';
+        var line = isDoc ? '<b>' + esc(fmtDate(r.d)) + '</b>: ' + esc(clip(r.e, 150)) : '<b>' + esc(v) + '</b>' + (b.t ? ': ' + esc(b.t) : '') + (w ? ' (' + esc(w) + ')' : '');
+        var src = r ? (isDoc ? '' : esc(fmtDate(r.d)) + ': ' + esc(clip(r.e, 130)) + ' ') + (r.u ? '<a href="' + esc(r.u) + '" rel="noopener">' + esc(host(r.u)) + '</a>' : '') : srcs(b.s);
+        rows.push('<li><span class="fk">' + esc(f.label) + '</span><span>' + line + ' ' + (CH[b.m] || '') + (src ? '<span class="sr">' + src + '</span>' : '') + '</span></li>');
+      });
+    });
+    picks.forEach(function (id) { if (id !== p.id && adj[id][p.id]) rows.push('<li><span class="fk">Tied to</span><span><button type="button" class="linkish" data-id="' + esc(id) + '"><b>' + esc(byId[id].name) + '</b></button></span></li>'); });
+    return rows.length ? '<h3>What puts ' + esc(p.name.split(' ')[0]) + ' in your filters</h3><ol class="pm-rows pm-why">' + rows.join('') + '</ol>' : '';
+  }
+  function tlRows(p) {
+    if (!p.tl.length) return '';
+    var MAX = 5;
+    return '<h3>On the timeline, newest first</h3><ol class="pm-rows" id="pc-tl">' + p.tl.map(function (i, ix) {
+      var r = TLR[i];
+      return '<li' + (ix >= MAX ? ' hidden' : '') + '><span class="d">' + esc(fmtDate(r.d)) + '</span><span>' + esc(clip(r.e, 280)) + ' ' + (CH[r.m] || '') + (r.u ? '<span class="sr"><a href="' + esc(r.u) + '" rel="noopener">' + esc(host(r.u)) + '</a></span>' : '') + '</span></li>';
+    }).join('') + '</ol>' + (p.tl.length > MAX ? '<p style="margin:10px 0 0"><button type="button" class="linkish" id="pc-tlmore">Show all ' + p.tl.length + ' rows</button></p>' : '');
+  }
+  function pickBtn(p) {
+    var inP = picks.indexOf(p.id) >= 0, first = esc(p.name.split(' ')[0]);
+    return '<p style="margin:18px 0 0"><button type="button" class="linkish" data-net="' + esc(p.id) + '">' + (inP ? 'Take ' + first + ' off the People filter' : 'Add ' + first + ' to the People filter') + '</button></p>';
+  }
   function personCard(p) {
     var f = file(p), T = tiesOf(p.id), h = '';
-    h += '<p class="pc-groups">' + esc(p.groups.join(', ')) + '</p><h2 id="pcard-h" tabindex="-1">' + esc(p.name) + '</h2>';
+    h += '<p class="pc-groups">' + esc(p.groups.join(', ')) + '</p><h2 id="pcard-h" tabindex="-1">' + esc(p.name) + '</h2>' + tierLine(p) + whyLit(p);
     if (f.cur.length) {
       h += '<h3>Now</h3><ol class="pm-rows">' + f.cur.map(function (r) {
         return '<li><span class="d">' + (r.since ? 'Since ' + esc(fmtDate(r.since)) : 'Current') + '</span><span>' + roleLine(r) + ' ' + (CH[r.m] || '') + '<span class="sr">' + srcs(r.s) + '</span></span></li>';
       }).join('') + '</ol>';
     }
+    h += tlRows(p);
     if (f.hist.length) {
       h += '<h3>Before and alongside, newest first</h3><ol class="pm-rows">' + f.hist.map(function (r) {
         return '<li><span class="d">' + esc(when(r) || 'Undated') + '</span><span>' + roleLine(r) + ' ' + (CH[r.m] || '') + '<span class="sr">' + srcs(r.s) + '</span></span></li>';
@@ -454,7 +686,8 @@
         return '<li><span class="d">' + esc(fmtDate((t.date || '').slice(0, 7)) || 'Undated') + '</span><span><button type="button" class="linkish" data-id="' + o.id + '"><b>' + esc(o.name) + '</b></button> <span class="tt">(' + esc(t.type) + ')</span> ' + esc(t.ev) + ' ' + (CH[t.m] || '') + '<span class="sr">' + srcs(t.s) + '</span></span></li>';
       }).join('') + '</ol>';
     } else h += '<p class="pc-none">No person-to-person tie is on file for ' + esc(p.name.split(' ')[0]) + ' yet. Shared employers show up as lines to the organizations in the map.</p>';
-    h += '<p style="margin:18px 0 0"><a class="quiet" href="' + window.PEOPLE_TL + encodeURIComponent(p.name) + '">Search the timeline for ' + esc(p.name) + '</a></p>';
+    h += pickBtn(p);
+    h += '<p style="margin:10px 0 0"><a class="quiet" href="' + window.PEOPLE_TL + encodeURIComponent(p.name) + '">Search the timeline for ' + esc(p.name) + '</a></p>';
     return h;
   }
   function orgCard(n) {
@@ -504,28 +737,37 @@
     host.innerHTML = '<h2>' + esc(p.name) + ', one person at a time</h2><p class="label" style="margin:-6px 0 12px">People with a sourced tie are on the left' + (TT.length > 14 ? ' (the first 14 of ' + TT.length + ')' : '') + ', and employers and offices are on the right, newest first. A dashed line means reporting.</p><div class="ego-scroll"><div class="ego-stage" style="height:' + H + 'px">' + s + '</svg>' + html + '</div></div>';
     bind(host);
   }
-  // Opening someone from the list, the search or a card starts a fresh pick with just them;
-  // clicks in the map add to the picks instead (togglePick passes keep).
-  function select(id, go, keep) {
-    var n = id ? nodeById[id] : null, card = $('pcard');
+  // Opening someone (from the map, the list, the search or another file) shows their file and lights their own
+  // network while it is open. It never changes the filters; a network is added as a filter from the file.
+  function card() {
+    var n = nodeById[sel]; if (!n) return;
+    var box = $('pcard'), top = box.scrollTop, b = $('pcard-body');
+    b.innerHTML = n.t === 'p' ? personCard(n.p) : orgCard(n); bind(b);
+    b.querySelectorAll('button[data-net]').forEach(function (x) { x.addEventListener('click', function () { togglePick(x.getAttribute('data-net')); }); });
+    var more = $('pc-tlmore'); if (more) more.addEventListener('click', function () { $('pc-tl').querySelectorAll('li[hidden]').forEach(function (li) { li.hidden = false; }); more.parentNode.hidden = true; });
+    box.scrollTop = top;
+  }
+  function hash(h) { try { history.replaceState(null, '', h); } catch (x) {} }
+  function select(id, go) {
+    var n = id ? nodeById[id] : null, box = $('pcard');
     sel = n ? n.id : null; hov = null;
-    if (n && !keep) { picks = [n.id]; pickChips(); filteredLater(); }
     document.body.classList.toggle('pm-open', !!n);
-    if (!n) { card.hidden = true; $('ego').hidden = true; $('pintro').hidden = false; history.replaceState(null, '', location.pathname + location.search); paint(); index(); return; }
-    $('pintro').hidden = true; card.hidden = false;
-    $('pcard-body').innerHTML = n.t === 'p' ? personCard(n.p) : orgCard(n);
-    bind($('pcard-body')); card.scrollTop = 0;
-    if (n.t === 'p') { ego(n.p); history.replaceState(null, '', '#' + n.id); } else { $('ego').hidden = true; }
+    if (!n) { box.hidden = true; $('ego').hidden = true; $('pintro').hidden = false; hash(location.pathname + location.search); paint(); index(); return; }
+    $('pintro').hidden = true; box.hidden = false;
+    card(); box.scrollTop = 0;
+    if (n.t === 'p') { ego(n.p); hash('#' + n.id); } else { $('ego').hidden = true; }
     if (go) { center(n); $('pres').hidden = true; if (window.innerWidth > 900) $('pmap').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
     paint(); index();
   }
 
   fetch(window.PEOPLE_DATA).then(function (r) { return r.json(); }).then(function (d) {
     P = d.people.slice().sort(function (a, b) { return a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0]); });
-    ties = d.ties; F = d.filters || F; P.forEach(function (p) { byId[p.id] = p; });
+    ties = d.ties; F = d.filters || F; TLR = d.tl || []; P.forEach(function (p) { byId[p.id] = p; p.tl = p.tl || []; });
+    F.flag = {}; P.forEach(function (p) { p.groups.forEach(function (g) { (F.flag[g] = F.flag[g] || {})[p.id] = { t: '' }; }); });
+    ((d.tiers || {}).M || []).forEach(function (m) { if (byId[m.id]) { TIER[m.id] = 'M'; MM[m.id] = m; tierIds.M[m.id] = 1; } });
+    ((d.tiers || {}).P || []).forEach(function (id) { if (byId[id]) { TIER[id] = 'P'; delete tierIds.M[id]; tierIds.P[id] = 1; } });
     var seen = {}; P.forEach(function (p) { p.roles.forEach(function (r) { if (r.org && !seen[r.org] && !SKIP.test(r.org) && !EVENT.test(r.org)) { seen[r.org] = 1; vocab.push(r.org); } }); });
-    buildGraph(); layout(); draw(); wire(); chips(); pickers(); filtered();
-    $('pcount').textContent = P.length + ' people, ' + orgList.length + ' organizations that two or more of them share, and ' + edges.filter(function (e) { return e.k === 'tie'; }).length + ' sourced person-to-person ties.';
+    buildGraph(); layout(); draw(); wire(); filtered();
     // for the build session: roles that do not name an organization
     P.forEach(function (p) { var f = file(p); f.cur.concat(f.hist).forEach(function (r) { if (!r.named) flags.push({ id: p.id, name: p.name, role: r.role }); }); });
     window.EBC_PEOPLE_FLAGS = flags;

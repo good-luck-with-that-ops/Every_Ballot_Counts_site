@@ -3,13 +3,16 @@
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
-  var LABEL = {'STATEMENT':'Statement','DATA-ACCESS/SYSTEM':'Data and systems','COURT':'Court','CONTRACT':'Contract','ENFORCEMENT':'Enforcement','AGENCY-CHANGE':'Agency change','OVERSIGHT/LEAK':'Oversight','STATE-ACTION':'State action','CONGRESS':'Congress','FOREIGN/PREDICATE':'Foreign claim','EXEC-ORDER/DIRECTIVE':'Order or directive','ELECTION-OPS':'Election operations','LAW':'Law','PERSONNEL':'Personnel','DIPLOMACY':'Diplomacy'};
+  var LABEL = {'STATEMENT':'Statement','DATA-ACCESS/SYSTEM':'Data and systems','COURT':'Court','CONTRACT':'Contract','ENFORCEMENT':'Enforcement','AGENCY-CHANGE':'Agency change','OVERSIGHT/LEAK':'Oversight','STATE-ACTION':'State action','CONGRESS':'Congress','FOREIGN/PREDICATE':'Foreign claim','EXEC-ORDER/DIRECTIVE':'Order or directive','ELECTION-OPS':'Election operations','LAW':'Law','PERSONNEL':'Personnel','DIPLOMACY':'Diplomacy','APPOINTMENT':'Appointments'};
   var CH = {
     D: '<span class="m m-d" title="Document">D</span>',
     R: '<span class="m m-r" title="Reporting">R</span>',
     P: '<span class="m m-p" title="Presumed"><i>[</i>P<i>]</i></span>'
   };
   var rows = [], view = [], shown = 0, PAGE = 120, newest = true, mark = '', futOpen = false;
+  // Appointments (current roles and DOGE postings from the people map) stay hidden until the reader turns them on.
+  var showAppt = false;
+  function apptOff(r, c) { return r.c === 'APPOINTMENT' && !showAppt && c !== 'APPOINTMENT'; }
   var TODAY = new Date().toISOString().slice(0, 10);
   // Density bar: one bar per week from Jan 20, 2025 (a Monday), plus one block for everything earlier.
   var W0 = Date.UTC(2025, 0, 20), WK = 7 * 86400000, NW = 0, all = [], hit = [], pre = 0, preHit = 0, sel = null, drag = null;
@@ -58,6 +61,7 @@
     var q = $('q').value.trim().toLowerCase(), c = $('fc').value, y = $('fy').value;
     var terms = q ? q.split(/\s+/) : [];
     view = rows.filter(function (r) {
+      if (apptOff(r, c)) return false;
       if (mark && mk(r) !== mark) return false;
       if (c && r.c !== c) return false;
       if (y && r.d.slice(0, 4) !== y) return false;
@@ -82,7 +86,7 @@
       $('futbtn').addEventListener('click', function () { futOpen = !futOpen; apply(); });
     } else { $('fut').innerHTML = ''; }
     shown = 0; $('list').innerHTML = ''; more();
-    var n = view.length + fut.length; $('count').textContent = n ? n.toLocaleString() + (n === 1 ? ' entry' : ' entries') + (n !== rows.length ? ' of ' + rows.length.toLocaleString() : '') : 'Nothing matches that. Try fewer words, or clear a filter.';
+    var n = view.length + fut.length; $('count').textContent = n ? n.toLocaleString() + (n === 1 ? ' entry' : ' entries') + (n !== base() ? ' of ' + base().toLocaleString() : '') : 'Nothing matches that. Try fewer words, or clear a filter.';
   }
   function selText() {
     if (!sel) return '';
@@ -137,20 +141,29 @@
     $('list').insertAdjacentHTML('beforeend', html); shown = end;
     $('more').hidden = shown >= view.length;
   }
+  function base() { return showAppt ? rows.length : rows.filter(function (r) { return r.c !== 'APPOINTMENT'; }).length; }
+  function recount() {
+    pre = 0; for (var i = 0; i < NW; i++) all[i] = 0;
+    rows.forEach(function (r) { if (r.d > TODAY || apptOff(r, '')) return; var w = wk(r.d); if (w < 0) pre++; else all[w]++; });
+  }
   fetch(window.TL_DATA).then(function (r) { return r.json(); }).then(function (d) {
     rows = d.rows;
     NW = wk(TODAY) + 1;
     for (var i = 0; i < NW; i++) { all.push(0); hit.push(0); }
-    rows.forEach(function (r) { if (r.d > TODAY) return; var w = wk(r.d); if (w < 0) pre++; else all[w]++; });
+    recount();
     var cats = {}, yrs = {};
     rows.forEach(function (r) { cats[r.c] = (cats[r.c] || 0) + 1; yrs[r.d.slice(0, 4)] = 1; });
     Object.keys(cats).sort(function (a, b) { return cats[b] - cats[a]; }).forEach(function (k) { if (cats[k] > 3) $('fc').insertAdjacentHTML('beforeend', '<option value="' + esc(k) + '">' + esc(LABEL[k] || k) + ' (' + cats[k] + ')</option>'); });
     Object.keys(yrs).sort().reverse().forEach(function (k) { $('fy').insertAdjacentHTML('beforeend', '<option>' + k + '</option>'); });
+    var na = cats.APPOINTMENT || 0, fa = $('fa');
+    if (fa && na) { $('fa-n').textContent = na.toLocaleString(); fa.parentNode.hidden = false; }
     var u = new URLSearchParams(location.search); if (u.get('q')) $('q').value = u.get('q');
+    if (u.get('appointments') === '1' && fa) { fa.checked = true; showAppt = true; recount(); }
     apply();
   });
   var t; $('q').addEventListener('input', function () { clearTimeout(t); t = setTimeout(apply, 150); });
-  $('fc').addEventListener('change', apply); $('fy').addEventListener('change', function () { sel = null; apply(); });
+  $('fc').addEventListener('change', apply);
+  if ($('fa')) $('fa').addEventListener('change', function () { showAppt = this.checked; recount(); apply(); }); $('fy').addEventListener('change', function () { sel = null; apply(); });
   var plot = $('dens-plot');
   if (plot) {
     plot.addEventListener('pointerdown', function (e) { drag = weekAt(e.clientX); plot.setPointerCapture(e.pointerId); sel = [drag, drag]; drawDens(true); e.preventDefault(); });

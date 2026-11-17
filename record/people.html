@@ -5,11 +5,17 @@ permalink: /record/people/
 nav: record
 description: "The people map: who held which job, where they went next, and who worked with whom, each tie sourced and marked."
 ---
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs><clipPath id="seal-clip"><circle cx="50" cy="50" r="43.2"/></clipPath></defs>
+  <symbol id="poi-seal" viewBox="0 0 100 100"><image href="{{ '/assets/img/poi_seal_320.png' | relative_url }}" width="100" height="100" clip-path="url(#seal-clip)"/></symbol>
+  <symbol id="ebc-avatar" viewBox="0 0 100 100"><image href="{{ '/assets/img/ebc_avatar_132.png' | relative_url }}" width="100" height="100"/></symbol>
+  <symbol id="mm-seal" viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="#14213d"/><circle cx="50" cy="50" r="39.6" fill="none" stroke="#ffbe2e" stroke-width="3.2"/><circle cx="50" cy="50" r="29" fill="none" stroke="#ffbe2e" stroke-width="1.8"/><text x="50" y="64.5" text-anchor="middle" font-family="'Archivo Black','Archivo',sans-serif" font-weight="400" font-size="40" fill="#ffbe2e">M</text></symbol>
+</svg>
 <div class="wrap">
   <header class="page-head">
     <p class="crumb"><a href="{{ '/record/' | relative_url }}">The Record</a> / People map</p>
     <h1>The (Not Very) Deep State</h1>
-    <p class="dek prose">These are the people behind the systems: the Project 2025 authors, the DOGE staff, the officials, and the ones who moved between government and its vendors. Start with the whole network, then pick anyone to open their file.</p>
+    <p class="dek prose">This is the network around the people we’re watching: the officials who signed, the staff who built, the judges who ruled, the vendors who were paid, the lawyers and donors beside them, and the ordinary ties that connect them (old employers, law schools, boards). Being on this map is not an accusation. Start with the whole network, then pick anyone to open their file.</p>
     <p class="wip">This map is a work in progress. Every line carries the source it came from, and we’re still checking them one by one.</p>
   </header>
   <div class="pm-tools">
@@ -18,15 +24,14 @@ description: "The people map: who held which job, where they went next, and who 
       <input id="pq" class="search" type="search" placeholder="Find a person, an agency or a company" autocomplete="off">
       <ol class="pm-res" id="pres" hidden></ol>
     </div>
-    <p class="label" id="pcount" style="margin:0 0 8px">Loading the map…</p>
   </div>
-  <p class="label pm-how" id="phow">Light up a group, an agency or a task force, or click people and organizations in the map. Pick two or more to see who connects them.</p>
-  <div class="filters chips" role="group" aria-label="Groups. Pick more than one, or add people from the map, to see where they overlap." id="pf"></div>
-  <div class="pm-pickers">
-    <label class="vh" for="pag">Add an agency or office of this administration</label><select id="pag" class="pm-select"></select>
-    <label class="vh" for="ptf">Add a task force</label><select id="ptf" class="pm-select"></select>
-  </div>
-  <div class="filters chips pm-picks" role="group" aria-label="Your picks" id="ppicks" hidden></div>
+  <h2 class="pm-fh" id="pfh">Filters</h2>
+  <p class="label pm-how" id="phow">Set the filters here, then move around the map freely. Tick as many as you like in each one: the map lights up everyone in any of them and rings in amber the people who are in all of it. Tick two or more people to see what they share.</p>
+  <div class="pm-fbar" id="pfbar" role="group" aria-labelledby="pfh"></div>
+  <div class="pm-panel" id="pfp" hidden></div>
+  <div class="filters chips pm-picks" role="group" aria-label="What you ticked" id="ppicks" hidden></div>
+  <p class="label" id="pevery" hidden></p>
+  <div id="pover" aria-live="polite"></div>
   <p class="label" id="psum" aria-live="polite"></p>
   <div class="pmap" id="pmap">
     <div class="pm-stage">
@@ -38,6 +43,8 @@ description: "The people map: who held which job, where they went next, and who 
         <span><svg width="16" height="16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(45 8 8)"/></svg>Company or firm</span>
         <span><svg width="16" height="14" aria-hidden="true"><path d="M8 1.5L14.5 12.5H1.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Think tank or advocacy group</span>
         <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 2"/></svg>Event or document</span>
+        <span><svg class="mk" aria-hidden="true" viewBox="7 7 86 86"><use href="#poi-seal" x="0" y="0" width="100" height="100"/></svg>Person of Interest</span>
+        <span><svg class="mk" aria-hidden="true" viewBox="7 7 86 86"><use href="#mm-seal" x="0" y="0" width="100" height="100"/></svg>Monitor Mark</span>
         <span><svg width="34" height="10" aria-hidden="true"><path d="M1 5H33" stroke="currentColor" stroke-width="2"/></svg><span class="m m-d">D</span></span>
         <span><svg width="34" height="10" aria-hidden="true"><path d="M1 5H33" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/></svg><span class="m m-r">R</span></span>
       </div>
@@ -46,7 +53,8 @@ description: "The people map: who held which job, where they went next, and who 
       <div id="pintro">
         <h2>How to read the map</h2>
         <p>Each dot is a person. The other shapes are the agencies, companies and think tanks that at least two of them have in common, and the bigger the shape, the more lines run to it.</p>
-        <p>A solid line rests on a document and a dashed one on reporting. Hover over anyone to see who they’re connected to, and click to open their file.</p>
+        <p>A solid line rests on a document and a dashed one on reporting. Hover over anyone to see who they’re connected to, and click to open their file. Opening a file doesn’t change your filters.</p>
+        <p><svg class="mk" aria-hidden="true" viewBox="7 7 86 86"><use href="#poi-seal" x="0" y="0" width="100" height="100"/></svg> marks a Person of Interest: someone Amanda has chosen to watch. <svg class="mk" aria-hidden="true" viewBox="7 7 86 86"><use href="#mm-seal" x="0" y="0" width="100" height="100"/></svg> is a Monitor Mark: the monitor adds it by count when a person keeps turning up in the record. Neither one says anyone broke a law.</p>
         <p>To zoom, pinch, hold Ctrl or ⌘ while you scroll, or use the buttons. Once you’ve zoomed in, drag to move around.</p>
       </div>
       <div class="pm-card" id="pcard" role="region" aria-labelledby="pcard-h" hidden>
