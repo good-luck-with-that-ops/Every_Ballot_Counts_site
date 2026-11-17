@@ -781,3 +781,17 @@ svg.ebc-i{width:22px;height:22px;flex:none;box-shadow:0 0 0 1px var(--paper)}
 /* Record and Case File lists: whole-row links take no link underline (fixes the amber bars, Nov 17, 2026) */
 main .cf-list a,main .rec-grid a,main .cf-list a:not([class]),main .rec-grid a:not([class]){text-decoration:none;background:none}
 main .cf-list a:hover .nm,.rec-grid a:hover b{text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+
+/* Nov 17, 2026: "main a:not([class])" outranks .cf-index li a, so the side index lost its spacing and its highlighter
+   ran the full width under each item. Keep the highlighter, but on the words, with room between items. */
+main .cf-index li{padding:2px 0}
+main .cf-index li a{display:inline;padding:0 1px}
+@media (max-width:700px){ main .cf-index li{padding:0} }
+/* D / R / [P] marks: sit on the text line, not below it (they are inline-flex, so the shift is from the letter inside the mark) */
+.m{vertical-align:2px}
+/* the EBC & [POI] co-brand mark (people page filter, Profiles) */
+@font-face{font-family:'Instrument Serif';src:url(../fonts/instrument-serif-latin-400-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
+.cobrand{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;vertical-align:middle}
+.cobrand img,.cobrand svg{width:1.35em;height:1.35em;display:block;flex:none;box-shadow:0 0 0 1px var(--paper)}
+.cobrand .amp{font:italic 400 1.45em/1 'Instrument Serif',serif;color:var(--ink);position:relative;top:-.03em;margin:0 1px}
+.cobrand .m{margin:0;vertical-align:0}

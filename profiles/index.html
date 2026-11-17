@@ -1,0 +1,18 @@
+---
+layout: default
+title: "EBC & [POI] Profiles"
+permalink: /profiles/
+nav: casefiles
+description: One page for each Person of Interest, built from the people map and the timeline so it keeps updating.
+---
+{% include profiles_css.html %}
+<div class="pf-band"><img src="{{ '/assets/img/profiles_strip.png' | relative_url }}" alt="EBC & [POI] Profiles"></div>
+<div class="wrap" data-profiles="index">
+  <p class="crumb"><a href="{{ '/case-files/' | relative_url }}">Case Files</a> / Profiles</p>
+  <header class="page-head"><h1 class="pf-h1">{% include cobrand.html %} Profiles</h1>
+    <p class="dek prose">One page for each Person of Interest: the people Amanda has chosen to watch. Each page pulls its roles, ties and timeline rows straight from the record, so it keeps updating after any post about that person goes stale. A <span class="m m-p"><i>[</i>POI<i>]</i></span> mark doesn’t say anyone broke a law.</p></header>
+  <p class="label">A <b>Profile</b> has a written section and posts on top of the record. A <b>Record page</b> is the record alone, until we write one.</p>
+  <div class="pf-list" id="prof-list"><p class="label">Loading…</p></div>
+  <p class="label" id="prof-built" style="margin-top:14px"></p>
+</div>
+<script src="{{ '/assets/js/profiles.js' | relative_url }}" defer></script>

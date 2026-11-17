@@ -1,0 +1,51 @@
+---
+layout: default
+title: "Eric Ueland: EBC & [POI] Profile"
+permalink: /profiles/eric-ueland/
+nav: casefiles
+description: "Russ Vought's deputy at OMB, nominated Nov 16 to a 15-year term running GAO. What the record shows, updated as it grows."
+---
+{% include profiles_css.html %}
+<div class="wrap" data-profiles="person" data-id="eueland">
+  <p class="crumb"><a href="{{ '/case-files/' | relative_url }}">Case Files</a> / <a href="{{ '/profiles/' | relative_url }}">Profiles</a> / Eric Ueland</p>
+  <header class="cf-head">
+    <div class="cf-mark pf"><img src="{{ '/assets/img/profiles_mark.png' | relative_url }}" alt="EBC & [POI] Profiles"></div>
+    <div>
+      <h1 id="prof-name">Eric Ueland</h1>
+      <p class="dek" id="prof-now"></p>
+      <p class="byline">Profile by <b>Amanda Blackmer</b>. Flagged Nov 17, 2026.</p>
+      <p class="pf-tier" id="prof-tier"></p>
+      <p class="tw-links">On the board: {% for t in (23..23) %}{% assign r = site.data.board.rows | where: "num", t | first %}<a href="{{ '/tripwires/#row-' | append: t | relative_url }}"><span class="sq {{ r.status }}">{{ t }}</span>{{ r.name }}</a>{% endfor %} <a id="prof-map" href="#">Open on the people map</a></p>
+    </div>
+  </header>
+  <div class="cf-body">
+    <nav class="cf-index" aria-label="In this profile">
+      <p class="label" style="margin:0 0 6px">In this profile</p>
+      <ol><li><a href="#s1">Why we’re watching</a></li><li><a href="#s2">Posts</a></li><li><a href="#s3">Roles</a></li><li><a href="#s4">Ties</a></li><li><a href="#s5">On the timeline</a></li><li><a href="#s6">Corrections</a></li></ol>
+    </nav>
+    <div>
+      <section class="cf-sec" id="s1">
+        <h2>Why we’re watching</h2>
+        <div class="prose">
+          <ul class="pf-why">
+            <li>On Nov. 16 the president nominated him to be Comptroller General, the head of GAO, for a single 15-year term that no president can cut <span style="white-space:nowrap">short.&nbsp;{R}&nbsp;{D}</span></li>
+            <li>Since November 2025 he has run USAID’s closeout, including an April 2026 plan to reserve <b>$19.2 billion</b> that 17 senators, writing to him by name, called an illegal <span style="white-space:nowrap">impoundment.&nbsp;{D}</span></li>
+            <li>Since September 2025 he has performed the duties of OMB’s Controller, whose office prepares the government-wide financial statements GAO is required by law to audit. GAO’s latest audit faulted that preparation <span style="white-space:nowrap">process.&nbsp;{D}</span></li>
+            <li>As OMB’s Deputy Director for Management he was the statutory Executive Chair of the inspectors general’s council while OMB withheld about $28 million of its <span style="white-space:nowrap">funding.&nbsp;{D}</span></li>
+            <li>If he’s confirmed, the person who helped run that office would decide whether its actions were legal, whether to sue over them, and whether its books pass <span style="white-space:nowrap">audit.&nbsp;{P}</span></li>
+          </ul>
+        </div>
+      </section>
+      <section class="cf-sec" id="s2">
+        <h2>Posts</h2>
+        <p class="label">The first profile post is on its way on <a href="{{ site.opinion_url }}" rel="noopener">Presumption of Irregularity</a>. Posts go stale; the record below doesn’t.</p>
+      </section>
+      <p class="label" id="prof-built"></p>
+      <section class="cf-sec" id="s3"><h2>Roles</h2><div id="prof-roles"><p class="label">Loading…</p></div></section>
+      <section class="cf-sec" id="s4"><h2>Ties</h2><div id="prof-ties"></div></section>
+      <section class="cf-sec" id="s5"><h2>On the timeline</h2><div id="prof-tl"></div></section>
+      <section class="cf-sec" id="s6"><h2>Corrections</h2><p class="label">None yet. Found one? <a href="mailto:{{ site.contact }}">Tell us</a>.</p></section>
+    </div>
+  </div>
+</div>
+<script src="{{ '/assets/js/profiles.js' | relative_url }}" defer></script>

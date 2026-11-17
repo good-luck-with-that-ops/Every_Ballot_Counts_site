@@ -37,6 +37,7 @@
         {%- for cf in site.data.casefiles %}
         <a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="id">{{ cf.id }}</span><span><span class="nm">{{ cf.name }}</span><span class="ln">{{ cf.line }}</span></span><span class="label">{% if cf.updated != "" %}Updated {{ cf.updated | date: "%b %-d" }}{% else %}{{ cf.state }}{% endif %}</span></a>
         {%- endfor %}
+        <a href="{{ '/profiles/' | relative_url }}"><span class="id">[POI]</span><span><span class="nm">{% include cobrand.html %} Profiles</span><span class="ln">One page per Person of Interest, updated from the record</span></span><span class="label">New</span></a>
       </div>
       <p style="margin:16px 0 0"><a class="quiet" href="{{ '/case-files/' | relative_url }}">All Case Files</a></p>
     </div>

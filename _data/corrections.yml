@@ -1,4 +1,9 @@
 # Newest first. wrong/right are short phrases; where links to the page corrected.
+- date: "2026-11-17"
+  where: "People map: Sam Corcos, Varvara Russkova Corcos and Greg Hogan"
+  url: "https://everyballotcounts.io/record/people/"
+  wrong: "cited Eric Ueland’s financial disclosures and an ethics-office release as the sources for their roles"
+  right: "Those roles now cite the reporting they came from (WIRED, The Nation, Federal News Network, Nextgov). A build step reused four source numbers; it now refuses to build if that happens."
 - date: "2026-11-12"
   where: "The 7-day clock starts whenever they say it does"
   url: "https://presumptionofirregularity.com/p/the-7-day-clock-starts-whenever-they"

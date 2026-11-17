@@ -47,6 +47,7 @@
   var MP = glyph('P'), MK = glyph('M'), POICHIP = '<span class="m m-p"><i>[</i>POI<i>]</i></span>';
   // the EBC avatar as supplied (not redrawn)
   var EBCICON = '<svg class="ebc-i" aria-hidden="true" viewBox="0 0 100 100"><use href="#ebc-avatar" x="0" y="0" width="100" height="100"/></svg>';
+  var COBRAND = '<span class="cobrand" role="img" aria-label="EBC and POI">' + EBCICON + '<span class="amp" aria-hidden="true">&amp;</span>' + POICHIP + '</span>'; // the co-brand mark (Nov 17)
   function mark(id) { var t = TIER[id]; return t && marksOn[t] ? ' ' + (t === 'P' ? MP : MK) + '<span class="vh">' + (t === 'P' ? ' (Person of Interest)' : ' (Monitor Mark)') + '</span>' : ''; }
   var CARET = '<svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>';
   var svg, world, lab, T = { x: 0, y: 0, k: 1 }, K0 = 1, box = null, CW = 800, CHT = 600;
@@ -388,7 +389,7 @@
   function chipText(k, v) { return k === 'document' ? fmtDate(TLR[+v].d) + ': ' + clip(TLR[+v].e, 44) : v; }
   function fdef(k) { return FDEF.filter(function (f) { return f.k === k; })[0]; }
   function kdef(k) { return KINDS.filter(function (f) { return f.k === k; })[0]; }
-  function fname(f) { return f.k === 'ebc' ? EBCICON + 'EBC &amp; ' + POICHIP + ' filters' : esc(f.label); }
+  function fname(f) { return f.k === 'ebc' ? COBRAND + ' filters' : esc(f.label); }
   // The row of menus. Each opens a list you can tick through; the list stays open until you close it.
   function bar() {
     $('pfbar').innerHTML = FDEF.map(function (f) {
