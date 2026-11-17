@@ -4,12 +4,12 @@ sitemap: false
 ---
 # Every Ballot Counts
 
-> The sourced record of how federal power reaches elections, from the 2026 midterms through 2028. Every factual claim is marked D (a document says it), R (published reporting says it) or [P] (presumed: the site's own inference from the pattern; no source states it).
+> The sourced record of the trail of activity being used to undermine democracy, elections included, from the 2026 midterms through 2028. Every factual claim is marked D (a document says it), R (published reporting says it) or [P] (presumed: the site's own inference from the pattern; no source states it).
 
 Run by Amanda, an independent researcher. Opinion is published separately at Presumption of Irregularity ({{ site.opinion_url }}). Contact: {{ site.contact }}
 
 ## Pages
-- [Tripwire board]({{ '/tripwires/' | absolute_url }}): 21 signals, each with status (fired, armed, not yet), newest entry and dated history.
+- [Tripwire board]({{ '/tripwires/' | absolute_url }}): {{ site.data.board.rows | size }} signals on the trail (data and fraud machinery, corruption, getting around the checks, elections), each with status (fired, armed, not yet), newest entry and dated history.
 - [Case Files]({{ '/case-files/' | absolute_url }}): one page per story, with documents, people, timeline and sources.
 - [Timeline]({{ '/record/timeline/' | absolute_url }}): every dated, sourced event; data at {{ '/assets/data/timeline.json' | absolute_url }}
 - [People map]({{ '/record/people/' | absolute_url }}): careers and sourced ties (work in progress); data at {{ '/assets/data/people.json' | absolute_url }}

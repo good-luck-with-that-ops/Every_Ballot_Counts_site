@@ -1,6 +1,6 @@
 # Every Ballot Counts
 
-The sourced record of how federal power reaches elections, from the 2026 midterms through 2028: the tripwire board, the Case Files, and the Record (timeline, people map, architecture map, system registry, phrase trail, documents).
+The sourced record of the trail of activity being used to undermine democracy, elections included, from the 2026 midterms through 2028: the tripwire board, the Case Files, and the Record (timeline, people map, architecture map, system registry, phrase trail, documents).
 
 Opinion lives at [Presumption of Irregularity](https://presumptionofirregularity.com).
 

@@ -637,6 +637,8 @@ main a:not([class]):hover,.quiet:hover,.linkish:hover,.marks-pop a:hover{backgro
 .src a:not([class]),.sr a:not([class]),.srcs a:not([class]),.hist .sr a,.crumb a:not([class]){background:none;padding:0;color:inherit;text-decoration:underline;text-decoration-color:var(--ink-2);text-decoration-thickness:1px;text-underline-offset:3px}
 .src a:not([class]):hover,.sr a:not([class]):hover,.srcs a:not([class]):hover,.crumb a:not([class]):hover{color:var(--red-ink);background:none}
 .cf-list a,.rec-grid a,.tw-links a,.cstrip a,.cstrip .ct,.pm-list a,.kicker a{background:none;padding:0}
+.cf-list a,main .cf-list a,.rec-grid a{padding:14px 0}  /* the list rows keep their room; the line above only drops the highlighter */
+.cf-list .nm{display:block}
 .tw-links a{text-decoration:underline;text-decoration-color:var(--ink-2);text-decoration-thickness:1px;text-underline-offset:3px}
 .kicker a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .band a:not([class]),.band .linkish{background:none;color:var(--band-ink);text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
@@ -771,3 +773,11 @@ svg.ebc-i{width:22px;height:22px;flex:none;box-shadow:0 0 0 1px var(--paper)}
 .tl-appt[hidden]{display:none}
 .tl-appt{display:inline-flex;align-items:center;gap:6px;margin:0 6px;cursor:pointer}
 .tl-appt input{width:16px;height:16px;accent-color:var(--navy, #14213d)}
+
+/* People map: with filters set, hover or an open file only adds emphasis; it never dims the filtered view (Nov 17, 2026) */
+.has-filter .n.foc{opacity:1}
+.has-filter:not(.has-focus) .e.on{opacity:.9;stroke-width:1.8}
+
+/* Record and Case File lists: whole-row links take no link underline (fixes the amber bars, Nov 17, 2026) */
+main .cf-list a,main .rec-grid a,main .cf-list a:not([class]),main .rec-grid a:not([class]){text-decoration:none;background:none}
+main .cf-list a:hover .nm,.rec-grid a:hover b{text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}

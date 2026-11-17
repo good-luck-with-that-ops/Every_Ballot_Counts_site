@@ -277,7 +277,7 @@
   // classes for filter, hover and selection
   function paint() {
     RQ = reqs(); var S = RQ, focus = focusId(), f = S.length > 0;
-    svg.classList.toggle('has-focus', !!focus); svg.classList.toggle('has-filter', f); svg.classList.toggle('has-multi', S.length > 1); svg.classList.toggle('hide-P', !marksOn.P); svg.classList.toggle('hide-M', !marksOn.M);
+    svg.classList.toggle('has-focus', !!focus && !f); svg.classList.toggle('has-filter', f); svg.classList.toggle('has-multi', S.length > 1); svg.classList.toggle('hide-P', !marksOn.P); svg.classList.toggle('hide-M', !marksOn.M);
     nodes.forEach(function (n) {
       var c = ncls(n);
       n.sets = [];
@@ -290,6 +290,7 @@
       } else { n.fin = true; n.both = false; }
       if (picks.indexOf(n.id) >= 0) c += ' pick';
       if (focus && (n.id === focus || adj[focus][n.id])) c += ' on';
+      if (focus && n.id === focus) c += ' foc';
       if (n.id === sel) c += ' sel';
       n.el.setAttribute('class', c);
     });
@@ -322,7 +323,7 @@
       if (n.both) s += 400;
       if (TIER[n.id] === 'P' && marksOn.P) s += 60;
       if (picks.indexOf(n.id) >= 0) s += 3000;
-      if (focus) { if (n.id === focus) s += 5000; else if (adj[focus][n.id]) s += 2000; else s -= 500; }
+      if (focus) { if (n.id === focus) s += 5000; else if (adj[focus][n.id]) s += (f ? 0 : 2000); else if (!f) s -= 500; }
       return s;
     }
     cand.forEach(function (n) { n.pri = pri(n); });

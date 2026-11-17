@@ -3,7 +3,7 @@ layout: default
 title: The tripwire board
 permalink: /tripwires/
 legend_inline: true
-description: Twenty-one signals across the ways federal power could reach this election and the next one, each with its newest sourced entry and full history.
+description: The signals on the trail of activity being used to undermine democracy, elections included, each with its newest sourced entry and full history.
 ---
 {%- assign b = site.data.board -%}
 {%- assign nfired = b.rows | where: "status", "fired" | size -%}
@@ -13,7 +13,7 @@ description: Twenty-one signals across the ways federal power could reach this e
   <div class="split split-75" style="padding-top:40px">
     <div>
       <h1>The tripwire board</h1>
-      <p class="dek">These are {{ b.rows | size }} things that would have to happen for federal power to reach this election or the next one. {{ nfired }} already have, and {{ narmed }} more have the pieces in place.</p>
+      <p class="dek">These are {{ b.rows | size }} signals on the trail of activity being used to undermine democracy: the data and fraud machinery, collusion and corruption, getting around the checks, and elections. {{ nfired }} have already happened, and {{ narmed }} more have the pieces in place.</p>
       <div class="counts" aria-label="Board totals">
         <div><span class="n">{{ nfired }}</span><span class="stamp st-fired">Fired</span></div>
         <div><span class="n">{{ narmed }}</span><span class="stamp st-armed">Armed</span></div>
@@ -22,8 +22,8 @@ description: Twenty-one signals across the ways federal power could reach this e
       <p class="whobox">The monitor (that’s Claude, Anthropic’s AI, which pulls and sorts the documents) last checked the board <b>{% include stamp_time.html t=b.monitor_checked %}</b>. Amanda decides what runs. {% if site.data.review.reviewed_at != "" %}She last reviewed it <b>{% include stamp_time.html t=site.data.review.reviewed_at %}</b>, and that date only moves when she signs off.{% else %}She hasn’t reviewed this version yet.{% endif %}</p>
     </div>
     <section aria-labelledby="routes-h" class="routes">
-      <h2 id="routes-h">The {{ b.rows | size }} rows, by route</h2>
-      <p class="label" style="margin:-8px 0 10px">A route is one way of getting there. Pick one to filter the board below.</p>
+      <h2 id="routes-h">The {{ b.rows | size }} rows, by lane</h2>
+      <p class="label" style="margin:-8px 0 10px">A lane is one part of the trail; the election lane is split by route. Pick one to filter the board below.</p>
       <div class="rt-head" aria-hidden="true"><span></span><span>Fired</span><span>Armed</span><span>Not yet</span></div>
       {%- for r in b.routes %}
       <button type="button" class="rt" aria-pressed="false" data-route="{{ r.id }}" data-name="{{ r.name }}">

@@ -1,7 +1,7 @@
 ---
 title: About
 permalink: /about/
-dek: "Every Ballot Counts is the sourced record of how federal power reaches elections, from the 2026 midterms through 2028."
+dek: "Every Ballot Counts is the sourced record of the trail of activity being used to undermine democracy, elections included, from the 2026 midterms through 2028."
 ---
 <img src="{{ '/assets/img/amanda.jpg' | relative_url }}" alt="Amanda" width="160" height="160" style="float:right;margin:4px 0 16px 24px">
 
