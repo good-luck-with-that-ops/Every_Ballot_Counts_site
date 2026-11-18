@@ -1,29 +1,29 @@
 # The front page. Amanda curates it weekly; the publisher does not change the lead or the note.
-week_of: "2026-11-09"
+week_of: "2026-11-16"
 lead:
-  kicker: "Lead · Tripwire 17 · The voting-machine claim"
-  tripwire: 17
-  headline: "Georgia’s election board told Homeland Security its voting machines are “protected computers”"
-  dek: "The board’s Sept 28 resolution calls the machines federal “critical infrastructure” and asks that copies of the election server and scanner hard drives go to DHS and the Justice Department. {D} That is the wording that turns a machine problem into an FBI case. {P}"
-  doc_url: /assets/docs/ga-seb-letter-and-resolution-2026-09-30.pdf
-  doc_label: "Read the resolution"
+  kicker: "Lead · Tripwire 1 · Foreign blame for a current hack"
+  tripwire: 1
+  headline: "The FBI’s AI-hacking alert names no country. Its own footnote does."
+  dek: "The Nov 13 FLASH on the ARTEX framework went out the afternoon of the FAA ground stop. Its second note cites Microsoft’s report on a “nation-state campaign,” which calls the attacker “a China-state aligned actor.” {D} The country is on the record, one official sentence away. {P}"
+  doc_url: /assets/docs/fbi-flash-20261113-artex.pdf
+  doc_label: "Read the alert"
   exhibit:
-    img: ga-seb-resolution-p4
-    focus: 56
-    alt: "Georgia State Election Board resolution, adopted Sept 28, 2026, page 4: “the Federal government has deemed the voting systems to be ‘critical infrastructure’ and the Dominion systems are ‘protected computers’ within the meaning of 18 U.S.C. § 1030(e).”"
-    caption: "Georgia State Election Board, resolution adopted Sept 28, 2026, sent to DHS and DOJ Sept 30. Page 4 of 5. Highlighting is ours."
+    img: fbi-flash-261113-p12
+    focus: 28
+    alt: "FBI FLASH-20261113-001, Notes, page 12. Note 2: Microsoft Security Research and Microsoft Threat Intelligence, “AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise,” October 21, 2026."
+    caption: "FBI FLASH-20261113-001, Nov 13, 2026, the alert’s list of notes, page 12. Highlighting is ours."
 note:
-  date: "2026-11-14"
-  text: "The election is over and the paperwork is not. This week a state board handed Washington the exact vocabulary a federal machine case would need, and nobody federal has picked it up. I checked. If someone does, row 17 moves first."
+  date: "2026-11-17"
+  text: "The FBI read the report that names China, cited it, and left the country out of its own alert. That blank is row 1, and whoever fills it in decides what comes next: a foreign-interference finding, an emergency declaration, 120 days. I wrote about it in <a href=\"https://www.presumptionofirregularity.com/p/fill-in-the-blank-________-state\">Fill in the Blank</a>. If an official says the country out loud, this row moves first."
 week:
+  - {date: "Nov 17", text: "FBI Dallas: “cybercriminals and state-aligned hackers are exploiting ARTEX.” Still no country. {D}", src: "FBI Dallas on X", tw: 1}
+  - {date: "Nov 17", text: "The FAA paused its new router installs; FBI agents are in the contractor’s Florida lab at the Transportation Secretary’s request. {R}", src: "CNN; Florida’s Voice", tw: 17}
+  - {date: "Nov 16", text: "The Homeland Security Secretary on the outages: “I believe that it’s the SI.” {R}", src: "Fortune", tw: 3}
+  - {date: "Nov 16", text: "Russ Vought’s deputy, Eric Ueland, was nominated to run GAO, Congress’s auditor, for 15 years. {R}", src: "FedScoop", tw: 23}
+  - {date: "Nov 13", text: "The FBI’s ARTEX alert names no country; its second note is Microsoft’s “nation-state campaign” report. {D}", src: "FBI FLASH-20261113-001", url: "https://www.ic3.gov/CSA/2026/261113.pdf", tw: 1}
   - {date: "Nov 13", text: "The FAA’s nationwide ground stop ended at 8:15 pm ET; the reported cause is a contractor’s network update, not an attack. {R}", src: "CBS", tw: 1}
-  - {date: "Nov 13", text: "The Homeland Security Secretary led the response from the White House: “We’re not ruling out anything at this point.” {R}", src: "CBS; Western Journal", tw: 3}
-  - {date: "Nov 12", text: "DOJ to Judge Whitehead: “Defendants have not and cannot provide another list following the injunction entered in League of Women Voters.” {D}", src: "OneAmerica Votes v. Trump, ECF 22", tw: 4}
-  - {date: "Nov 12", text: "HUD’s final rule sends every assisted tenant through SAVE from Dec 14, with a duty to “inform DHS immediately.” {D}", src: "FR 2026-23003", tw: 21}
-  - {date: "Nov 12", text: "Trump called the border situation an “INVASION” tied to the midterm loss. {D}", src: "Truth Social", tw: 13}
-  - {date: "Nov 10", text: "Judge Carter closed U.S. v. California: “This lawsuit attempted to disrupt an ongoing election and create confusion and uncertainty for voters and election workers alike.” {D}", src: "C.D. Cal. 2:26-cv-12025, ECF 181", url: "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1043513/gov.uscourts.cacd.1043513.181.0.pdf", tw: 5}
-checked_not_seen: "Not seen as of Friday night: a “significant incident” declaration, a new emergency directive, a major-incident notice, any federal finding about voting machines, a warrant or seizure, a Guard call-up, or any Mullin statement about the election (checked by name)."
+checked_not_seen: "Not seen as of Tuesday night: a “significant incident” declaration (Federal Register checked), any U.S. agency naming a country for a current incident, or any official tying ARTEX, ConnectWise or the outages to election systems or voting equipment (checked by name)."
 opinion:
-  title: "What the FAAk is Markwayne talkin' about now?"
-  url: "https://presumptionofirregularity.com/p/what-the-faak-is-markwayne-talkin"
-  comment: "Same person, same receipts. Different volume."
+  title: "Fill in the Blank: ________-State Aligned"
+  url: "https://www.presumptionofirregularity.com/p/fill-in-the-blank-________-state"
+  comment: "Fill in the blank. I’ll wait."

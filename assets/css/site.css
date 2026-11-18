@@ -158,6 +158,9 @@ main{display:block}
 .note{background:var(--file);padding:24px 26px}
 .note p{font:400 20px/1.45 var(--serif);margin:10px 0 16px}
 .note .sig{height:58px;width:auto;transform:rotate(-3deg);display:block}
+.note .sigline{display:flex;justify-content:flex-end;align-items:center;gap:4px;color:var(--navy,#14213d)}
+.note .sigdash{transform:rotate(-3deg);margin-top:6px}
+@media (prefers-color-scheme: dark){ .note .sigline{color:#e9edf5} }
 @media (prefers-color-scheme: dark){ .note .sig{filter:invert(1) hue-rotate(180deg) brightness(1.4)} }
 
 /* ---------- exhibit ---------- */

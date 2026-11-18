@@ -43,7 +43,7 @@
       return '<li><span class="pf-d mono">' + esc(fd(r.date)) + (r.end ? '–' + esc(fd(r.end)) : (r.kind === 'current-role' ? '–now' : '')) + '</span>' +
         '<span><b>' + esc(org(r.org)) + '</b> ' + (MK[r.m] || '') + '<br>' + esc(r.role) + '<span class="pf-s">' + src(r.s) + '</span></span></li>';
     }).join('') + '</ol>';
-    var ties = D.ties.filter(function (t) { return t.a === id || t.b === id; });
+    var ties = D.ties.filter(function (t) { return t.a === id || t.b === id; }).sort(function (a, b) { return (b.date || '0000').localeCompare(a.date || '0000'); }); // newest on top, undated last
     $('prof-ties').innerHTML = ties.length ? '<ul class="pf-ties">' + ties.map(function (t) {
       var o = byId[t.a === id ? t.b : t.a] || { name: t.a === id ? t.b : t.a, id: '' };
       return '<li><a href="/record/people/#' + esc(o.id) + '"><b>' + esc(o.name) + '</b></a> <span class="label">' + esc(t.type) + (t.date ? ' · ' + esc(fd(t.date)) : '') + '</span> ' + (MK[t.m] || '') +
