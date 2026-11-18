@@ -56,7 +56,7 @@
     <div class="row"><a href="{{ '/' | relative_url }}">Home</a></div>
     <div class="row"><a href="{{ '/tripwires/' | relative_url }}">Tripwires <span class="label">{{ nfired }} fired, {{ narmed }} armed</span></a></div>
     <div class="row"><a href="{{ '/case-files/' | relative_url }}">Case Files</a>
-      <div class="sub">{% for cf in site.data.casefiles %}<a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="mono" style="font-size:13px;font-weight:700">{{ cf.id }}</span><span>{{ cf.name }}</span></a>{% endfor %}</div>
+      <div class="sub">{% for cf in site.data.casefiles %}<a href="{{ '/case-files/' | append: cf.slug | append: '/' | relative_url }}"><span class="mono" style="font-size:13px;font-weight:700">{{ cf.id }}</span><span>{{ cf.name }}</span></a>{% endfor %}<a href="{{ '/profiles/' | relative_url }}"><span class="mono" style="font-size:13px;font-weight:700">[POI]</span><span>{% include cobrand.html %} Profiles</span></a></div>
     </div>
     <div class="row"><a href="{{ '/record/' | relative_url }}">The Record</a>
       <div class="sub">{% for r in site.data.record %}<a class="plain" href="{{ r.url | relative_url }}"><span>{{ r.name }}</span></a>{% endfor %}</div>
