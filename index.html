@@ -26,11 +26,23 @@ description: The sourced record of the trail of activity being used to undermine
         <div class="sigline"><svg class="sigdash" aria-hidden="true" width="34" height="12" viewBox="0 0 34 12"><path d="M2 8 C 10 6, 20 5, 32 4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><img class="sig" src="{{ '/assets/img/ebc_signature_navy.png' | relative_url }}" alt="Amanda" width="156" height="58"></div>
       </div>
       <h2 style="margin:36px 0 6px">Next on the docket</h2>
-      <ul class="nextlist">
-        {%- for d in b.docket limit:6 %}
-        <li><span class="d">{{ d.label }}</span><span>{{ d.text }}</span></li>
+      {%- assign build_day = site.time | date: "%Y-%m-%d" %}
+      <ul class="nextlist" id="docket-next">
+        {%- assign shown = 0 %}
+        {%- for d in b.docket %}{% assign dd = d.date | append: "" %}{% if dd >= build_day %}
+        <li data-date="{{ dd }}"{% if shown >= 6 %} hidden{% endif %}><span class="d">{{ d.label }}</span><span>{{ d.text }}</span></li>
+        {%- assign shown = shown | plus: 1 %}{% endif %}
         {%- endfor %}
       </ul>
+      <script>
+      /* Keep the docket current between builds: drop dates before today (New York time), show the next six. */
+      (function(){try{
+        var t=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+        var n=0;document.querySelectorAll('#docket-next li').forEach(function(li){
+          if(li.getAttribute('data-date')<t){li.remove();return;}
+          li.hidden = n>=6; n++;});
+      }catch(e){}})();
+      </script>
     </aside>
   </div>
 </div>
