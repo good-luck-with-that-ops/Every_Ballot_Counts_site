@@ -641,7 +641,7 @@ rows:
   history:
   - date: Nov 18
     source: Washington Post headline
-    html: '"Peltola win doesn''t end DOJ scrutiny of Alaska Senate race, officials say"; Fox: "Hundreds of subpoenas fly in DOJ''s ''Decoy Dan'' probe as Democrat Peltola declared winner." {R}'
+    html: '"Peltola win doesn''t end DOJ scrutiny of Alaska Senate race, officials say"; Fox: "Hundreds of subpoenas fly in DOJ''s ''Decoy Dan'' probe as Democrat Peltola declared winner." <em>Sequence:</em> the federal criminal probe continues past the result toward the Nov 25 certification and the Jan 3 seating; Attorney General Blanche says it "doesn''t stop because of the election, no matter who wins or loses" (R). Fox and Newsweek describe it as a probe of the second Sullivan''s candidacy, with targets that include Marc Elias, whose firm represents Peltola''s campaign; the Juneau Independent calls it an investigation "of her campaign." DOJ has named no targets, and Peltola''s campaign denies wrongdoing (R). {R}'
     checked: false
   - date: Nov 18
     source: AP, NBC, NPR, Alaska Beacon
