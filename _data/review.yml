@@ -2,5 +2,5 @@
 #  - the "Mark board reviewed" GitHub Action (she presses Run), or
 #  - her explicit confirmation in a Claude session ("board reviewed").
 # Scheduled publishes must never write this file.
-reviewed_at: "2026-11-18T03:45:00-05:00"
+reviewed_at: "2026-11-18T21:13:00-05:00"
 reviewed_note: ""
