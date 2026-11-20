@@ -14,7 +14,7 @@
       <button type="button" aria-expanded="false" aria-controls="panel-cf" class="{% if page.nav == 'casefiles' %}cur{% endif %}">Case Files<svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button>
       <button type="button" aria-expanded="false" aria-controls="panel-rec" class="{% if page.nav == 'record' %}cur{% endif %}">The Record<svg aria-hidden="true" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></button>
       <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} aria-current="page"{% endif %}>About</a>
-      <a href="{{ site.opinion_url }}" rel="noopener">Opinion<svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" style="margin-left:5px"><path d="M2 8L8 2M3.5 2H8v4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg><span class="vh"> (opens Presumption of Irregularity)</span></a>
+      <a class="blog-chip" href="{{ site.opinion_url }}" rel="noopener" title="The blog: Presumption of Irregularity"><span class="bc" aria-hidden="true"><span class="bc-poi"><i>[</i>POI<i>]</i></span><span class="bc-w">BLOG</span></span><span class="vh">Blog: Presumption of Irregularity</span></a>
     </nav>
     {%- if page.legend_inline %}
     <a class="marks-q" href="#marks" aria-label="How to read the marks D, R and P" title="How to read the marks">?</a>
@@ -62,6 +62,6 @@
       <div class="sub">{% for r in site.data.record %}<a class="plain" href="{{ r.url | relative_url }}"><span>{{ r.name }}</span></a>{% endfor %}</div>
     </div>
     <div class="row"><a href="{{ '/about/' | relative_url }}">About</a></div>
-    <div class="row"><a href="{{ site.opinion_url }}">Opinion <span class="label">Presumption of Irregularity (opens Substack)</span></a></div>
+    <div class="row"><a href="{{ site.opinion_url }}"><span class="bc" aria-hidden="true"><span class="bc-poi"><i>[</i>POI<i>]</i></span><span class="bc-w">BLOG</span></span><span class="vh">Blog</span> <span class="label">Presumption of Irregularity</span></a></div>
   </nav>
 </header>

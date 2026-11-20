@@ -799,3 +799,12 @@ main .cf-index li a{display:inline;padding:0 1px}
 .cobrand img,.cobrand svg{width:1.35em;height:1.35em;display:block;flex:none;box-shadow:0 0 0 1px var(--paper)}
 .cobrand .amp{font:italic 400 1.45em/1 'Instrument Serif',serif;color:var(--ink);position:relative;top:-.03em;margin:0 1px}
 .cobrand .m{margin:0;vertical-align:0}
+
+/* [POI] BLOG nav chip (Nov 19): the blog link as a mark, like the Profiles band */
+.bc{display:inline-flex;align-items:center;gap:8px;background:var(--navy);padding:5px 10px 5px 5px;border-radius:3px;line-height:1}
+.bc-poi{display:inline-flex;align-items:center;background:var(--amber);color:var(--navy);font:400 13px/1 var(--black);padding:4px 5px 3px;border-radius:2px;box-shadow:inset 0 0 0 1.5px var(--navy),0 0 0 1.5px var(--amber)}
+.bc-poi i{font-style:normal;color:var(--red)}
+.bc-w{font:400 14px/1 var(--black);letter-spacing:.06em;color:#f4f1ea}
+nav.main a.blog-chip{padding:0 0 0 10px}
+nav.main a.blog-chip:hover .bc{box-shadow:0 0 0 2px var(--amber)}
+@media (prefers-color-scheme: dark){ .bc{box-shadow:inset 0 0 0 1px var(--hair)} }
