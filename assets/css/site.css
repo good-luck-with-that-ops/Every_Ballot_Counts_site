@@ -808,3 +808,7 @@ main .cf-index li a{display:inline;padding:0 1px}
 nav.main a.blog-chip{padding:0 0 0 10px}
 nav.main a.blog-chip:hover .bc{box-shadow:0 0 0 2px var(--amber)}
 @media (prefers-color-scheme: dark){ .bc{box-shadow:inset 0 0 0 1px var(--hair)} }
+/* inferred ties (mark I, shown [P]): faint dotted lines (Nov 20) */
+.e-I{stroke-dasharray:1.5 3.5;opacity:.38}
+.e-tie.e-I{stroke-width:1.1;opacity:.4}
+.eline.e-I{stroke-dasharray:2 4;opacity:.45}

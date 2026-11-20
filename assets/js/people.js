@@ -1,10 +1,10 @@
 // People map. The whole network first (people, agencies, companies, think tanks; solid line = document,
-// dashed = reporting), filters you can tick several values in and combine, two tiers, and one person's file as the detail view.
+// dashed = reporting, dotted = our inference [P]), filters you can tick several values in and combine, two tiers, and one person's file as the detail view.
 // No outside libraries. The layout is computed here, the same way every time, from people.json.
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var NS = 'http://www.w3.org/2000/svg';
-  var CH = { D: '<span class="m m-d" title="Document">D</span>', R: '<span class="m m-r" title="Reporting">R</span>' };
+  var CH = { D: '<span class="m m-d" title="Document">D</span>', R: '<span class="m m-r" title="Reporting">R</span>', I: '<span class="m m-p" title="Presumed: our inference"><i>[</i>P<i>]</i></span>' };
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
   var KIND = { p: 'Person', agency: 'Agency or office', company: 'Company or firm', tank: 'Think tank or advocacy group', event: 'Event or document' };
   var SKIP = /^(Special|Private practice)$|^Prior:/;
@@ -152,7 +152,7 @@
     ties.forEach(function (t) {
       if (!byId[t.a] || !byId[t.b] || t.a === t.b) return;
       var key = t.a < t.b ? t.a + '|' + t.b : t.b + '|' + t.a;
-      if (pair[key]) { if (t.m === 'D') pair[key].m = 'D'; return; }
+      if (pair[key]) { var rk = { D: 3, R: 2, I: 1 }; if ((rk[t.m] || 0) > (rk[pair[key].m] || 0)) pair[key].m = t.m; return; }
       pair[key] = { a: t.a, b: t.b, m: t.m, k: 'tie' }; edges.push(pair[key]);
     });
     edges.forEach(function (e) { adj[e.a][e.b] = e; adj[e.b][e.a] = e; deg[e.a] = (deg[e.a] || 0) + 1; deg[e.b] = (deg[e.b] || 0) + 1; });
@@ -563,7 +563,7 @@
     });
     ties.forEach(function (t) {
       if (picks.indexOf(t.a) < 0 || picks.indexOf(t.b) < 0 || t.a === t.b) return;
-      lines.push('<li><span class="fk">Sourced tie</span><span><b>' + esc(byId[t.a].name) + ' and ' + esc(byId[t.b].name) + '</b> <span class="tt">(' + esc(t.type) + ')</span> ' + esc(clip(t.ev, 160)) + ' ' + (CH[t.m] || '') + '<span class="sr">' + srcs(t.s) + '</span></span></li>');
+      lines.push('<li><span class="fk">' + (t.m === 'I' ? 'Inferred tie [P]' : 'Sourced tie') + '</span><span><b>' + esc(byId[t.a].name) + ' and ' + esc(byId[t.b].name) + '</b> <span class="tt">(' + esc(t.type) + ')</span> ' + esc(clip(t.ev, 160)) + ' ' + (CH[t.m] || '') + '<span class="sr">' + srcs(t.s) + '</span></span></li>');
     });
     if (!lines.length) return '<div class="pm-ov"><p><b>Nothing on file puts ' + esc(nameList(picks)) + ' in the same place yet.</b> There is no shared office, organization, body, system or timeline row, and no sourced tie between them.</p></div>';
     return '<div class="pm-ov"><h2>What ' + esc(nameList(picks)) + ' share</h2><ol class="pm-rows">' + lines.join('') + '</ol>' + (order.length > 8 ? '<p class="label">' + (order.length - 8) + ' more combinations of two. Take someone off to narrow it down.</p>' : '') + '<p class="label">Click anything they share to add it as a filter and see who else is in it.</p></div>';
@@ -736,7 +736,7 @@
       html += '<' + (on ? 'button type="button" data-id="' + esc(on.id) + '"' : 'div') + ' class="enode ' + (orgKind(r.org) === 'agency' ? 'en-agency' : 'en-outside') + '" style="left:700px;top:' + y + 'px"><b>' + esc(orgName(r.org)) + '</b><span>' + esc(r.kind === 'current-role' ? (r.since ? 'Since ' + fmtDate(r.since) : 'Current') : when(r)) + '</span></' + (on ? 'button' : 'div') + '>';
     });
     html += '<div class="enode en-sel" style="left:' + cx + 'px;top:' + cy + 'px;width:' + cw + 'px;min-height:80px"><b style="font:700 19px/1.15 var(--serif)">' + esc(p.name) + '</b><span>' + esc(p.now) + '</span></div>';
-    host.innerHTML = '<h2>' + esc(p.name) + ', one person at a time</h2><p class="label" style="margin:-6px 0 12px">People with a sourced tie are on the left' + (TT.length > 14 ? ' (the first 14 of ' + TT.length + ')' : '') + ', and employers and offices are on the right, newest first. A dashed line means reporting.</p><div class="ego-scroll"><div class="ego-stage" style="height:' + H + 'px">' + s + '</svg>' + html + '</div></div>';
+    host.innerHTML = '<h2>' + esc(p.name) + ', one person at a time</h2><p class="label" style="margin:-6px 0 12px">People with a sourced tie are on the left' + (TT.length > 14 ? ' (the first 14 of ' + TT.length + ')' : '') + ', and employers and offices are on the right, newest first. A dashed line means reporting, and a dotted one is our inference [P].</p><div class="ego-scroll"><div class="ego-stage" style="height:' + H + 'px">' + s + '</svg>' + html + '</div></div>';
     bind(host);
   }
   // Opening someone (from the map, the list, the search or another file) shows their file and lights their own

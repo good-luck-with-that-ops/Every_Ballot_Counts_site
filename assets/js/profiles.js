@@ -3,7 +3,7 @@
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-  var MK = { D: '<span class="m m-d" title="Document">D</span>', R: '<span class="m m-r" title="Reporting">R</span>', P: '<span class="m m-p" title="Presumed"><i>[</i>P<i>]</i></span>' };
+  var MK = { D: '<span class="m m-d" title="Document">D</span>', R: '<span class="m m-r" title="Reporting">R</span>', P: '<span class="m m-p" title="Presumed"><i>[</i>P<i>]</i></span>', I: '<span class="m m-p" title="Presumed: our inference"><i>[</i>P<i>]</i></span>' };
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
   function fd(s) { if (!s) return ''; var p = s.split('-'); if (p.length === 1) return p[0]; if (p.length === 2) return MON[+p[1] - 1] + ' ' + p[0]; return MON[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0]; }
   function pl(n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); }
