@@ -1,9 +1,25 @@
-{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py). {%- endcomment -%}
+{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py).
+Newest first (publish.py writes them newest first; Amanda, Nov 22, 2026). Each post is its own card: title card on the left,
+the post on the right. A post with no title card in posts.tsv shows the [POI] seal. {%- endcomment -%}
 {%- assign cf = include.cf -%}
 {%- if cf.posts and cf.posts.size > 0 %}
 <ul class="cf-posts">
-  {%- for p in cf.posts reversed %}
-  <li><a href="{{ p.url }}" rel="noopener"><span class="d">{{ p.date | date: "%b %-d" }}</span> <b>{{ p.title }}</b>{% if p.series != "" %} <span class="label">({{ p.series }}{% if p.part != "" %}, part {{ p.part }}{% endif %})</span>{% endif %}</a>{% if p.subtitle != "" %}<br><span class="sub">{{ p.subtitle }}</span>{% endif %}</li>
+  {%- for p in cf.posts %}
+  <li>
+    <a class="cf-post{% if forloop.first %} newest{% endif %}" href="{{ p.url }}" rel="noopener">
+      {%- if p.image != "" %}
+      <img src="{{ '/assets/img/poi/posts/' | append: p.image | relative_url }}" alt="" loading="lazy">
+      {%- else %}
+      <span class="cf-post-seal"><img src="{{ '/assets/img/poi_seal_320.png' | relative_url }}" alt="" loading="lazy"></span>
+      {%- endif %}
+      <span class="cf-post-txt">
+        <span class="label">{% if forloop.first %}Newest · {% endif %}{{ p.date | date: "%b %-d, %Y" }}{% if p.series != "" %} · {{ p.series }}{% if p.part != "" %}, part {{ p.part }}{% endif %}{% endif %}</span>
+        <b>{{ p.title }}</b>
+        {%- if p.subtitle != "" %}<span class="sub">{{ p.subtitle }}</span>{% endif %}
+        <span class="go">Read it at Presumption of Irregularity</span>
+      </span>
+    </a>
+  </li>
   {%- endfor %}
 </ul>
 {%- else %}
