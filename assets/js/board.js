@@ -33,6 +33,25 @@
     b.setAttribute('data-label', b.textContent);
     b.addEventListener('click', function () { var row = b.closest('.brow'); openRow(row, !row.classList.contains('open')); });
   });
+  // Long newest entries are cut to a few lines (Amanda, Nov 22, 2026); a row opens whole, one at a time or all at once.
+  rows.forEach(function (row) {
+    var nw = row.querySelector('.new'); if (!nw || nw.scrollHeight < 210) return;
+    nw.classList.add('clamp');
+    var more = document.createElement('button'); more.type = 'button'; more.className = 'more';
+    more.innerHTML = '<span>Read the whole entry</span>';
+    more.addEventListener('click', function () { openRow(row, true); });
+    nw.appendChild(more);
+  });
+  var tools = document.querySelector('.board-tools'), all = document.getElementById('open-all');
+  if (tools && all) {
+    tools.hidden = false;
+    all.addEventListener('click', function () {
+      var open = all.getAttribute('aria-pressed') !== 'true';
+      rows.forEach(function (row) { if (!row.hidden) openRow(row, open); });
+      all.setAttribute('aria-pressed', open ? 'true' : 'false');
+      all.textContent = open ? 'Close every row' : 'Open every row';
+    });
+  }
   if (location.hash && /^#row-\d+$/.test(location.hash)) {
     var row = document.querySelector(location.hash); if (row) openRow(row, true);
   }

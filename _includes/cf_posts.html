@@ -1,10 +1,26 @@
-{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py), newest first. {%- endcomment -%}
+{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py).
+Newest first (publish.py writes them newest first; Amanda, Nov 22, 2026). Each post is its own card: title card on the left,
+the post on the right. A post with no title card in posts.tsv shows the joint EBC & [POI] mark. {%- endcomment -%}
 {%- assign cf = include.cf -%}
 {%- if cf.posts and cf.posts.size > 0 %}
 <ul class="cf-posts">
   {%- assign ps = cf.posts | sort: "date" | reverse -%}
   {%- for p in ps %}
-  <li><a href="{{ p.url }}" rel="noopener"><span class="d">{{ p.date | date: "%b %-d" }}</span> <b>{{ p.title }}</b>{% if p.series != "" %} <span class="label">({{ p.series }}{% if p.part != "" %}, part {{ p.part }}{% endif %})</span>{% endif %}</a>{% if p.subtitle != "" %}<br><span class="sub">{{ p.subtitle }}</span>{% endif %}</li>
+  <li>
+    <a class="cf-post{% if forloop.first %} newest{% endif %}" href="{{ p.url }}" rel="noopener">
+      {%- if p.image != "" %}
+      <img src="{{ '/assets/img/poi/posts/' | append: p.image | relative_url }}" alt="" loading="lazy">
+      {%- else %}
+      <img class="cf-post-fallback" src="{{ '/assets/img/ebc_poi_mark_banner_1500x500.png' | relative_url }}" alt="" loading="lazy">
+      {%- endif %}
+      <span class="cf-post-txt">
+        <span class="label">{% if forloop.first %}Newest · {% endif %}{{ p.date | date: "%b %-d, %Y" }}{% if p.series != "" %} · {{ p.series }}{% if p.part != "" %}, part {{ p.part }}{% endif %}{% endif %}</span>
+        <b>{{ p.title }}</b>
+        {%- if p.subtitle != "" %}<span class="sub">{{ p.subtitle }}</span>{% endif %}
+        <span class="go">Read it at Presumption of Irregularity</span>
+      </span>
+    </a>
+  </li>
   {%- endfor %}
 </ul>
 {%- else %}

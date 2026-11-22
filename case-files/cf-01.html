@@ -149,16 +149,7 @@ sections: ["What’s going on", "New on the record", "What the documents say", "
 
 <section class="cf-sec" id="s7">
   <h2>The take</h2>
-  <a class="take" href="https://www.presumptionofirregularity.com/p/in-desperate-legal-proceedings-copypaste">
-    <img src="{{ '/assets/img/poi_ir.png' | relative_url }}" alt="">
-    <div>
-      <span class="label">The opinion version, at Presumption of Irregularity (part two)</span>
-      <div class="t" style="margin:8px 0">In desperate legal proceedings, Copy/Paste is the most sincere form of flattery</div>
-      <p style="margin:0 0 10px">A Texas lawsuit retyped a DHS letter. The trail behind the letter runs to Russ Vought’s own words, from 2022.</p>
-      <span class="ui" style="color:#ffbe2e;font-weight:600;text-decoration:underline;font-size:15.5px">Read part two</span>
-    </div>
-  </a>
-  <h3 style="margin-top:22px">Every post on this file</h3>
+  <p class="label" style="margin:0 0 4px">The opinion side of this file, at Presumption of Irregularity. Newest first.</p>
   {%- assign cfd = site.data.casefiles | where: "id", page.cf | first %}
   {% include cf_posts.html cf=cfd %}
 </section>
