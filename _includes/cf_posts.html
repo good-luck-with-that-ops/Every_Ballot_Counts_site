@@ -1,8 +1,9 @@
-{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py). {%- endcomment -%}
+{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py), newest first. {%- endcomment -%}
 {%- assign cf = include.cf -%}
 {%- if cf.posts and cf.posts.size > 0 %}
 <ul class="cf-posts">
-  {%- for p in cf.posts reversed %}
+  {%- assign ps = cf.posts | sort: "date" | reverse -%}
+  {%- for p in ps %}
   <li><a href="{{ p.url }}" rel="noopener"><span class="d">{{ p.date | date: "%b %-d" }}</span> <b>{{ p.title }}</b>{% if p.series != "" %} <span class="label">({{ p.series }}{% if p.part != "" %}, part {{ p.part }}{% endif %})</span>{% endif %}</a>{% if p.subtitle != "" %}<br><span class="sub">{{ p.subtitle }}</span>{% endif %}</li>
   {%- endfor %}
 </ul>
