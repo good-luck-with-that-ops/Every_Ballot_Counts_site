@@ -823,3 +823,4 @@ nav.main a.blog-chip:hover .bc{box-shadow:0 0 0 2px var(--amber)}
 .cf-posts li{padding:10px 0;border-bottom:1px solid var(--hair)}
 .cf-posts .d{font:700 12.5px/1.6 var(--mono);margin-right:6px}
 .cf-posts .sub{color:var(--ink-2);font-size:15px}
+@media (max-width:700px){.pm-opts{max-height:62vh}.pm-opts li.pm-grp{position:sticky;top:0;background:var(--paper,#faf8f3);z-index:1}}

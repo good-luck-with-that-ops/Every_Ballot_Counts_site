@@ -459,7 +459,7 @@
       var ga = AFFORD.indexOf(AFF[a.v]), gb = AFFORD.indexOf(AFF[b.v]);
       return ga - gb;
     });
-    var MAX = isDoc ? 60 : (isAff ? 400 : 120), more = rows.length - MAX;
+    var MAX = isDoc ? 60 : (isAff ? rows.length : 120), more = rows.length - MAX;   // every affiliation, grouped (Nov 22)
     $('pfhow').textContent = 'Tick as many as you like. ' + (S.length ? 'The number beside each one is how many of its people are also in your other filters.' : 'The number beside each one is how many people are on file under it.');
     var lastG = null;
     $('pfopts').innerHTML = rows.length ? '<ul class="pm-opts' + (isDoc ? ' wide' : '') + '">' + rows.slice(0, MAX).map(function (r) {
