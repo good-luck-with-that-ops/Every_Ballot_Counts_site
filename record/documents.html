@@ -15,5 +15,15 @@ description: The primary documents behind the lead stories and Case Files, linke
       {%- endfor %}
     </tbody>
   </table>
+  <h2 style="margin-top:40px">Newest documents on the timeline</h2>
+  <p class="label">The 25 newest timeline entries that rest on a primary document, rebuilt on every publish.</p>
+  <table class="docket">
+    <thead><tr><th style="width:120px">Date</th><th>Entry</th><th style="width:16%">Document</th></tr></thead>
+    <tbody>
+      {%- for d in site.data.documents_auto %}
+      <tr><td class="d">{{ d.date | date: "%b %-d, %Y" }}</td><td>{{ d.text }} {% include mk.html t="{D}" %}{% if d.who != "" %}<br><span class="muted" style="font-size:14.5px">{{ d.who }}</span>{% endif %}</td><td class="src"><a href="{{ d.url }}" rel="noopener">Open</a></td></tr>
+      {%- endfor %}
+    </tbody>
+  </table>
   <p class="label" style="margin-top:18px">Every other document is cited, with its link, in the <a href="{{ '/record/timeline/' | relative_url }}">timeline</a> and the <a href="{{ '/record/registry/' | relative_url }}">system registry</a>.</p>
 </div>

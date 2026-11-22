@@ -1,0 +1,11 @@
+{%- comment -%} Posts at Presumption of Irregularity filed to this case file (posts.tsv, publish.py). {%- endcomment -%}
+{%- assign cf = include.cf -%}
+{%- if cf.posts and cf.posts.size > 0 %}
+<ul class="cf-posts">
+  {%- for p in cf.posts reversed %}
+  <li><a href="{{ p.url }}" rel="noopener"><span class="d">{{ p.date | date: "%b %-d" }}</span> <b>{{ p.title }}</b>{% if p.series != "" %} <span class="label">({{ p.series }}{% if p.part != "" %}, part {{ p.part }}{% endif %})</span>{% endif %}</a>{% if p.subtitle != "" %}<br><span class="sub">{{ p.subtitle }}</span>{% endif %}</li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p class="label">No posts on this file yet.</p>
+{%- endif %}

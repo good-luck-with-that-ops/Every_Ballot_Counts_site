@@ -55,5 +55,10 @@
     }).join('') + '</ol>' : '<p class="label">Not on the timeline yet.</p>';
     if ($('prof-built')) $('prof-built').textContent = built ? 'These sections come straight from the people map and the timeline. Last built ' + built + '. They update whenever the record does.' : '';
     if (root.getAttribute('data-generic') && $('prof-crumb')) $('prof-crumb').textContent = p.name;
+    // posts that name this person (posts.json, built on every publish from the Presumption of Irregularity feed)
+    if ($('prof-posts')) fetch('/assets/data/posts.json').then(function (r) { return r.ok ? r.json() : { posts: [] }; }).then(function (x) {
+      var ps = (x.posts || []).filter(function (q) { return (q.people || []).indexOf(id) >= 0; });
+      $('prof-posts').innerHTML = ps.length ? '<ul class="pf-ties">' + ps.map(function (q) { return '<li><span class="pf-d mono">' + esc(fd(q.date)) + '</span> <a href="' + esc(q.url) + '" rel="noopener"><b>' + esc(q.title) + '</b></a>' + (q.subtitle ? '<br>' + esc(q.subtitle) : '') + '</li>'; }).join('') + '</ul>' : '<p class="label">No posts name this person yet.</p>';
+    }).catch(function () {});
   });
 })();

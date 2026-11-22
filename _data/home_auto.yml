@@ -1,0 +1,50 @@
+# Built by publish.py on every publish (Amanda, Nov 22, 2026: the publisher keeps the week list, the not-seen line and the opinion card current; the lead and the note stay hers in home.yml). Do not edit here.
+built: 2026-11-22T01:17-05:00
+week_from: Nov 15
+week:
+- date: Nov 21
+  text: Judge Kacsmaryk set the hand-count plaintiffs' preliminary-injunction motion for Nov 23 (response Nov 27, reply Nov 30); the county filed a second motion to dismiss. {D}
+  src: Source
+  url: https://www.courtlistener.com/docket/75028945/potter-county-republican-party-v-benge/
+  tw: 17
+- date: Nov 20
+  text: The Pentagon inspector general is auditing startup deals after the Post found $3.2 billion went to firms tied to Trump's sons. {R}
+  src: WaPo via summary
+  url: https://secondcongress.com/tracker/2026-05-11-senior-appointee-financial-conflicts
+  tw: 24
+- date: Nov 20
+  text: 'DHS launched "Sanctuary Insanity," "a new daily series" naming Democratic-led jurisdictions, starting with Minneapolis and Hennepin County; Mullin: "Sanctuary policies only serve to protect criminal illegal aliens while putting every single American at risk." {D}'
+  src: Source
+  url: https://www.gsa.gov/system/files/SPE_letter.pdf
+  tw: 25
+- date: Nov 19
+  text: 'Republican doubts on Ueland: Tillis, "Not a fan"; Collins, "I don''t know if he''s a bipartisan pick"; Kennedy, "I understand the concern … that he might be too partisan"; Murray (D): confirming him would be "lunacy." {R}'
+  src: Tripwire 22 on the board
+  url: /tripwires/#row-22
+  tw: 22
+- date: Nov 19
+  text: 'At the HSGAC hearing, CISA nominee Michael LoSapio (Palantir CISO) would not say Biden won in 2020 and said of Jan. 6: "I don''t believe it was an attack ... I know what I saw on the news"; no position on the $385 million CISA cut. {R}'
+  src: Cybersecurity Dive
+  url: /tripwires/#row-23
+  tw: 23
+- date: Nov 17
+  text: A judge barred Bill Essayli from overseeing two criminal cases starting Nov 23 and would not delay the ruling that he serves unlawfully. {R}
+  src: Tripwire 6 on the board
+  url: /tripwires/#row-6
+  tw: 6
+- date: Nov 16
+  text: An unsealed filing shows federal prosecutors tried to force LinkedIn to turn over data about New York Times reporters in a leak investigation; an appeals court had already limited the demand (R, The Wrap). {R}
+  src: NYT, Just Security
+  url: /tripwires/#row-18
+  tw: 18
+- date: Nov 16
+  text: Kansas and 13 other states filed an amicus brief for DHS in the appeal over the SAVE-Numident notices. {D}
+  src: D.C. Cir. 26-5243, Nov 13, docketed
+  url: /tripwires/#row-20
+  tw: 20
+checked_not_seen: 'Not seen as of Saturday, Nov 21, 2:45 pm ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
+opinion:
+  title: Maybe We'll Learn (tee hee)
+  url: https://www.presumptionofirregularity.com/p/maybe-well-learn-tee-hee
+  comment: The FBI got hacked, the President wondered out loud who did it, and the three chairs that matter on Dec. 18 all got rearranged in one week.
+  date: '2026-11-21'

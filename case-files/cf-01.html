@@ -21,7 +21,7 @@ strip:
   - {date: "Nov 13", label: "The FBI’s SI alert names no country; its footnote does", mark: D, row: 18}
   - {date: "Nov 14", label: "A Texas suit retypes Mullin’s letter as its own words", mark: D, row: 16, exhibit: D}
   - {date: "Nov 16", label: "Mullin: “I believe that it’s the SI”", mark: R, row: 19}
-sections: ["What’s going on", "What the documents say", "What we presume", "The timeline", "The people", "The take", "Sources", "Corrections"]
+sections: ["What’s going on", "New on the record", "What the documents say", "What we presume", "The timeline", "The people", "The take", "Sources", "Corrections"]
 ---
 <section class="cf-sec" id="s1">
   <h2>What’s going on</h2>
@@ -33,6 +33,12 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
 </section>
 
 <section class="cf-sec" id="s2">
+  <h2>New on the record</h2>
+  {%- assign cfd = site.data.casefiles | where: "id", page.cf | first %}
+  {% include cf_feed.html cf=cfd %}
+</section>
+
+<section class="cf-sec" id="s3">
   <h2>What the documents say</h2>
 
   <div class="exh-row" id="exh-a">
@@ -83,10 +89,10 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
       <a class="quiet" href="https://storage.courtlistener.com/recap/gov.uscourts.txnd.429501/gov.uscourts.txnd.429501.72.0.pdf">Open the document</a>
     </div>
   </div>
-  <p><a class="quiet" href="#s7">All 16 documents behind this file</a></p>
+  <p><a class="quiet" href="#s8">All 16 documents behind this file</a></p>
 </section>
 
-<section class="cf-sec" id="s3">
+<section class="cf-sec" id="s4">
   <h2>What we presume</h2>
   <div class="presume">
     <p>Presumed means it’s our inference from the pattern, and no source says it. We don’t extend the government a presumption of regularity, so we say plainly where we presume otherwise. A claim that a named person did something wrong never rests on this mark.</p>
@@ -99,7 +105,7 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
   </div>
 </section>
 
-<section class="cf-sec" id="s4">
+<section class="cf-sec" id="s5">
   <h2>The timeline for this file</h2>
   {% include cf_strip.html %}
   <table class="docket">
@@ -129,7 +135,7 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
   <p style="margin-top:14px"><a class="quiet" href="{{ '/record/timeline/?q=significant+incident' | relative_url }}">Search the full timeline for “significant incident”</a></p>
 </section>
 
-<section class="cf-sec" id="s5">
+<section class="cf-sec" id="s6">
   <h2>The people</h2>
   <div class="people-list">
     <div class="p"><div><b>Russ Vought</b><span class="r">Director, Office of Management and Budget</span></div><div>His office writes the definition of “major incident.” The memo in force is M-25-04. {D} In 2022, from his Center for Renewing America, he asked North Carolina to check voters against “all available federal and state databases.” {D} <a class="quiet" href="{{ '/record/people/#vought' | relative_url }}">In the people map</a></div></div>
@@ -141,7 +147,7 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
   </div>
 </section>
 
-<section class="cf-sec" id="s6">
+<section class="cf-sec" id="s7">
   <h2>The take</h2>
   <a class="take" href="https://www.presumptionofirregularity.com/p/in-desperate-legal-proceedings-copypaste">
     <img src="{{ '/assets/img/poi_ir.png' | relative_url }}" alt="">
@@ -152,10 +158,12 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
       <span class="ui" style="color:#ffbe2e;font-weight:600;text-decoration:underline;font-size:15.5px">Read part two</span>
     </div>
   </a>
-  <p style="margin-top:14px"><a class="quiet" href="{{ site.opinion_url }}/p/the-7-day-clock-starts-whenever-they">Part one: The 7-day clock starts whenever they say it does</a></p>
+  <h3 style="margin-top:22px">Every post on this file</h3>
+  {%- assign cfd = site.data.casefiles | where: "id", page.cf | first %}
+  {% include cf_posts.html cf=cfd %}
 </section>
 
-<section class="cf-sec srcs" id="s7">
+<section class="cf-sec srcs" id="s8">
   <h2>Sources</h2>
   <h3><span class="m m-lg m-d">D</span> Documents</h3>
   <ul>
@@ -188,7 +196,7 @@ sections: ["What’s going on", "What the documents say", "What we presume", "Th
   </ul>
 </section>
 
-<section class="cf-sec" id="s8">
+<section class="cf-sec" id="s9">
   <h2>Corrections to this file</h2>
   <ul class="corr-log">
     {%- for c in site.data.corrections %}{% if c.file == "CF-01" and c.where == "CF-01" %}

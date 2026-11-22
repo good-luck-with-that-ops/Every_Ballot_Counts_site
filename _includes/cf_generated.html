@@ -1,0 +1,46 @@
+{%- comment -%} A Case File page built from the record (publish.py writes site.data.casefiles; Nov 22, 2026).
+The written part comes from the Vault (MASTER/site/casefiles/<slug>.md); everything after it is the record. {%- endcomment -%}
+{%- assign cf = site.data.casefiles | where: "id", page.cf | first -%}
+{%- assign n = 0 -%}
+{%- for s in cf.written_html %}{% assign n = n | plus: 1 %}
+<section class="cf-sec" id="s{{ n }}">
+  <h2>{{ s[0] }}</h2>
+  {%- if s[0] contains "presume" %}
+  <div class="presume"><p>Presumed means it’s our inference from the pattern, and no source says it. A claim that a named person did something wrong never rests on this mark.</p>{{ s[1] }}</div>
+  {%- else %}
+  <div class="prose">{{ s[1] }}</div>
+  {%- endif %}
+</section>
+{%- endfor %}
+{%- assign n = n | plus: 1 %}
+<section class="cf-sec" id="s{{ n }}">
+  <h2>New on the record</h2>
+  {% include cf_feed.html cf=cf %}
+</section>
+{%- assign n = n | plus: 1 %}
+<section class="cf-sec" id="s{{ n }}">
+  <h2>On the board now</h2>
+  <table class="docket">
+    <thead><tr><th>No.</th><th>Tripwire</th><th>Newest entry</th><th>Changed</th></tr></thead>
+    <tbody>
+    {%- for t in cf.tripwires %}{% assign r = site.data.board.rows | where: "num", t | first %}
+      <tr><td class="d"><a href="{{ '/tripwires/#row-' | append: r.num | relative_url }}">{{ r.num }}</a></td><td><b>{{ r.name }}</b><br><span class="stamp st-{{ r.status }}" style="font-size:11.5px;margin-top:6px">{% if r.status == 'fired' %}Fired{% elsif r.status == 'armed' %}Armed{% else %}Not yet{% endif %}</span></td><td>{% if cf.show_newest %}{% include mk.html t=r.newest %}{% else %}<span class="label">This row covers more than this file. <a href="{{ '/tripwires/#row-' | append: r.num | relative_url }}">Its newest entry is on the board.</a></span>{% endif %}</td><td class="d">{{ r.changed | date: "%b %-d" }}</td></tr>
+    {%- endfor %}
+    </tbody>
+  </table>
+</section>
+{%- assign n = n | plus: 1 %}
+<section class="cf-sec" id="s{{ n }}">
+  <h2>The people</h2>
+  {% include cf_people.html cf=cf %}
+</section>
+{%- assign n = n | plus: 1 %}
+<section class="cf-sec" id="s{{ n }}">
+  <h2>The posts</h2>
+  {% include cf_posts.html cf=cf %}
+</section>
+{%- assign n = n | plus: 1 %}
+<section class="cf-sec" id="s{{ n }}">
+  <h2>Search the record</h2>
+  <p><a class="btn" href="{{ '/record/timeline/?q=' | append: cf.search | relative_url }}">Timeline entries for “{{ cf.search }}”</a> <a class="quiet" href="{{ '/record/people/' | relative_url }}" style="margin-left:14px">The people map</a></p>
+</section>

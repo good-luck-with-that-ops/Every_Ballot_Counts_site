@@ -4,6 +4,7 @@ title: Every Ballot Counts
 description: The sourced record of the trail of activity being used to undermine democracy, elections included, from the 2026 midterms through 2028. Every claim marked as a document, reporting, or our presumption.
 ---
 {%- assign h = site.data.home -%}
+{%- assign ha = site.data.home_auto | default: site.data.home -%}{%- comment -%} lead and note: home.yml (Amanda); week, not-seen line, opinion card: home_auto.yml (publish.py, Nov 22, 2026) {%- endcomment -%}
 {%- assign b = site.data.board -%}
 {%- assign nfired = b.rows | where: "status", "fired" | size -%}
 {%- assign narmed = b.rows | where: "status", "armed" | size -%}
@@ -75,7 +76,7 @@ description: The sourced record of the trail of activity being used to undermine
     <div class="section-head"><h2 id="week-h">This week in the record</h2><a class="quiet" href="{{ '/record/timeline/' | relative_url }}">The full timeline has {{ site.data.record[0].status }}</a></div>
     <ol class="week">
       {%- assign prev = "" %}
-      {%- for w in h.week %}
+      {%- for w in ha.week %}
       {%- assign tail = w.text | slice: -3, 3 %}
       {%- assign n = w.text | size | minus: 3 %}
       {%- if tail == "{D}" or tail == "{R}" or tail == "{P}" %}{% assign line = w.text | slice: 0, n %}{% else %}{% assign line = w.text %}{% assign tail = "" %}{% endif %}
@@ -88,7 +89,7 @@ description: The sourced record of the trail of activity being used to undermine
       {%- assign prev = w.date %}
       {%- endfor %}
     </ol>
-    <p class="cns"><b class="stampbox">Checked, and not seen.</b>{{ h.checked_not_seen }}</p>
+    <p class="cns"><b class="stampbox">Checked, and not seen.</b>{{ ha.checked_not_seen }}</p>
   </section>
 
   <div class="split section">
@@ -101,11 +102,11 @@ description: The sourced record of the trail of activity being used to undermine
       </div>
     </section>
     <aside>
-      <a class="poi-card" href="{{ h.opinion.url }}" style="display:block;text-decoration:none">
+      <a class="poi-card" href="{{ ha.opinion.url }}" style="display:block;text-decoration:none">
         <span style="display:flex;gap:12px;align-items:center"><img src="{{ '/assets/img/poi_ir.png' | relative_url }}" alt="" width="40" height="40"><span class="label">Opinion</span></span>
         <div class="wm">Presumption of <u>ir</u>regularity</div>
-        <p style="margin:0 0 6px">The newest post is <b>{{ h.opinion.title }}</b>.</p>
-        <div class="comment">Comment [A1]: {{ h.opinion.comment }}</div>
+        <p style="margin:0 0 6px">The newest post is <b>{{ ha.opinion.title }}</b>.</p>
+        <div class="comment">Comment [A1]: {% if h.opinion.url == ha.opinion.url and h.opinion.comment %}{{ h.opinion.comment }}{% else %}{{ ha.opinion.comment }}{% endif %}</div>
         <span class="ui" style="color:#ffbe2e;font-weight:600;text-decoration:underline;font-size:15.5px">Read it at presumptionofirregularity.com</span>
       </a>
     </aside>

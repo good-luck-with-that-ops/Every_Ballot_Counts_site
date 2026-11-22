@@ -21,26 +21,22 @@
 
   var P = [], byId = {}, ties = [], vocab = [], flags = [];
   var nodes = [], nodeById = {}, edges = [], adj = {}, orgList = [];
-  var picks = [], F = {}, TLR = [], sel = null, hov = null, RQ = [];
+  var picks = [], F = {}, TLR = [], sel = null, hov = null, RQ = [], AFF = {}, AFFORD = [], POSTS = [];
   // The menus in the filter row, left to right. People and the project's own filters come first; the rest are
   // things on the record (an office, a body, a system, a document), never a description of a person.
   var FDEF = [
     { k: 'people', label: 'People', find: 'Find a person by name or job' },
     { k: 'ebc', label: 'EBC & [POI] filters' },
-    { k: 'agency', label: 'Agency or office', find: 'Find an agency or office' },
-    { k: 'organization', label: 'Organization', find: 'Find an organization' },
-    { k: 'body', label: 'Task force or body', find: 'Find a task force or body' },
+    { k: 'affiliation', label: 'Affiliations', find: 'Find an agency, organization, task force or body' },
     { k: 'system', label: 'System', find: 'Find a system' },
     { k: 'document', label: 'Document or event', find: 'Find a document or event by a word, a name or a year' },
     { k: 'date', label: 'Date' }
   ];
   // The kinds of thing a person can be in. Each kind with something ticked is one requirement.
   var KINDS = [
-    { k: 'flag', label: 'Group' }, { k: 'agency', label: 'Agency or office' }, { k: 'organization', label: 'Organization' },
-    { k: 'body', label: 'Task force or body' }, { k: 'system', label: 'System' }, { k: 'document', label: 'Document or event' }
+    { k: 'flag', label: 'Group' }, { k: 'affiliation', label: 'Affiliations' }, { k: 'system', label: 'System' }, { k: 'document', label: 'Document or event' }
   ];
-  var CASEFILES = [['CF-01', 'What’s the BS, Russ?'], ['CF-02', 'The citizen database'], ['CF-03', 'Mississippi’s commercial-data purge'], ['CF-04', 'Pressuring the people who count']];
-  var on = { flag: [], agency: [], organization: [], body: [], system: [], document: [] }, marksOn = { P: true, M: true }, dFrom = '', dTo = '', every = false, openF = null, optQ = '';
+  var on = { flag: [], affiliation: [], system: [], document: [] }, marksOn = { P: true, M: true }, dFrom = '', dTo = '', every = false, openF = null, optQ = '';
   var TIER = {}, MM = {}, tierIds = { P: {}, M: {} };
   // The two marks, drawn from the same two symbols everywhere: the map, the key, the menus, the lists and the file.
   function glyph(t) { return '<svg class="mk" aria-hidden="true" viewBox="7 7 86 86"><use href="#' + (t === 'P' ? 'poi-seal' : 'mm-seal') + '" x="0" y="0" width="100" height="100"/></svg>'; }
@@ -69,7 +65,8 @@
   function mergeSrc(a, b) { var seen = {}; return a.concat(b).filter(function (x) { if (seen[x.u]) return false; seen[x.u] = 1; return true; }); }
   function norm(s) { return (s || '').replace(/\([^)]*\)/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim(); }
   function mentions(text, org) {
-    var o = orgName(org), al = [o].concat(ALIAS[o] || []);
+    var o = orgName(org), ab = (o.match(/\(([^)]+)\)\s*$/) || [])[1], base = o.replace(/\s*\([^)]*\)\s*$/, '');
+    var al = [o, base].concat(ab ? [ab] : [], ALIAS[o] || [], ALIAS[base] || [], ab ? (ALIAS[ab] || []) : []);
     return al.some(function (a) { return a.length > 2 && new RegExp('\\b' + a.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b').test(text); });
   }
   function namesOrg(text) { return SELF.test(text) || /,\s+(the\s+)?[A-Z]/.test(text) || /state senator/i.test(text) || vocab.some(function (o) { return mentions(text, o); }); }
@@ -184,7 +181,7 @@
     var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
     live.forEach(function (v) { x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); y0 = Math.min(y0, v.y); y1 = Math.max(y1, v.y); });
     // people with no tie or shared organization on file yet sit in rows underneath
-    lone.sort(function (a, b) { return a.name < b.name ? -1 : 1; });
+    lone.sort(byLast);
     var cols = Math.max(1, Math.floor((x1 - x0) / 16)), top = y1 + 46;
     lone.forEach(function (v, ix) { v.x = x0 + (ix % cols) * 16 + 6; v.y = top + Math.floor(ix / cols) * 16; v.lone = true; });
     var yb = lone.length ? top + Math.ceil(lone.length / cols) * 16 : y1;
@@ -457,23 +454,32 @@
       if (isDoc) return (S.length ? b.x - a.x : 0) || (a.d < b.d ? 1 : a.d > b.d ? -1 : 0);
       return (S.length ? b.x - a.x : 0) || b.n - a.n || a.t.localeCompare(b.t);
     });
-    var MAX = isDoc ? 60 : 120, more = rows.length - MAX;
+    var isAff = f.k === 'affiliation';
+    if (isAff) rows.sort(function (a, b) {   // grouped: federal government, Congress, courts, states, bodies, organizations; ticked ones first within a group
+      var ga = AFFORD.indexOf(AFF[a.v]), gb = AFFORD.indexOf(AFF[b.v]);
+      return ga - gb;
+    });
+    var MAX = isDoc ? 60 : (isAff ? 400 : 120), more = rows.length - MAX;
     $('pfhow').textContent = 'Tick as many as you like. ' + (S.length ? 'The number beside each one is how many of its people are also in your other filters.' : 'The number beside each one is how many people are on file under it.');
-    $('pfopts').innerHTML = rows.length ? '<ul class="pm-opts' + (isDoc ? ' wide' : '') + '">' + rows.slice(0, MAX).map(function (r) { return tickRow(f.k, r, S, isDoc); }).join('') + '</ul>' + (more > 0 ? '<p class="label pm-more">' + more + ' more. Type in the box above to narrow the list.</p>' : '') : '<p class="label">Nothing on file matches that. Try a shorter word.</p>';
+    var lastG = null;
+    $('pfopts').innerHTML = rows.length ? '<ul class="pm-opts' + (isDoc ? ' wide' : '') + '">' + rows.slice(0, MAX).map(function (r) {
+      var h = '';
+      if (isAff && AFF[r.v] !== lastG) { lastG = AFF[r.v]; h = '<li class="pm-grp" role="presentation"><h3 class="pm-sub">' + esc(lastG || 'Other') + '</h3></li>'; }
+      return h + tickRow(f.k, r, S, isDoc);
+    }).join('') + '</ul>' + (more > 0 ? '<p class="label pm-more">' + more + ' more. Type in the box above to narrow the list.</p>' : '') : '<p class="label">Nothing on file matches that. Try a shorter word.</p>';
     wireTicks();
   }
   // EBC & [POI] filters: the two marks (on by default; untick to take them off the map), the groups the project
   // sorts people into, and the Case Files (not tagged on the timeline yet).
   function ebcOpts() {
-    var S = others('flag'), rows = rowsOf('flag', S).sort(function (a, b) { return b.n - a.n; }), h = '';
+    var S = others('flag'), all = rowsOf('flag', S), CFR = /^CF-\d+: /;
+    var rows = all.filter(function (r) { return !CFR.test(r.v); }).sort(function (a, b) { return b.n - a.n; }), cfr = all.filter(function (r) { return CFR.test(r.v); }).sort(function (a, b) { return a.v < b.v ? -1 : 1; }), h = '';
     h += '<h3 class="pm-sub">Marks</h3><ul class="pm-opts">' + ['P', 'M'].map(function (t) {
       return '<li><label><input type="checkbox" data-mark="' + t + '"' + (marksOn[t] ? ' checked' : '') + '><span class="t">' + (t === 'P' ? MP + ' Persons of Interest' : MK + ' Monitor Marks') + '</span><span class="c">' + Object.keys(tierIds[t]).length + '</span></label></li>';
     }).join('') + '</ul>';
     h += '<p class="label pm-note">' + MP + ' marks a Person of Interest: someone Amanda has chosen to watch. ' + MK + ' is a Monitor Mark: the monitor adds it by count when a person keeps turning up in the record. Neither one says anyone broke a law. Both are on the map to start with; untick one to take its marks off.</p>';
     h += '<h3 class="pm-sub">Groups</h3><p class="label">' + (S.length ? 'The number beside each one is how many of its people are also in your other filters.' : 'The number beside each one is how many people are on file under it.') + '</p><ul class="pm-opts">' + rows.map(function (r) { return tickRow('flag', r, S); }).join('') + '</ul>';
-    h += '<h3 class="pm-sub">Case Files</h3><ul class="pm-opts">' + CASEFILES.map(function (c) {
-      return '<li class="zero"><label><input type="checkbox" disabled><span class="t"><span class="d">' + c[0] + '</span> ' + esc(c[1]) + '</span></label></li>';
-    }).join('') + '</ul><p class="label pm-note">The timeline rows aren’t tagged by Case File yet, so these can’t be ticked.</p>';
+    h += '<h3 class="pm-sub">Case Files</h3><ul class="pm-opts">' + cfr.map(function (r) { return tickRow('flag', r, S); }).join('') + '</ul><p class="label pm-note">A Case File lights up the people whose own timeline entries cite the sources behind its tripwire rows.</p>';
     $('pfopts').innerHTML = h; wireTicks();
     $('pfopts').querySelectorAll('input[data-mark]').forEach(function (c) {
       c.addEventListener('change', function () { marksOn[c.getAttribute('data-mark')] = c.checked; filtered(); ebcOpts(); });
@@ -536,7 +542,8 @@
   function names(list, max) {
     return list.slice(0, max).map(function (n) { return '<button type="button" class="linkish" data-id="' + esc(n.id) + '">' + esc(n.name) + '</button>' + mark(n.id); }).join(', ') + (list.length > max ? ' and ' + (list.length - max) + ' more' : '');
   }
-  function byLast(a, b) { return a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0]); }
+  function sk(n) { var p = n.p || n; return p.sk || (p.name || '').split(' ').slice(-1)[0].toLowerCase(); }
+  function byLast(a, b) { return sk(a).localeCompare(sk(b)); }
   function nameList(ids) { var a = ids.map(function (id) { return byId[id].name; }); return a.length < 3 ? a.join(' and ') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
   // Two or more people ticked: what the record puts them in together, most of them first.
   function overlap() {
@@ -689,11 +696,13 @@
       }).join('') + '</ol>';
     } else h += '<p class="pc-none">No person-to-person tie is on file for ' + esc(p.name.split(' ')[0]) + ' yet. Shared employers show up as lines to the organizations in the map.</p>';
     h += pickBtn(p);
+    var wp = POSTS.filter(function (x) { return (x.people || []).indexOf(p.id) >= 0; });
+    if (wp.length) h += '<h3>Written about in</h3><ul class="pm-rows">' + wp.slice(0, 6).map(function (x) { return '<li><span class="d">' + esc(fmtDate(x.date)) + '</span><span><a href="' + esc(x.url) + '" rel="noopener"><b>' + esc(x.title) + '</b></a> <span class="tt">(Presumption of Irregularity)</span></span></li>'; }).join('') + '</ul>';
     h += '<p style="margin:10px 0 0"><a class="quiet" href="' + window.PEOPLE_TL + encodeURIComponent(p.name) + '">Search the timeline for ' + esc(p.name) + '</a></p>';
     return h;
   }
   function orgCard(n) {
-    var ids = Object.keys(n.members).sort(function (a, b) { return byId[a].name < byId[b].name ? -1 : 1; });
+    var ids = Object.keys(n.members).sort(function (a, b) { return byLast(byId[a], byId[b]); });
     return '<p class="pc-groups">' + esc(KIND[n.t]) + '</p><h2 id="pcard-h" tabindex="-1">' + esc(n.name) + '</h2>' +
       '<h3>' + ids.length + ' people on file here</h3><ol class="pm-rows">' + ids.map(function (id) {
         var p = byId[id], rs = p.roles.filter(function (r) { return r.org === n.org; }), r = rs[0];
@@ -763,9 +772,12 @@
   }
 
   fetch(window.PEOPLE_DATA).then(function (r) { return r.json(); }).then(function (d) {
-    P = d.people.slice().sort(function (a, b) { return a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0]); });
+    P = d.people.slice().sort(function (a, b) { return (a.sk || a.name).localeCompare(b.sk || b.name); });
+    AFF = d.aff || {}; AFFORD = d.aff_order || [];
     ties = d.ties; F = d.filters || F; TLR = d.tl || []; P.forEach(function (p) { byId[p.id] = p; p.tl = p.tl || []; });
     F.flag = {}; P.forEach(function (p) { p.groups.forEach(function (g) { (F.flag[g] = F.flag[g] || {})[p.id] = { t: '' }; }); });
+    (d.casefiles || []).forEach(function (c) { var k = c.id + ': ' + c.name; F.flag[k] = {}; c.people.forEach(function (id) { if (byId[id]) F.flag[k][id] = { t: '' }; }); });
+    fetch(window.PEOPLE_DATA.replace('people.json', 'posts.json')).then(function (r) { return r.ok ? r.json() : { posts: [] }; }).then(function (x) { POSTS = x.posts || []; }).catch(function () {});
     ((d.tiers || {}).M || []).forEach(function (m) { if (byId[m.id]) { TIER[m.id] = 'M'; MM[m.id] = m; tierIds.M[m.id] = 1; } });
     ((d.tiers || {}).P || []).forEach(function (id) { if (byId[id]) { TIER[id] = 'P'; delete tierIds.M[id]; tierIds.P[id] = 1; } });
     var seen = {}; P.forEach(function (p) { p.roles.forEach(function (r) { if (r.org && !seen[r.org] && !SKIP.test(r.org) && !EVENT.test(r.org)) { seen[r.org] = 1; vocab.push(r.org); } }); });

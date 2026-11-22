@@ -1,38 +1,409 @@
-# Case Files keep their fixed numbers (decided Nov 14, 2026).
+# Built by publish.py from the Vault's MASTER/site/casefiles.yml, the board and posts.tsv. Case Files keep their numbers (Nov 14, 2026). Do not edit here.
 - id: CF-01
   slug: cf-01
-  name: "What’s the BS, Russ?"
-  line: "The emergency switch: how a suspicion becomes a “major incident.”"
-  dek: "Federal cyber law lets the government act on a suspicion and tell Congress only once it’s sure."
-  opened: "2026-11-11"
-  updated: "2026-11-17"
+  name: What’s the BS, Russ?
+  line: 'The emergency switch: how a suspicion becomes a “major incident.”'
+  dek: Federal cyber law lets the government act on a suspicion and tell Congress only once it’s sure.
+  opened: '2026-11-11'
+  written: '2026-11-17'
+  updated: '2026-11-21'
   state: Open
+  tripwires:
+  - 1
+  - 3
+  - 17
+  search: ''
+  show_newest: true
+  people:
+  - id: trump
+    name: Donald Trump
+    now: President
+    tier: P
+  - id: blanche
+    name: Todd Blanche
+    now: Attorney General
+    tier: P
+  - id: sduffy
+    name: Sean Duffy
+    now: Transportation Secretary
+    tier: P
+  - id: phegseth
+    name: Pete Hegseth
+    now: Defense Secretary
+    tier: P
+  - id: smiller
+    name: Stephen Miller
+    now: White House chief of staff from Nov 9, 2026 (deputy chief of staff for policy and homeland security adviser before)
+    tier: P
+  - id: mitchell
+    name: Cleta Mitchell
+    now: Election Integrity Network (Conservative Partnership Institute)
+    tier: P
+  - id: mullin
+    name: Markwayne Mullin
+    now: Secretary of Homeland Security (sworn in Mar 24, 2026)
+    tier: P
+  - id: kpatel
+    name: Kash Patel
+    now: Director, FBI
+    tier: P
+  - id: eueland
+    name: Eric Ueland
+    now: OMB Deputy Director for Management; performing the duties of USAID Administrator and of OMB Controller; Comptroller General (GAO) nominee
+    tier: P
+  - id: vought
+    name: Russ Vought
+    now: Director, OMB
+    tier: P
+  - id: kdavies_dow
+    name: Kirsten Davies
+    now: National Cyber Director (named Nov 19, 2026; Pentagon CIO before)
+    tier: M
+  - id: scairncross
+    name: Sean Cairncross
+    now: National Cyber Director (leaving, per a White House official, Nov 19, 2026)
+    tier: M
+  posts:
+  - date: '2026-11-21'
+    title: Maybe We'll Learn (tee hee)
+    url: https://www.presumptionofirregularity.com/p/maybe-well-learn-tee-hee
+    subtitle: The FBI got hacked, the President wondered out loud who did it, and the three chairs that matter on Dec. 18 all got rearranged in one week.
+    series: What’s the BS, Ru$$?
+    part: '4'
+    image: titlecard_bsruss-part4_1200x800.png
+  - date: '2026-11-19'
+    title: Fruit of the Poisonous Treason
+    url: https://www.presumptionofirregularity.com/p/fruit-of-the-poisonous-treason
+    subtitle: Part three of “What’s the big surprise, Russ?” A China claim, an incident declaration, and a data pipe that’s already built, paperwork and all.
+    series: What’s the BS, Ru$$?
+    part: '3'
+    image: ''
+  - date: '2026-11-17'
+    title: 'Fill in the Blank: ________-State Aligned'
+    url: https://www.presumptionofirregularity.com/p/fill-in-the-blank-________-state
+    subtitle: The FBI’s AI-hacking alert names no country. Its footnotes do.
+    series: ''
+    part: ''
+    image: titlecard_fbi-artex_1200x630.png
+  - date: '2026-11-15'
+    title: In desperate legal proceedings, Copy/Paste is the most sincere form of flattery
+    url: https://www.presumptionofirregularity.com/p/in-desperate-legal-proceedings-copypaste
+    subtitle: A Texas lawsuit retyped a DHS letter. The trail behind the letter runs to Russ Vought's own words, from 2022.
+    series: What’s the BS, Ru$$?
+    part: '2'
+    image: ''
+  - date: '2026-11-11'
+    title: The 7-day clock starts whenever they say it does
+    url: https://www.presumptionofirregularity.com/p/the-7-day-clock-starts-whenever-they
+    subtitle: 'What''s the BS, Ru$$? Part one: federal cyber law lets the government act on a suspicion and tell Congress only once it''s sure. The suspicion is already on the record.'
+    series: What’s the BS, Ru$$?
+    part: '1'
+    image: ''
+  feed:
+  - date: '2026-11-21'
+    label: Nov 21
+    tw: 17
+    tw_name: The voting-machine claim
+    status: armed
+    html: 'Checked Sat Nov 21 afternoon: no CISA vendor advisory, EO 13873 action, machine exam, request or seizure, DHS "debrief" or Mullin "voting logs" statement since morning (RSS "foreign adversary" voting machines, Potter County; CourtListener). New (D, <a href="https://www.courtlistener.com/docket/75028945/potter-county-republican-party-v-benge/">Potter County ECF 81-84</a>, Nov 19): Judge Kacsmaryk set the hand-count plaintiffs'' preliminary-injunction motion for Nov 23 (response Nov 27, reply Nov 30); the county filed a second motion to dismiss. Checked Sat Nov 21 morning: no CISA advisory naming ES&amp;S, Hart or Dominion, no Commerce/EO 13873 action on voting equipment, no ODNI/FBI machine exam, request, warrant or seizure, no DHS "debrief" news, no Mullin "voting logs" follow-up (searched "foreign adversary" voting machines, voting machines hand count, Potter County; Google News RSS 2 days; CourtListener alerts). New (D, <a href="https://public-inspection.federalregister.gov/2026-23787.pdf">Federal
+      Register notice 2026-23787</a>, publishes Nov 23): the EAC''s Technical Guidelines Development Committee meets Dec 15 on "the EAC Testing and Certification Program, the National Institute of Standards and Technology (NIST) Voting Program, the Voluntary Voting System Guidelines"; HAVA gives the EAC "decertification" power. Routine annual meeting; the agenda is not posted yet (D). Connecticut ordered recounts in five towns over a tabulator programming error (R, Hartford Courant headline); routine. Potter County: Benge filed a brief supporting her second motion to dismiss (ECF 83, Nov 19) (D, docket). Checked Fri Nov 20 morning: no CISA advisory naming ES&amp;S, Hart or Dominion, no Commerce/EO 13873 action on voting equipment, no ODNI/FBI machine exam, request, warrant or seizure, no DHS "debrief" news, no Mullin "voting logs" follow-up (searched "foreign adversary" voting machines, voting machines hand count, Potter County; Google News RSS 2 days; CourtListener alerts). Texas began
+      its first statewide audit of 2026 results (R, Victoria Advocate headline); La Crosse County''s audit found no errors (R, WXOW headline); both routine. Checked Nov 19 morning: no CISA advisory naming a vendor, no Commerce/EO 13873 action on voting equipment, no machine exam, request, warrant or seizure, no DHS "debrief" news (searched "foreign adversary" voting machines, voting machines, Potter County hand count; Google News RSS 2 days). Potter County docket: nothing new since ECF 80 found (D). Hand counts in the news are routine recounts (Pennsylvania''s 41st House District, R, Votebeat). Checked Nov 18 evening: no CISA advisory naming a vendor, no Commerce/EO 13873 action on voting equipment, no machine exam, request, warrant or seizure, no DHS "debrief" news (searched "foreign adversary" voting machines, voting machines, hand count ballots); Mullin''s written testimony repeats "election security is national security" and says CISA addressed election threats "by information sharing,"
+      with no word on machines (D). Hand counts in the news are routine audits and recounts (Idaho, Ohio, North Carolina) (R). Checked Nov 18 morning: no CISA advisory naming a vendor, no Commerce/EO 13873 action on voting equipment, no machine exam, request, warrant or seizure, no DHS "debrief" news (searched "foreign adversary" voting machines, voting machines, hand count). (D, Potter County ECF 78-80, Nov 17): the court let a pro se supporter file an amica brief for the plaintiffs and denied the county''s motion to dismiss as moot after the amended complaint, so the statewide hand-count suit continues on the new complaint. (D, court record and lobbying filings, Nov 18): the Juniper routers are HPE products; HPE closed its purchase of Juniper on July 2, 2025, after a settlement the court found was negotiated with DOJ leadership over the Antitrust Division staff, with HPE contacts at the CIA, the Pentagon and NSA that "should have been disclosed" (D, court order, Aug 12). No official has
+      said the routers were tampered with: FAA Administrator Bedford says there is "zero evidence of anything nefarious," and HPE says the device "functioned as it was configured to by the installer" (R). The FAA says it "has not yet determined the root cause" (D). <em>Watch:</em> any official who moves from "faulty configuration" to "compromised," and any appeal of the HPE judgment (deadline about Nov 30, {P}).'
+  - date: '2026-11-19'
+    label: Nov 19
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: 'still no U.S. agency attribution of any current incident to a foreign country; Bloomberg: "Iran Hit Key Infrastructure, Isn''t Behind Tech Outages, US Says" (R, headline). The public "Iran did it" claim comes from commentary: a former intelligence officer on LBC said "I think the Trump administration is not being honest by the way, about who is behind these attacks" (R, <a href="https://www.express.co.uk/news/world/2267083/iran-behind-us-tech-outages">Daily Express</a>, Nov 17). New, the one confirmed attack of the week (D, <a href="https://status.optimizely.com/incidents/ftw0fh9wx43z">Optimizely</a>): "On 16 November 2026, an unauthorized third party exploited a flaw in the Optimizely Web Experimentation account signup flow," impersonated users and inserted malicious scripts into customer projects. Researchers found the code on 178 organizations'' sites (banks, airlines, CNN, BBC, Fox News, Equifax), serving a card skimmer and the Coruna and DarkSword iPhone exploit kits, which
+      Google earlier tied to spyware vendors and a suspected Russian espionage group; no attribution, no government site named (R, <a href="https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/">Report URI</a>, <a href="https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/">Krebs</a>).'
+  - date: '2026-11-19'
+    label: Nov 19
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: two former L3Harris employees say the Coruna iPhone kit in the Optimizely attack was "at least in part" built by Trenchant, L3Harris's hacking-tools unit ("Coruna was definitely an internal name of a component") (R, <a href="https://techcrunch.com/2026/03/10/us-military-contractor-likely-built-iphone-hacking-tools-used-by-russian-spies-in-ukraine/">TechCrunch</a>, Mar 10). Trenchant's former general manager admitted selling eight tools made "exclusively" for the U.S. government and allies to a Russian broker from 2022 to 2025; prosecutors said they could reach "millions of computers and devices around the world, including in the United States" (D, <a href="https://www.courtlistener.com/docket/71644417/united-states-v-williams/">U.S. v. Williams</a>). L3Harris also runs the FAA network DOT is replacing. <em>Sequence:</em> the one confirmed attack of the week may have hit Americans with an American-made weapon that passed through Russian and Chinese hands, so a foreign label fits
+      whichever country an official picks {P}. <em>Sequence:</em> a real supply-chain attack, exploit kits with state-actor history, Iranian attacks on record in sworn testimony and an active war give any official who wants a foreign culprit the raw material; none has said it {P}.
+  - date: '2026-11-19'
+    label: Nov 19
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: no U.S. agency attribution of any current incident to a foreign country.
+  - date: '2026-11-19'
+    label: Nov 19
+    tw: 3
+    tw_name: Emergency declaration
+    status: armed
+    html: the NSA outage kept much of the workforce home for three days and cut NSA Georgia, the hub for Middle East signals intelligence during the Iran war, off its classified network; a Thursday voicemail called it a "code orange," with the campus closed "until further notice" (R, <a href="https://www.cnn.com/2026/11/18/politics/nsa-outage-disrupts-georgia-intel-hub-middle-east-intelligence">CNN</a>, Nov 18). Officials say it "appeared connected to the NSA's handling of software updates for vulnerabilities in PHP," the PHP2Shell flaws NSA itself told everyone to patch on Oct 21 (D, <a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching">CISA/NSA/FBI alert</a>). The White House says the government knew of the flaw by Oct 16 (R, Reuters), and OpenAI says it coordinated the disclosure with the White House Super Intelligence Force, ONCD and CISA (R).
+  - date: '2026-11-19'
+    label: Nov 19
+    tw: 3
+    tw_name: Emergency declaration
+    status: armed
+    html: 'a second, separate AI-found PHP flaw, "phpAfterShell," was fixed today; the October patches "do not contain the fix," so every agency that just patched has to patch again (D, <a href="https://depthfirst.com/phpaftershell">depthfirst</a>; R, <a href="https://www.forbes.com/sites/thomasbrewster/2026/11/19/ai-finds-critical-vulnerability-in-php-again/">Forbes</a>). The finder''s CEO warns the patches themselves can make systems fail (R). The NSA''s Oct 21 advisory had said PHP2Shell was "serious enough to require immediate patching across United States Government departments and agencies" (D); CISA put both PHP2Shell flaws on its binding must-patch list on Oct 26 with an Oct 29 deadline for civilian agencies (D, <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA KEV</a>); its directives do not reach national security systems like NSA''s, whose patch went in about Nov 7 (R, CBS, DNI Clayton) {P}. <em>Sequence:</em> the official cause of the week''s outages
+      is now AI-found bugs and rushed patches, a cause that needs no foreign country; a "significant incident" declaration doesn''t need one either, since harm to "public confidence" counts {P}. Checked Nov 19 morning (by name): no "significant incident" declaration or "likely to occur imminently" statement; CISA directives page read in the built-in browser, unchanged (newest ED 25-03 V1, ED 26-03 V1; BOD 26-04); no major-incident notice reported; Federal Register API (published Nov 18+: "significant incident," "emergency directive," "Insurrection," "domestic terrorism," "national security system," "foreign adversary," "voter registration": 0; "national emergency": the FCC paperwork notice and the HIPAA rule only) and public inspection for Nov 20 (111 items: no proclamation, EO, NEA notice, voter-data SORN or 12304(c) item; a DEA training-records SORN and a HAVANA Act rule) (D). (R, Washington Sun; D, TRM release, Nov 18): DHS and DOJ opened a "Threat Disruption Center" inside the Homeland
+      Security Task Force''s National Coordination Center, with a no-bid AI vendor as "primary private-sector partner" (row 26). <em>Sequence:</em> the response capacity grows while every official says the outages were not attacks {P}. Checked Nov 18 evening (by name): no "significant incident" declaration or "likely to occur imminently" statement; CISA directives page read in the browser, unchanged (newest ED 26-03 V1, Cisco SD-WAN; BOD 26-04); no major-incident notice reported; Federal Register API (published Nov 18+: "significant incident," "emergency directive," "domestic terrorism," "Insurrection," "voter registration": 0; "national emergency": the FCC paperwork notice; "super intelligence": a BLS survey item) and public inspection (unchanged for Nov 19: no proclamation, EO, NEA notice, voter-data SORN or 12304(c) item) (D). (D, written testimony, Nov 18): Mullin told House Homeland that CISA has shifted "from passively defending toward proactively identifying, mitigating, and reducing
+      malicious access to critical infrastructure," launched "CI Fortify" to prepare operators "for sustained essential operations during a potential geopolitical conflict," and named "cybersecurity attacks from adversarial super intelligence (SI)" as a threat; he did not mention the outages'' cause or any emergency. FAA chief Bedford: "I take full responsibility" for the ground stop (R, CNN). <em>Sequence:</em> CISA''s act-first language now matches the Pentagon''s "at their source" cyber posture of Sept 22 {P}. Checked Nov 18 morning (by name): no "significant incident" declaration or "likely to occur imminently" statement; no new emergency directive (CISA''s Nov 17 "Java4Shell" alert urges patching and is not a directive) (D); no major-incident notice reported; Federal Register API (published Nov 16+: "significant incident," "emergency directive," "Insurrection," "national security system," voter, "major incident," "domestic terrorism": 0; "national emergency": an FCC paperwork notice
+      only) and public inspection for Nov 19 (98 items: no proclamation, EO, NEA notice, voter-data SORN or 12304(c) item; two benefit matching programs) (D). (R, CNN, Nov 18): a senior administration official says the outages are "the results of preparing for, hardening, upgrading your systems," and, asked how systems would handle a real attack, "That is a question the American people should be asking"; NSA patching is "slower than expected"; Vance cancelled a New York appearance to attend "meetings amid the wave of outages." (R, Washington Sun, Nov 17): bank executives and the NSA told members of Congress the outages came from rushed fixes for vulnerabilities "identified by artificial intelligence"; Mullin on CNBC: "We''re going to see more of this as new technology rolls out." <em>Sequence:</em> crisis meetings at the vice-president level with no declaration and an official line of "not an attack"; Mullin pre-announces more failures, which keeps the emergency frame ready without a predicate
+      {P}. (D, USAspending, Nov 18): the emergency is so far a word, not a contract. No new FAA award to L3Harris, AT&amp;T, Verizon, Lumen, Peraton, Juniper, Cisco or HPE since Nov 1 (D, USAspending; data lags). In August the FAA had already moved its replacement telecom network to AT&amp;T in a deal coded "NOT COMPETED" and "UNIQUE SOURCE," with one offer (D). That August award already does the work an emergency purchase would {P}. Duffy''s $50 billion request names "AT&amp;T, Verizon, and Lumen" as builders (D, DOT). <em>Watch:</em> a ceiling increase for Peraton, new contract vehicles, or the AT&amp;T letter contract being made final.'
+  - date: '2026-11-18'
+    label: Nov 18
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: '"Since February, Iranian activity has increasingly targeted the transportation, healthcare, water, energy, and financial services sectors. These operations historically have produced localized and minimally disruptive effects against poorly secured industrial control devices, but vulnerable systems and weak cyber hygiene in lifeline infrastructure could create disruptive consequences." At the hearing: "What happens online is [there] is a tremendous amount of fear ... but there''s no cause for it" (R, IBTimes). Trump: the outages are "individual events"; "relax" (R, Anadolu, Mediaite). <em>Sequence:</em> an Iran attribution for attacks on five critical-infrastructure sectors is now in the DHS Secretary''s sworn statement; what is missing is only the sentence tying it to a named incident {P}. Trump is weighing a strike on Iran and says the U.S. will "see what happens" after Jan. 1 (R, NYT, Reuters via Just Security). {D}'
+  - date: '2026-11-18'
+    label: Nov 18
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: no U.S. agency attribution of any incident to a foreign country.
+  - date: '2026-11-18'
+    label: Nov 18
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: 'under oath, DNI Clayton said he has "a very high level of confidence" the outages were not a cyberattack: "They are different causes ... Do we see any of them here? We do not see them"; Iranian "lethal plotting" has "substantially increased." <em>Sequence:</em> the official who writes the EO 13848 assessment (~Dec 18) has now said it twice, once under oath {P}. {R}'
+  - date: '2026-11-18'
+    label: Nov 18
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: no U.S. agency statement attributing any incident to a foreign country.
+  - date: '2026-11-18'
+    label: Nov 18
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: 'officials say no foreign hand, so far. Duffy: "We have no indication that that was at play here" (R, Fox). The FBI says it is giving "technical assistance," not running an investigation (R). No official has tied the FAA routers to ARTEX or to the Chinese espionage group Mandiant found in Juniper routers in 2025 (R). <em>Watch:</em> the first official who does, since the routers belong to a company whose merger was argued as a national-security matter at the CIA and the Pentagon (D, court order; {P}). {R}'
   mark: bsruss_square.png
-  tripwires: [1, 3, 17]
 - id: CF-02
   slug: cf-02
-  name: "The citizen database"
-  line: "SAVE, Social Security, HUD and passports behind one door."
-  dek: "Voter, tax, Social Security, housing and immigration records are being wired to one federal check."
-  opened: "2026-11-14"
-  updated: ""
-  state: Being assembled
-  tripwires: [4, 11, 20, 21]
+  name: The citizen database
+  line: SAVE, Social Security, HUD and passports behind one door.
+  dek: Voter, tax, Social Security, housing and immigration records are being wired to one federal check.
+  opened: '2026-11-14'
+  written: '2026-11-22'
+  updated: '2026-11-22'
+  state: Open
+  tripwires:
+  - 4
+  - 11
+  - 20
+  - 21
+  search: SAVE
+  show_newest: true
+  people:
+  - id: vought
+    name: Russ Vought
+    now: Director, OMB
+    tier: P
+  - id: kirk
+    name: Dennis Dean Kirk
+    now: Nominee, Inspector General, Interior; Senior Advisor, Interior OIG (since 7/2026)
+    tier: M
+  - id: losapio
+    name: Michael LoSapio
+    now: Nominee, Director of CISA (sent to Senate Nov 9, 2026); Chief Information Security Officer, Palantir (since Sep 2024)
+    tier: M
+  - id: borges
+    name: Charles Borges
+    now: Former SSA Chief Data Officer (whistleblower)
+    tier: ''
+  - id: pmurray
+    name: Patty Murray
+    now: ''
+    tier: ''
+  posts:
+  - date: '2026-11-19'
+    title: Fruit of the Poisonous Treason
+    url: https://www.presumptionofirregularity.com/p/fruit-of-the-poisonous-treason
+    subtitle: Part three of “What’s the big surprise, Russ?” A China claim, an incident declaration, and a data pipe that’s already built, paperwork and all.
+    series: What’s the BS, Ru$$?
+    part: '3'
+    image: ''
+  - date: '2026-11-03'
+    title: Turns out you need paperwork to pass around millions of voter records
+    url: https://www.presumptionofirregularity.com/p/chutkan-paperwork
+    subtitle: Every other election-eve case was about the letters. Judge Tanya Chutkan’s ruling in League of Women Voters v.
+    series: ''
+    part: ''
+    image: ''
+  feed:
+  - date: '2026-12-14'
+    label: Dec 14
+    tw: 11
+    tw_name: New data powers switching on
+    status: armed
+    html: 'verification of "U.S. citizenship or the eligible immigration status of all applicants and recipients of assistance under a covered program regardless of age"; responsible entities "rely on DHS-administered SAVE to verify U.S. citizenship and immigration status"; the consent form tells families that housing agencies or owners "must inform DHS immediately whenever personnel determine that any member of a household is present in the U.S. in violation of the Immigration and Nationality Act." Commenters argued the overhauled SAVE "violates the Privacy Act by repurposing records in bulk." <em>Sequence:</em> SAVE, rebuilt in 2025 to query SSA data and used against voter rolls, becomes the citizenship check for millions of housing residents, citizens and children included, with housing staff as a referral channel to DHS. This is the citizen database growing outside elections {P}. Benign: HUD reads Section 214 as requiring it; the rule was proposed earlier this year. {D} the federal identity-proofing
+      standard now requires login providers (Login.gov is the federal one) to run a "fraud management program," "implement a death records check for all identity proofing processes," use "credible sources" that correlate data "obtained from multiple sources" (aggregators), and "communicate suspected and confirmed fraudulent events" to the agencies relying on the login; "fraud indicator" data may be "aggregated, or exchanged across commercial platforms." <em>Sequence:</em> this is the rulebook behind Login.gov''s Aug 3, 2026 "fraud monitoring" and the LexisNexis and Socure identity-proofing orders: the federal front door now collects "suspected fraud" signals and passes them to agencies. The standard was drafted 2022-24; what changed is who runs Login.gov and what it connects to {P}. {D}'
+  written_html:
+    What's going on: '<p>Voter, tax, Social Security, housing and immigration records are being wired to one federal check: USCIS''s SAVE. The Social Security Administration says that "through data received from ... SAVE" it has updated about 25 million records that were missing citizenship information. {D}</p>
+
+      <p>HUD will run every assisted tenant, citizens and children included, through SAVE from Dec 14, and housing agencies "must inform DHS immediately" when they find someone present in violation of immigration law. {D} State''s online passport pilot runs through America.gov and Login.gov, with citizenship checked "using system checks, including those from USCIS." {D}</p>
+
+      <p>DHS and DOJ also compiled lists of named voters they call likely noncitizens. On Nov 2 Judge Chutkan stayed any further release of those lists to election officials; the court found no Privacy Act notice covers the compiled voter data. {D} DOJ has sued 30 states and D.C. for full voter rolls and lost 28. {R}</p>'
+    What we presume: <ul><li>{P} The same door now serves voting, housing, benefits and passports, so whoever runs the match decides who gets flagged.</li><li>{P} With the SAVE America Act dead, proof of citizenship moves to SAVE agreements with cooperating states for 2028.</li></ul>
 - id: CF-03
   slug: cf-03
-  name: "Mississippi’s commercial-data purge"
-  line: "A credit bureau’s address file and 230,000 inactive voters."
-  dek: "A partner state sidelined voters with an address file built for debt collectors."
-  opened: "2026-11-14"
-  updated: ""
-  state: Being assembled
-  tripwires: [16]
+  name: Mississippi’s commercial-data purge
+  line: A credit bureau’s address file and inactive voters.
+  dek: A partner state sidelined voters with an address file built for debt collectors.
+  opened: '2026-11-14'
+  written: '2026-11-22'
+  updated: '2026-11-22'
+  state: Open
+  tripwires:
+  - 16
+  search: Experian
+  show_newest: true
+  people:
+  - id: mwatson
+    name: Michael Watson
+    now: Mississippi Secretary of State
+    tier: M
+  posts: []
+  feed: []
+  written_html:
+    What's going on: '<p>Mississippi''s Secretary of State, Michael Watson, paid Experian $50,000 for its TrueTrace "Best Address" locator and ran about 1.9 million voter checks. The contract says Experian "cannot and will not ... be an insurer or guarantor of the accuracy or reliability" of its data. {R}</p>
+
+      <p>Voters inactivated through that process were pushed to affidavit ballots in November. Hinds County rejected about two-thirds of its affidavit ballots, {R} and Watson put the statewide acceptance rate at "roughly 76%." {D} His office had also deleted the state''s mail-ballot cure rule in August. {R}</p>
+
+      <p>Watson''s defense: "The system at the end of the day… is working as it was designed." {R}</p>'
+    What we presume: <ul><li>{P} How many rejected affidavit voters were inactivated through the Experian process is still unreported. That number is the 2028 evidence.</li><li>{P} The 2026 upload means the commercial data shaped this year's rolls, not only 2025's.</li></ul>
 - id: CF-04
   slug: cf-04
-  name: "Pressuring the people who count"
-  line: "Letters, subpoenas and 18 U.S.C. 241 and 242."
-  dek: "Preservation letters, grand-jury subpoenas and civil-rights statutes aimed at the officials who count and certify."
-  opened: "2026-11-14"
-  updated: ""
-  state: Being assembled
-  tripwires: [2, 5, 6, 14]
+  name: Pressuring the people who count
+  line: Letters, subpoenas and 18 U.S.C. 241 and 242.
+  dek: Preservation letters, grand-jury subpoenas and civil-rights statutes aimed at the officials who count and certify.
+  opened: '2026-11-14'
+  written: '2026-11-22'
+  updated: '2026-11-22'
+  state: Open
+  tripwires:
+  - 2
+  - 5
+  - 6
+  - 14
+  search: subpoena
+  show_newest: true
+  people:
+  - id: rbarron
+    name: Richard Barron
+    now: Former elections director, Fulton County, Georgia
+    tier: ''
+  - id: bishop
+    name: Dan Bishop
+    now: Special attorney to the Attorney General for election integrity, nationwide (from early Apr 2026); U.S. Attorney, M.D.N.C.
+    tier: ''
+  - id: hrevans
+    name: Hugh Raymond Evans
+    now: Special agent, FBI
+    tier: ''
+  posts: []
+  feed: []
+  written_html:
+    What's going on: '<p>Before the election, DOJ told election officials in all 50 states to preserve their records for 22 months, ballots included. {R} After it, the pressure moved to grand juries: subpoenas from the U.S. Attorney for the Northern District of California ask county election chiefs how they answered DOJ''s demand to confirm citizenship or set aside the ballots of "suspected aliens." {R}</p>
+
+      <p>DOJ''s acting Voting Section chief told New Hampshire''s Secretary of State in September that he is under criminal investigation for refusing the unredacted voter list. {R} In Fulton County, two FBI agents and two federal prosecutors, including the U.S. attorney named to prosecute election fraud nationwide, questioned the county''s 2020 elections director for more than two hours. {R}</p>
+
+      <p>A federal judge in Washington barred DOJ and DHS from demanding that officials set aside the ballots of voters on a federal list: "A threat of prosecution made for that purpose is not legal advice. It is the pressure that makes the demand work." {D}</p>'
+    What we presume: <ul><li>{P} Each time a court stopped a civil demand, the criminal route stayed open, so the pressure on the people who count outlasts the election.</li></ul>
+- id: CF-05
+  slug: cf-05
+  name: The FAA network and its contractor
+  line: A nationwide ground stop, L3Harris’s network, and the deals that followed.
+  dek: One contractor’s network update grounded every flight. The same company holds new federal deals, and its hacking-tools unit leaked to Russia.
+  opened: '2026-11-22'
+  written: '2026-11-22'
+  updated: '2026-11-22'
+  state: Open
+  tripwires:
+  - 1
+  - 24
+  - 26
+  - 3
+  search: FAA
+  show_newest: false
+  people:
+  - id: sduffy
+    name: Sean Duffy
+    now: Transportation Secretary
+    tier: P
+  - id: smiller
+    name: Stephen Miller
+    now: White House chief of staff from Nov 9, 2026 (deputy chief of staff for policy and homeland security adviser before)
+    tier: P
+  - id: mullin
+    name: Markwayne Mullin
+    now: Secretary of Homeland Security (sworn in Mar 24, 2026)
+    tier: P
+  - id: vought
+    name: Russ Vought
+    now: Director, OMB
+    tier: P
+  - id: bbedford
+    name: Bryan Bedford
+    now: FAA Administrator
+    tier: M
+  - id: clayton
+    name: Jay Clayton
+    now: Director of National Intelligence
+    tier: M
+  - id: kdavies_dow
+    name: Kirsten Davies
+    now: National Cyber Director (named Nov 19, 2026; Pentagon CIO before)
+    tier: M
+  - id: malfonso
+    name: Michael Alfonso
+    now: U.S. Representative-elect (R-Wis.)
+    tier: ''
+  - id: abyrd_dot
+    name: Anne Byrd
+    now: Assistant Secretary for Administration, Department of Transportation
+    tier: ''
+  - id: jciaccio
+    name: Justin Ciaccio
+    now: President, National Aerospace Solutions sector, Peraton
+    tier: ''
+  - id: kcrandall
+    name: Kathy Crandall
+    now: President, Mission Networks, Space & Mission Systems, L3Harris
+    tier: ''
+  - id: kmiller
+    name: Katie Miller
+    now: Host, The Katie Miller Podcast
+    tier: ''
+  posts:
+  - date: '2026-11-20'
+    title: Stuck With Them, or Sticking With Them?
+    url: https://www.presumptionofirregularity.com/p/stuck-with-them-or-sticking-with
+    subtitle: 'Part two: the network Duffy''s ''stuck with'' belongs to a company the government keeps paying, and whose hacking tools keep turning up in other people''s hands.'
+    series: Duffy
+    part: '2'
+    image: titlecard_stuck_1200x800.png
+  - date: '2026-11-19'
+    title: Not SMART? Never Thought You Were, Duffy
+    url: https://www.presumptionofirregularity.com/p/not-smart-never-thought-you-were
+    subtitle: 'Every official “not” about the FAA ground stop, checked against the government’s own paperwork. Spoiler: the paperwork says yes.'
+    series: Duffy
+    part: '1'
+    image: titlecard_not-smart_1200x800.png
+  - date: '2026-11-14'
+    title: What the FAAk is Markwayne talkin' about now?
+    url: https://www.presumptionofirregularity.com/p/what-the-faak-is-markwayne-talkin
+    subtitle: Our network, our contractor, our outage ... and a $50 billion standing ovation
+    series: ''
+    part: ''
+    image: titlecard_what-the-faak_1200x630.png
+  feed: []
+  written_html:
+    What's going on: '<p>On Nov 13 the FAA stopped every departing flight in the country for almost five hours. CBS sources said an update to the L3Harris-run network that links air traffic control caused a reboot and crash. {R} The Transportation Secretary, Sean Duffy: "It wasn''t a foreign actor," and "until I can build that, I''m stuck with L3Harris, who owns this network." {R}</p>
+
+      <p>The government signed new deals with the same company this year. On July 1 L3Harris announced an FAA contract to run the nation''s aircraft tracking network through 2045, and in April the Department of War agreed to buy about $1 billion of preferred stock in its missile subsidiary. {D}</p>
+
+      <p>From 2022 to 2025 the general manager of Trenchant, L3Harris''s hacking-tools unit, sold at least eight of its tools, made for the U.S. government and allies, to a Russian broker. He pleaded guilty. {D}</p>
+
+      <p>The day before the outage, the budget director and the Transportation Secretary asked appropriators for $30.1 billion more for aviation. {R}</p>'
+    What we presume: <ul><li>{P} The government isn't stuck with L3Harris. It is a shareholder.</li><li>{P} No official has tied the outage to a foreign actor. Whoever first does would be pointing at a network run by a company whose own hacking tools reached Russia.</li></ul>

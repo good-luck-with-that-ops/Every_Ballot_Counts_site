@@ -812,3 +812,14 @@ nav.main a.blog-chip:hover .bc{box-shadow:0 0 0 2px var(--amber)}
 .e-I{stroke-dasharray:1.5 3.5;opacity:.38}
 .e-tie.e-I{stroke-width:1.1;opacity:.4}
 .eline.e-I{stroke-dasharray:2 4;opacity:.45}
+.pm-opts li.pm-grp{grid-column:1/-1;border-bottom:0;padding:14px 0 2px}
+.pm-opts li.pm-grp .pm-sub{margin:0}
+/* Case files built from the record (Nov 22, 2026) */
+.cf-feed{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--hair)}
+.cf-feed li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--hair);font:16px/1.5 var(--serif)}
+.cf-feed .d{font:700 12.5px/1.9 var(--mono);white-space:nowrap}
+.cf-feed .tw{margin-left:6px;text-decoration:none}
+.cf-posts{list-style:none;margin:8px 0 0;padding:0}
+.cf-posts li{padding:10px 0;border-bottom:1px solid var(--hair)}
+.cf-posts .d{font:700 12.5px/1.6 var(--mono);margin-right:6px}
+.cf-posts .sub{color:var(--ink-2);font-size:15px}

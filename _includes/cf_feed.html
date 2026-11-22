@@ -1,0 +1,12 @@
+{%- comment -%} Dated board entries for this file's rows since its written part was last revised (publish.py). {%- endcomment -%}
+{%- assign cf = include.cf -%}
+{%- if cf.feed and cf.feed.size > 0 %}
+<p class="label">Entries added to this file’s tripwire rows since {{ cf.written | date: "%b %-d" }}, newest first. Each keeps the mark and source it has on the board.</p>
+<ol class="cf-feed">
+  {%- for e in cf.feed %}
+  <li><span class="d">{{ e.label }}</span><span class="t">{% include mk.html t=e.html %} <a class="tw" href="{{ '/tripwires/#row-' | append: e.tw | relative_url }}" title="Tripwire {{ e.tw }}: {{ e.tw_name }}"><span class="sq {{ e.status }}">{{ e.tw }}</span></a></span></li>
+  {%- endfor %}
+</ol>
+{%- else %}
+<p class="label">Nothing new on this file’s rows since {{ cf.written | date: "%b %-d" }}.</p>
+{%- endif %}

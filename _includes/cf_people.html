@@ -1,0 +1,12 @@
+{%- comment -%} People whose own timeline entries cite this file's sources (publish.py), Persons of Interest first. {%- endcomment -%}
+{%- assign cf = include.cf -%}
+{%- if cf.people and cf.people.size > 0 %}
+<div class="people-list">
+  {%- for p in cf.people %}
+  <div class="p"><div><b>{{ p.name }}</b>{% if p.tier == "P" %} <span class="m m-p"><i>[</i>POI<i>]</i></span>{% endif %}<span class="r">{{ p.now }}</span></div><div><a class="quiet" href="{{ '/record/people/#' | append: p.id | relative_url }}">In the people map</a></div></div>
+  {%- endfor %}
+</div>
+<p class="label" style="margin-top:10px">People whose own timeline entries cite the sources behind this file’s rows. Being listed doesn’t say anyone did anything wrong.</p>
+{%- else %}
+<p class="label">No one on the people map cites this file’s sources yet.</p>
+{%- endif %}
