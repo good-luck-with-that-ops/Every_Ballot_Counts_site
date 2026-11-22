@@ -23,6 +23,10 @@
     name: Todd Blanche
     now: Attorney General
     tier: P
+  - id: clayton
+    name: Jay Clayton
+    now: Director of National Intelligence
+    tier: P
   - id: sduffy
     name: Sean Duffy
     now: Transportation Secretary
@@ -59,10 +63,6 @@
     name: Kirsten Davies
     now: National Cyber Director (named Nov 19, 2026; Pentagon CIO before)
     tier: M
-  - id: scairncross
-    name: Sean Cairncross
-    now: National Cyber Director (leaving, per a White House official, Nov 19, 2026)
-    tier: M
   posts:
   - date: '2026-11-21'
     title: Maybe We'll Learn (tee hee)
@@ -77,7 +77,7 @@
     subtitle: Part three of “What’s the big surprise, Russ?” A China claim, an incident declaration, and a data pipe that’s already built, paperwork and all.
     series: What’s the BS, Ru$$?
     part: '3'
-    image: ''
+    image: titlecard_bsruss-part3_1200x800.png
   - date: '2026-11-17'
     title: 'Fill in the Blank: ________-State Aligned'
     url: https://www.presumptionofirregularity.com/p/fill-in-the-blank-________-state
@@ -91,14 +91,14 @@
     subtitle: A Texas lawsuit retyped a DHS letter. The trail behind the letter runs to Russ Vought's own words, from 2022.
     series: What’s the BS, Ru$$?
     part: '2'
-    image: ''
+    image: titlecard_bsruss-part2_1200x800.png
   - date: '2026-11-11'
     title: The 7-day clock starts whenever they say it does
     url: https://www.presumptionofirregularity.com/p/the-7-day-clock-starts-whenever-they
     subtitle: 'What''s the BS, Ru$$? Part one: federal cyber law lets the government act on a suspicion and tell Congress only once it''s sure. The suspicion is already on the record.'
     series: What’s the BS, Ru$$?
     part: '1'
-    image: ''
+    image: titlecard_bsruss-part1_1200x800.png
   feed:
   - date: '2026-11-22'
     label: Nov 22
@@ -242,14 +242,14 @@
     subtitle: Part three of “What’s the big surprise, Russ?” A China claim, an incident declaration, and a data pipe that’s already built, paperwork and all.
     series: What’s the BS, Ru$$?
     part: '3'
-    image: ''
+    image: titlecard_bsruss-part3_1200x800.png
   - date: '2026-11-03'
     title: Turns out you need paperwork to pass around millions of voter records
     url: https://www.presumptionofirregularity.com/p/chutkan-paperwork
     subtitle: Every other election-eve case was about the letters. Judge Tanya Chutkan’s ruling in League of Women Voters v.
     series: ''
     part: ''
-    image: ''
+    image: cover_chutkan-paperwork_800x600.jpeg
   feed:
   - date: '2026-12-14'
     label: Dec 14
@@ -347,6 +347,10 @@
   search: FAA
   show_newest: false
   people:
+  - id: clayton
+    name: Jay Clayton
+    now: Director of National Intelligence
+    tier: P
   - id: sduffy
     name: Sean Duffy
     now: Transportation Secretary
@@ -366,10 +370,6 @@
   - id: bbedford
     name: Bryan Bedford
     now: FAA Administrator
-    tier: M
-  - id: clayton
-    name: Jay Clayton
-    now: Director of National Intelligence
     tier: M
   - id: kdavies_dow
     name: Kirsten Davies

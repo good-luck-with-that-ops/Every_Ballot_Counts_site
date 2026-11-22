@@ -57,7 +57,7 @@
   - 3
   - 21
   profile: ''
-  image: ''
+  image: titlecard_bsruss-part3_1200x800.png
   people:
   - vought
   - kirk
@@ -142,7 +142,7 @@
   rows:
   - 17
   profile: ''
-  image: ''
+  image: titlecard_bsruss-part2_1200x800.png
   people:
   - vought
   - smiller
@@ -188,7 +188,7 @@
   casefiles: []
   rows: []
   profile: ''
-  image: ''
+  image: titlecard_relaunch_1200x800.png
   people: []
 - date: '2026-11-11'
   title: The 7-day clock starts whenever they say it does
@@ -201,7 +201,7 @@
   rows:
   - 3
   profile: ''
-  image: ''
+  image: titlecard_bsruss-part1_1200x800.png
   people:
   - vought
   - blanche
@@ -260,7 +260,7 @@
   rows:
   - 4
   profile: ''
-  image: ''
+  image: cover_chutkan-paperwork_800x600.jpeg
   people: []
 - date: '2026-11-02'
   title: Why I started this, and why I’m not stopping on Nov 4
