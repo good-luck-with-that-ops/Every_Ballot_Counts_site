@@ -51,6 +51,10 @@
     name: Kash Patel
     now: Director, FBI
     tier: P
+  - id: pulte
+    name: Bill Pulte
+    now: Director, FHFA, and chairman of Fannie Mae and Freddie Mac (since Mar 14, 2025); acting DNI Jun 19-Aug 3, 2026
+    tier: P
   - id: eueland
     name: Eric Ueland
     now: OMB Deputy Director for Management; performing the duties of USAID Administrator and of OMB Controller; Comptroller General (GAO) nominee
@@ -59,11 +63,14 @@
     name: Russ Vought
     now: Director, OMB
     tier: P
-  - id: kdavies_dow
-    name: Kirsten Davies
-    now: National Cyber Director (named Nov 19, 2026; Pentagon CIO before)
-    tier: M
   posts:
+  - date: '2026-11-22'
+    title: Put Jay Out There
+    url: https://www.presumptionofirregularity.com/p/put-jay-out-there
+    subtitle: 'The spy chief did three Sunday shows. Read his answers the way you''d read a witness: what he denies, what he won''t call by its name, and where he leaves the door open.'
+    series: EBC & [POI] Profiles
+    part: ''
+    image: titlecard_profile-clayton_1200x800.png
   - date: '2026-11-21'
     title: Maybe We'll Learn (tee hee)
     url: https://www.presumptionofirregularity.com/p/maybe-well-learn-tee-hee
@@ -100,6 +107,13 @@
     part: '1'
     image: titlecard_bsruss-part1_1200x800.png
   feed:
+  - date: '2026-11-22'
+    label: Nov 22
+    tw: 1
+    tw_name: Foreign blame for a current hack
+    status: armed
+    html: 'Nov 22 (R, <a href="https://abcnews.com/Politics/week-transcript-11-22-26-director-national-intelligence/story?id=138345755">ABC "This Week"</a>): DNI Jay Clayton, who writes the foreign-interference assessment due about Dec 18, repeated that the outages "were not coordinated and that they were not state sponsored." Asked who was behind the FBI crime-database and Agriculture Department breaches, he gave no attribution and no denial: "They''re dealing with it in the ordinary course"; "Again, not getting into specifics." On Fox: "They are going to find out the origin, the scope, and the like, and then we will communicate to the American people" (R, <a href="https://www.wbaltv.com/article/fbi-suspected-hack-national-crime-database-ap-reports/74500671">WBAL</a>). Hackers reached the Agriculture Department''s farmer-payment system, the department told employees Nov 19 (R, <a href="https://www.nbcnews.com/politics/national-security/agriculture-department-breached-hackers-sources-say-rcna610497">NBC</a>).
+      <em>Sequence:</em> the no-state-sponsor finding covers the outages only; the two confirmed break-ins are still open for a country to be named {P}.'
   - date: '2026-11-22'
     label: Nov 22
     tw: 3
@@ -191,12 +205,6 @@
     tw_name: The voting-machine claim
     status: armed
     html: 'no CISA advisory naming a vendor, no Commerce/EO 13873 action on voting equipment, no machine exam, request, warrant or seizure, no DHS "debrief" news (searched "foreign adversary" voting machines, voting machines, Potter County hand count; Google News RSS 2 days). Potter County docket: nothing new since ECF 80 found (D). Hand counts in the news are routine recounts (Pennsylvania''s 41st House District, R, Votebeat).'
-  - date: '2026-11-18'
-    label: Nov 18
-    tw: 1
-    tw_name: Foreign blame for a current hack
-    status: armed
-    html: '"Since February, Iranian activity has increasingly targeted the transportation, healthcare, water, energy, and financial services sectors. These operations historically have produced localized and minimally disruptive effects against poorly secured industrial control devices, but vulnerable systems and weak cyber hygiene in lifeline infrastructure could create disruptive consequences." At the hearing: "What happens online is [there] is a tremendous amount of fear ... but there''s no cause for it" (R, IBTimes). Trump: the outages are "individual events"; "relax" (R, Anadolu, Mediaite). <em>Sequence:</em> an Iran attribution for attacks on five critical-infrastructure sectors is now in the DHS Secretary''s sworn statement; what is missing is only the sentence tying it to a named incident {P}. Trump is weighing a strike on Iran and says the U.S. will "see what happens" after Jan. 1 (R, NYT, Reuters via Just Security). {D}'
   mark: bsruss_square.png
 - id: CF-02
   slug: cf-02

@@ -1,20 +1,20 @@
 # The front page. Amanda curates it weekly; the publisher does not change the lead or the note.
-week_of: "2026-11-16"
+week_of: "2026-11-22"
 lead:
   kicker: "Lead · Tripwire 1 · Foreign blame for a current hack"
   tripwire: 1
-  headline: "The FBI’s AI-hacking alert names no country. Its own footnote does."
-  dek: "The Nov 13 FLASH on the ARTEX framework went out the afternoon of the FAA ground stop. Its second note cites Microsoft’s report on a “nation-state campaign,” which calls the attacker “a China-state aligned actor.” {D} The country is on the record, one official sentence away. {P}"
-  doc_url: /assets/docs/fbi-flash-20261113-artex.pdf
-  doc_label: "Read the alert"
+  headline: "The intelligence chief ruled out a state sponsor for the outages. For the two hacks, he ruled out nothing."
+  dek: "Jay Clayton owes the President an assessment of foreign interference in the midterms “Not later than 45 days after the conclusion of” the election, which is about Dec 18. {D} On Nov 22 he said of the month’s outages, “we know that they were not coordinated and that they were not state sponsored.” Asked who broke into the FBI and the Agriculture Department: “Again, not getting into specifics.” {R} For the two confirmed break-ins, no official has named a country or ruled one out. {P}"
+  doc_url: "https://www.federalregister.gov/documents/2018/09/14/2018-20203/imposing-certain-sanctions-in-the-event-of-foreign-interference-in-a-united-states-election"
+  doc_label: "Read the order"
   exhibit:
-    img: fbi-flash-261113-p12
-    focus: 28
-    alt: "FBI FLASH-20261113-001, Notes, page 12. Note 2: Microsoft Security Research and Microsoft Threat Intelligence, “AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise,” October 21, 2026."
-    caption: "FBI FLASH-20261113-001, Nov 13, 2026, the alert’s list of notes, page 12. Highlighting is ours."
+    img: eo13848-p1
+    focus: 60
+    alt: "Executive Order 13848 of September 12, 2018, Federal Register page 46843. Highlighted, section 1(a): “Not later than 45 days after the conclusion of a United States election, the Director of National Intelligence ... shall conduct an assessment of any information indicating that a foreign government ... has acted with the intent or purpose of interfering in that election.”"
+    caption: "Executive Order 13848, Sept 12, 2018, section 1(a), 83 Fed. Reg. 46843. Highlighting is ours."
 note:
-  date: "2026-11-17"
-  text: "The FBI read the report that names China, cited it, and left the country out of its own alert. That blank is row 1, and whoever fills it in decides what comes next: a foreign-interference finding, an emergency declaration, 120 days. I wrote about it in <a href=\"https://www.presumptionofirregularity.com/p/fill-in-the-blank-________-state\">Fill in the Blank</a>. If an official says the country out loud, this row moves first."
+  date: "2026-11-22"
+  text: "“Again, not getting into specifics” and “transparency is key” in the same interview is actually pretty hilarious, even to me. The man who said both is Jay Clayton, and he writes the foreign-interference report due around Dec 18, which makes him row 1. I read his Sunday answers closely in <a href=\"https://www.presumptionofirregularity.com/p/put-jay-out-there\">Put Jay Out There</a>."
 week:
   - {date: "Nov 17", text: "FBI Dallas: “cybercriminals and state-aligned hackers are exploiting ARTEX.” Still no country. {D}", src: "FBI Dallas on X", tw: 1}
   - {date: "Nov 17", text: "The FAA paused its new router installs; FBI agents are in the contractor’s Florida lab at the Transportation Secretary’s request. {R}", src: "CNN; Florida’s Voice", tw: 17}

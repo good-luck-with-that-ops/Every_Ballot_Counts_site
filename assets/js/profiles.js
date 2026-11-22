@@ -9,7 +9,7 @@
   function pl(n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); }
   function org(o) { return (o || '').replace(/^Gov:\s*/, ''); }
   function src(list) { return (list || []).map(function (s) { return s.u ? '<a href="' + esc(s.u) + '" rel="noopener">' + esc(s.t) + '</a>' : esc(s.t); }).join('; '); }
-  var PROFILES = { eueland: { url: '/profiles/eric-ueland/', since: '2026-11-17' } }; // written profiles; everyone else gets a record page
+  var PROFILES = { eueland: { url: '/profiles/eric-ueland/', since: '2026-11-17' }, clayton: { url: '/profiles/jay-clayton/', since: '2026-11-22' } }; // written profiles; everyone else gets a record page
   var root = document.querySelector('[data-profiles]');
   if (!root) return;
   fetch('/assets/data/people.json').then(function (r) { return r.json(); }).then(function (D) {
