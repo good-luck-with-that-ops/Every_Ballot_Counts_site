@@ -61,6 +61,7 @@ description: The signals on the trail of activity being used to undermine democr
 
   <section class="section" aria-labelledby="board-h" id="board" data-checked="{{ b.monitor_checked | date: '%Y-%m-%d' }}">
     <h2 id="board-h" class="vh">The board</h2>
+    <div class="board-tools" hidden><span class="label">Long entries are cut short.</span> <button type="button" class="linkish" id="open-all" aria-pressed="false">Open every row</button></div>
     <div class="board-head" aria-hidden="true"><span>No.</span><span>Tripwire</span><span>Status</span><span>Newest entry</span><span id="spark-h">Changed</span></div>
     {%- for r in b.rows %}
     <article class="brow" id="row-{{ r.num }}" data-routes="{{ r.routes | join: ' ' }}">
@@ -90,15 +91,5 @@ description: The signals on the trail of activity being used to undermine democr
     {%- endfor %}
   </section>
 
-  <div style="margin-top:56px;max-width:760px">
-    <section>
-      <h2>Next on the docket</h2>
-      <ul class="nextlist">
-        {%- for d in b.docket %}
-        <li><span class="d">{{ d.label }}</span><span>{{ d.text }}</span></li>
-        {%- endfor %}
-      </ul>
-    </section>
-  </div>
 </div>
 <script src="{{ '/assets/js/board.js' | relative_url }}" defer></script>
