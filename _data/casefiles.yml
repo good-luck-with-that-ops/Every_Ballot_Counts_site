@@ -6,7 +6,7 @@
   dek: Federal cyber law lets the government act on a suspicion and tell Congress only once it’s sure.
   opened: '2026-11-11'
   written: '2026-11-17'
-  updated: '2026-11-22'
+  updated: '2026-11-23'
   state: Open
   tripwires:
   - 1
@@ -15,6 +15,14 @@
   search: ''
   show_newest: true
   people:
+  - id: smiller
+    name: Stephen Miller
+    now: White House chief of staff from Nov 9, 2026 (deputy chief of staff for policy and homeland security adviser before)
+    tier: P
+  - id: mullin
+    name: Markwayne Mullin
+    now: Secretary of Homeland Security (sworn in Mar 24, 2026)
+    tier: P
   - id: trump
     name: Donald Trump
     now: President
@@ -35,17 +43,9 @@
     name: Pete Hegseth
     now: Defense Secretary
     tier: P
-  - id: smiller
-    name: Stephen Miller
-    now: White House chief of staff from Nov 9, 2026 (deputy chief of staff for policy and homeland security adviser before)
-    tier: P
   - id: mitchell
     name: Cleta Mitchell
     now: Election Integrity Network (Conservative Partnership Institute)
-    tier: P
-  - id: mullin
-    name: Markwayne Mullin
-    now: Secretary of Homeland Security (sworn in Mar 24, 2026)
     tier: P
   - id: kpatel
     name: Kash Patel
@@ -107,58 +107,72 @@
     part: '1'
     image: titlecard_bsruss-part1_1200x800.png
   feed:
-  - date: '2026-11-22'
-    label: Nov 22
-    tw: 1
-    tw_name: Foreign blame for a current hack
+  - date: '2026-11-23'
+    label: Nov 23
+    tw: 3
+    tw_name: Emergency declaration
     status: armed
-    html: 'Nov 22 (R, <a href="https://abcnews.com/Politics/week-transcript-11-22-26-director-national-intelligence/story?id=138345755">ABC "This Week"</a>): DNI Jay Clayton, who writes the foreign-interference assessment due about Dec 18, repeated that the outages "were not coordinated and that they were not state sponsored." Asked who was behind the FBI crime-database and Agriculture Department breaches, he gave no attribution and no denial: "They''re dealing with it in the ordinary course"; "Again, not getting into specifics." On Fox: "They are going to find out the origin, the scope, and the like, and then we will communicate to the American people" (R, <a href="https://www.wbaltv.com/article/fbi-suspected-hack-national-crime-database-ap-reports/74500671">WBAL</a>). Hackers reached the Agriculture Department''s farmer-payment system, the department told employees Nov 19 (R, <a href="https://www.nbcnews.com/politics/national-security/agriculture-department-breached-hackers-sources-say-rcna610497">NBC</a>).
-      <em>Sequence:</em> the no-state-sponsor finding covers the outages only; the two confirmed break-ins are still open for a country to be named {P}.'
+    html: 'CISA directives page read (latest ED 26-03, Feb 25; latest BOD 26-04, June 10; neither names an election system, DOJ, DHS, SSA, the EAC or a contractor platform); Federal Register API Nov 20-23 and current public inspection: nothing under 6 U.S.C. 677-677c, 44 U.S.C. 3553(h) or 3554 "major incident," no national-security-system relabel, no Cyber Response and Recovery Fund item, nothing on 10 U.S.C. 12304(c); RSS "significant incident," "emergency directive," "major incident," "national emergency election," Insurrection Act: no U.S.-official item; no statement that an election incident is under way or "likely to occur imminently."'
+  - date: '2026-11-23'
+    label: Nov 23
+    tw: 3
+    tw_name: Emergency declaration
+    status: armed
+    html: 'the nominee for National Cyber Director, Kirsten Davies, the official the DHS Secretary consults on a declaration (6 U.S.C. 677b), held advisory seats at Team8 (Tel Aviv, since 2015) and Claroty (Tel Aviv), a NightDragon carried-interest stake and Unilever pay of $2,696,514; Jay Clayton holds the seat acting. (R, <a href="https://www.wsj.com/politics/policy/markwayne-mullin-took-over-a-dhs-in-crisis-and-is-struggling-to-turn-it-around-a5055480">WSJ</a>, Nov 21): there are "renewed calls within the administration to get rid of Mullin"; Miller "ordered Mullin to stop appearing on television"; replacing him is hard because Democrats take the Senate in January and first-term acting secretaries were found improperly appointed, so "nearly every major policy they signed got voided." <em>Meaning {P}:</em> the Secretary is the official who declares a "significant incident"; if an acting secretary holds the job after Jan 3, any declaration they sign is open to the same challenge. (D, NSPM-12,
+      June 12): a national policy for "National Security Systems" under 44 U.S.C. 3557 covers civilian agencies'' NSS too, with the NSA Director as "National Manager"; it rescinds NSD-42 (1990). CISA''s directives "do not apply to statutorily defined national security systems," so moving a system into that category moves it out of CISA''s lane {P}. {D}'
+  - date: '2026-11-23'
+    label: Nov 23
+    tw: 17
+    tw_name: The voting-machine claim
+    status: armed
+    html: 'RSS "foreign adversary" voting machines, "voting machines China," hand count ballots, Dominion/ES&amp;S/Hart federal: no U.S. item; no CISA advisory naming a vendor, no EO 13873/Commerce action, no ODNI/FBI machine exam, seizure, DHS "debrief" or "voting logs." Potter County: nothing since ECF 81-83 (Nov 19). (D, May 13 Federal Register, FR Doc. 2026-09671): the EO 13873 "foreign adversary" technology emergency was continued May 11 through May 2027. (D, National Security Determination, Mar 20; FCC DA 26-278, Mar 23): "routers produced in a foreign country" were added to the FCC Covered List, on a finding that "routers produced abroad" create "unacceptable ... national security ... risks"; only "Conditional Approvals" exempt a device. <em>Meaning {P}:</em> the test is where a device is made, not who owns the maker. That is the shape a "foreign-made parts" claim against voting equipment would take.'
   - date: '2026-11-22'
     label: Nov 22
     tw: 3
     tw_name: Emergency declaration
     status: armed
-    html: 'no "significant incident" or "major incident" notice; no new CISA emergency directive (latest ED 26-03, Feb 25, Cisco SD-WAN, no election system; BOD 26-04 of June 10 sets risk-based patching because AI "may further narrow the time defenders have," the policy behind the White House''s patching explanation of the outages) (D, <a href="https://www.cisa.gov/news-events/directives">CISA directives page</a>); Federal Register Nov 19-23: nothing under 6 U.S.C. 677, 44 U.S.C. 3553(h) or 10 U.S.C. 12304(c). New (D, <a href="https://trumpwhitehouse.archives.gov/wp-content/uploads/2018/09/National-Cyber-Strategy.pdf">2018 National Cyber Strategy</a>): "In the event of a significant cyber incident, the Federal Government is poised to provide threat and asset response to recover election infrastructure." <em>Meaning {P}:</em> the first term wrote the hinge down; the "when requested" limit in the same section covers routine help, not the incident.'
+    html: 'no "significant incident" or "major incident" notice; no new CISA emergency directive (latest ED 26-03, Feb 25, Cisco SD-WAN, no election system; BOD 26-04 of June 10 sets risk-based patching because AI "may further narrow the time defenders have," the policy behind the White House''s patching explanation of the outages) (D, <a href="https://www.cisa.gov/news-events/directives">CISA directives page</a>); Federal Register Nov 19-23: nothing under 6 U.S.C. 677, 44 U.S.C. 3553(h) or 10 U.S.C. 12304(c). (D, <a href="https://trumpwhitehouse.archives.gov/wp-content/uploads/2018/09/National-Cyber-Strategy.pdf">2018 National Cyber Strategy</a>): "In the event of a significant cyber incident, the Federal Government is poised to provide threat and asset response to recover election infrastructure." <em>Meaning {P}:</em> the first term wrote the hinge down; the "when requested" limit in the same section covers routine help, not the incident. (D, Nov 16-20): West Virginia Legislature systems
+      down from a cyberattack; Otter Tail County, Minn., says records incl. immigration ID numbers and police reports were copied July-August; South Portland, Maine, network shut Nov 14. No federal statement ties them together. (R, <a href="https://www.democracydocket.com/news-alerts/trump-sees-silver-lining-in-fbi-getting-hacked-maybe-well-learn-about-all-the-voter-fraud/">Democracy Docket</a>, Nov 21): asked about the FBI crime-database hack on Fox News, the President said: "Maybe we''ll learn things that we would have never learned otherwise. Maybe we''ll learn about the voter fraud, all the voter fraud that took place." <em>Meaning {P}:</em> the first time he has tied a federal cyber incident to election fraud, three weeks after losing the House; the bridge the worst case needs is now in his words, though nothing ties NCIC to election data. (R, <a href="https://www.rawstory.com/pentagon-kristen-davies-new-report/">Raw Story citing the Washington Sun</a>, Nov 21): Kirsten Davies, named
+      acting National Cyber Director (the official the DHS Secretary consults before a "significant incident" declaration, 6 U.S.C. 677b), bought Cloudflare, Littelfuse and Roper stock this spring while Pentagon CIO; all hold or supply Pentagon contracts.'
   - date: '2026-11-22'
     label: Nov 22
     tw: 17
     tw_name: The voting-machine claim
     status: armed
-    html: 'no CISA advisory naming ES&amp;S, Hart or Dominion, no EO 13873 or Commerce action, machine exam, seizure, DHS "debrief" or Mullin "voting logs" statement (RSS "foreign adversary" voting machines, "voting machines China," Dominion ES&amp;S Hart federal; CISA advisories and directives pages; CourtListener). Potter County preliminary-injunction motion is set for Nov 23. Context (D): EO 13873 (May 15, 2019) is the IEEPA national emergency on "foreign adversary" information and communications technology, the route a machine-parts claim would use; the White House''s Nov 20 Davies release lists "Blocked new foreign-made consumer routers deemed a national security threat" as an accomplishment.'
+    html: 'no CISA advisory naming ES&amp;S, Hart or Dominion, no EO 13873 or Commerce action, machine exam, seizure, DHS "debrief" or Mullin "voting logs" statement (RSS "foreign adversary" voting machines, "voting machines China," Dominion ES&amp;S Hart federal; CISA advisories and directives pages; CourtListener). Potter County preliminary-injunction motion is set for Nov 23. Context (D, document): EO 13873 (May 15, 2019) is the IEEPA national emergency on "foreign adversary" information and communications technology, the route a machine-parts claim would use; the White House''s Nov 20 Davies release lists "Blocked new foreign-made consumer routers deemed a national security threat" as an accomplishment.'
   - date: '2026-11-21'
     label: Nov 21
     tw: 3
     tw_name: Emergency declaration
     status: armed
-    html: 'no "significant incident" declaration, no new CISA emergency directive (CISA directives page: latest EDs 25-03 and 26-03 V1; BOD 26-04), no "major incident" notice reported for NCIC or USA Staffing, no 10 U.S.C. 12304(c) order; Federal Register public inspection unchanged since morning (94 items, none on point). New (R, <a href="https://www.muellershewrote.com/p/breaking-opm-data-was-breached-on">Mueller, She Wrote</a>, Nov 20): an OPM email says an outside party accessed 403 tentative job offers in USA Staffing (names, emails, agency, salary) on Nov 12-13; OPM confirmed Nov 14, blocked it, notified those affected and added a sign-in requirement; no public notice, no attribution. <em>Sequence:</em> the one confirmed federal data incident of outage week surfaced through a leak, not a disclosure; below the M-25-04 automatic "major incident" line, so Congress may never be told {P}.'
+    html: 'no "significant incident" declaration, no new CISA emergency directive (CISA directives page: latest EDs 25-03 and 26-03 V1; BOD 26-04), no "major incident" notice reported for NCIC or USA Staffing, no 10 U.S.C. 12304(c) order; Federal Register public inspection unchanged since morning (94 items, none on point). (R, <a href="https://www.muellershewrote.com/p/breaking-opm-data-was-breached-on">Mueller, She Wrote</a>, Nov 20): an OPM email says an outside party accessed 403 tentative job offers in USA Staffing (names, emails, agency, salary) on Nov 12-13; OPM confirmed Nov 14, blocked it, notified those affected and added a sign-in requirement; no public notice, no attribution. <em>Sequence:</em> the one confirmed federal data incident of outage week surfaced through a leak, not a disclosure; below the M-25-04 automatic "major incident" line, so Congress may never be told {P}.'
   - date: '2026-11-21'
     label: Nov 21
     tw: 3
     tw_name: Emergency declaration
     status: armed
-    html: 'no "significant incident" declaration, no new CISA emergency or binding directive (CISA''s Nov 20 KEV notice cites BOD 26-04 only), no "major incident" notice reported by DOJ, DHS, SSA or the EAC, no "likely to occur imminently" statement, no 10 U.S.C. 12304(c) order; Federal Register Nov 19-23 and the public inspection list (94 items) show no declaration, NEA notice or voter-data system notice (searched "significant incident," "emergency directive," "national emergency," "national security system," "foreign adversary," "Insurrection," "domestic terrorism," "critical infrastructure"). New (R, <a href="https://www.spokesman.com/stories/2026/nov/20/fbis-criminal-information-database-hacked-cnn-repo/">Reuters via CNN</a>, Nov 20): the FBI is investigating a suspected breach of NCIC, the national criminal-justice database; it would be the second FBI system intrusion in recent months. A breach of a DOJ system this size is the kind that brings a FISMA "major incident" notice to Congress;
+    html: 'no "significant incident" declaration, no new CISA emergency or binding directive (CISA''s Nov 20 KEV notice cites BOD 26-04 only), no "major incident" notice reported by DOJ, DHS, SSA or the EAC, no "likely to occur imminently" statement, no 10 U.S.C. 12304(c) order; Federal Register Nov 19-23 and the public inspection list (94 items) show no declaration, NEA notice or voter-data system notice (searched "significant incident," "emergency directive," "national emergency," "national security system," "foreign adversary," "Insurrection," "domestic terrorism," "critical infrastructure"). (R, <a href="https://www.spokesman.com/stories/2026/nov/20/fbis-criminal-information-database-hacked-cnn-repo/">Reuters via CNN</a>, Nov 20): the FBI is investigating a suspected breach of NCIC, the national criminal-justice database; it would be the second FBI system intrusion in recent months. A breach of a DOJ system this size is the kind that brings a FISMA "major incident" notice to Congress;
       none reported yet {P}. The White House site''s "SI" (si.gov, "Lead the World in SI") is its superintelligence initiative, not a significant-incident page (D).'
   - date: '2026-11-21'
     label: Nov 21
     tw: 17
     tw_name: The voting-machine claim
     status: armed
-    html: 'no CISA vendor advisory, EO 13873 action, machine exam, request or seizure, DHS "debrief" or Mullin "voting logs" statement since morning (RSS "foreign adversary" voting machines, Potter County; CourtListener). New (D, <a href="https://www.courtlistener.com/docket/75028945/potter-county-republican-party-v-benge/">Potter County ECF 81-84</a>, Nov 19): Judge Kacsmaryk set the hand-count plaintiffs'' preliminary-injunction motion for Nov 23 (response Nov 27, reply Nov 30); the county filed a second motion to dismiss.'
+    html: 'no CISA vendor advisory, EO 13873 action, machine exam, request or seizure, DHS "debrief" or Mullin "voting logs" statement since morning (RSS "foreign adversary" voting machines, Potter County; CourtListener). (D, <a href="https://www.courtlistener.com/docket/75028945/potter-county-republican-party-v-benge/">Potter County ECF 81-84</a>, Nov 19): Judge Kacsmaryk set the hand-count plaintiffs'' preliminary-injunction motion for Nov 23 (response Nov 27, reply Nov 30); the county filed a second motion to dismiss.'
   - date: '2026-11-21'
     label: Nov 21
     tw: 17
     tw_name: The voting-machine claim
     status: armed
-    html: 'no CISA advisory naming ES&amp;S, Hart or Dominion, no Commerce/EO 13873 action on voting equipment, no ODNI/FBI machine exam, request, warrant or seizure, no DHS "debrief" news, no Mullin "voting logs" follow-up (searched "foreign adversary" voting machines, voting machines hand count, Potter County; Google News RSS 2 days; CourtListener alerts). New (D, <a href="https://public-inspection.federalregister.gov/2026-23787.pdf">Federal Register notice 2026-23787</a>, publishes Nov 23): the EAC''s Technical Guidelines Development Committee meets Dec 15 on "the EAC Testing and Certification Program, the National Institute of Standards and Technology (NIST) Voting Program, the Voluntary Voting System Guidelines"; HAVA gives the EAC "decertification" power. Routine annual meeting; the agenda is not posted yet (D). Connecticut ordered recounts in five towns over a tabulator programming error (R, Hartford Courant headline); routine. Potter County: Benge filed a brief supporting her second
+    html: 'no CISA advisory naming ES&amp;S, Hart or Dominion, no Commerce/EO 13873 action on voting equipment, no ODNI/FBI machine exam, request, warrant or seizure, no DHS "debrief" news, no Mullin "voting logs" follow-up (searched "foreign adversary" voting machines, voting machines hand count, Potter County; Google News RSS 2 days; CourtListener alerts). (D, <a href="https://public-inspection.federalregister.gov/2026-23787.pdf">Federal Register notice 2026-23787</a>, publishes Nov 23): the EAC''s Technical Guidelines Development Committee meets Dec 15 on "the EAC Testing and Certification Program, the National Institute of Standards and Technology (NIST) Voting Program, the Voluntary Voting System Guidelines"; HAVA gives the EAC "decertification" power. Routine annual meeting; the agenda is not posted yet (D). Connecticut ordered recounts in five towns over a tabulator programming error (R, Hartford Courant headline); routine. Potter County: Benge filed a brief supporting her second
       motion to dismiss (ECF 83, Nov 19) (D, docket).'
   - date: '2026-11-20'
     label: Nov 20
     tw: 3
     tw_name: Emergency declaration
     status: armed
-    html: 'no "significant incident" declaration, no new CISA emergency or binding directive (directives page unchanged as of Nov 19: newest ED 26-03, BOD 26-04), no "major incident" notice reported by DOJ, DHS, SSA or the EAC, no "likely to occur imminently" statement, no 10 U.S.C. 12304(c) order; Federal Register Nov 19-20 and today''s public inspection list (91 items) show no declaration, NEA notice or voter-data system notice (searched "significant incident," "emergency directive," "national emergency," "national security system," "foreign adversary," "Insurrection"). CNN: the NSA classified-network outage "has been resolved" (R, headline, Nov 20). New (R, <a href="https://www.nbcnews.com/politics/white-house/national-cyber-director-sean-cairncross-leaving-kirsten-davies-replaci-rcna610329">NBC</a>, Nov 19): the White House replaced National Cyber Director Sean Cairncross with Pentagon CIO Kirsten Davies, who "will serve in an acting capacity"; the post requires Senate confirmation.
-      The National Cyber Director is the official the DHS Secretary consults before declaring a "significant incident" (6 U.S.C. 677b). <em>Sequence:</em> that seat now goes to an unconfirmed acting director from the Pentagon in the lame duck, the week officials tied the outages to AI-found flaws {P}.'
+    html: 'no "significant incident" declaration, no new CISA emergency or binding directive (directives page unchanged as of Nov 19: newest ED 26-03, BOD 26-04), no "major incident" notice reported by DOJ, DHS, SSA or the EAC, no "likely to occur imminently" statement, no 10 U.S.C. 12304(c) order; Federal Register Nov 19-20 and today''s public inspection list (91 items) show no declaration, NEA notice or voter-data system notice (searched "significant incident," "emergency directive," "national emergency," "national security system," "foreign adversary," "Insurrection"). CNN: the NSA classified-network outage "has been resolved" (R, headline, Nov 20). (R, <a href="https://www.nbcnews.com/politics/white-house/national-cyber-director-sean-cairncross-leaving-kirsten-davies-replaci-rcna610329">NBC</a>, Nov 19): the White House replaced National Cyber Director Sean Cairncross with Pentagon CIO Kirsten Davies, who "will serve in an acting capacity"; the post requires Senate confirmation. The
+      National Cyber Director is the official the DHS Secretary consults before declaring a "significant incident" (6 U.S.C. 677b). <em>Sequence:</em> that seat now goes to an unconfirmed acting director from the Pentagon in the lame duck, the week officials tied the outages to AI-found flaws {P}.'
   - date: '2026-11-19'
     label: Nov 19
     tw: 1
@@ -192,19 +206,6 @@
     status: armed
     html: a second, separate AI-found PHP flaw, "phpAfterShell," was fixed today; the October patches "do not contain the fix," so every agency that just patched has to patch again (D, <a href="https://depthfirst.com/phpaftershell">depthfirst</a>; R, <a href="https://www.forbes.com/sites/thomasbrewster/2026/11/19/ai-finds-critical-vulnerability-in-php-again/">Forbes</a>). The finder's CEO warns the patches themselves can make systems fail (R). The NSA's Oct 21 advisory had said PHP2Shell was "serious enough to require immediate patching across United States Government departments and agencies" (D); CISA put both PHP2Shell flaws on its binding must-patch list on Oct 26 with an Oct 29 deadline for civilian agencies (D, <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">CISA KEV</a>); its directives do not reach national security systems like NSA's, whose patch went in about Nov 7 (R, CBS, DNI Clayton) {P}. <em>Sequence:</em> the official cause of the week's outages is now
       AI-found bugs and rushed patches, a cause that needs no foreign country; a "significant incident" declaration doesn't need one either, since harm to "public confidence" counts {P}.
-  - date: '2026-11-19'
-    label: Nov 19
-    tw: 3
-    tw_name: Emergency declaration
-    status: armed
-    html: 'no "significant incident" declaration or "likely to occur imminently" statement; CISA directives page read in the built-in browser, unchanged (newest ED 25-03 V1, ED 26-03 V1; BOD 26-04); no major-incident notice reported; Federal Register API (published Nov 18+: "significant incident," "emergency directive," "Insurrection," "domestic terrorism," "national security system," "foreign adversary," "voter registration": 0; "national emergency": the FCC paperwork notice and the HIPAA rule only) and public inspection for Nov 20 (111 items: no proclamation, EO, NEA notice, voter-data SORN or 12304(c) item; a DEA training-records SORN and a HAVANA Act rule) (D). (R, Washington Sun; D, TRM release, Nov 18): DHS and DOJ opened a "Threat Disruption Center" inside the Homeland Security Task Force''s National Coordination Center, with a no-bid AI vendor as "primary private-sector partner" (row 26). <em>Sequence:</em> the response capacity grows while every official says the outages were not
-      attacks {P}.'
-  - date: '2026-11-19'
-    label: Nov 19
-    tw: 17
-    tw_name: The voting-machine claim
-    status: armed
-    html: 'no CISA advisory naming a vendor, no Commerce/EO 13873 action on voting equipment, no machine exam, request, warrant or seizure, no DHS "debrief" news (searched "foreign adversary" voting machines, voting machines, Potter County hand count; Google News RSS 2 days). Potter County docket: nothing new since ECF 80 found (D). Hand counts in the news are routine recounts (Pennsylvania''s 41st House District, R, Votebeat).'
   mark: bsruss_square.png
 - id: CF-02
   slug: cf-02
@@ -399,9 +400,9 @@
     name: Kathy Crandall
     now: President, Mission Networks, Space & Mission Systems, L3Harris
     tier: ''
-  - id: kmiller
-    name: Katie Miller
-    now: Host, The Katie Miller Podcast
+  - id: tlind
+    name: Thomas Lind
+    now: OpenAI (joined Oct 2026)
     tier: ''
   posts:
   - date: '2026-11-20'

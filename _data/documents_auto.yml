@@ -1,4 +1,16 @@
 # Built by publish.py: the 25 newest timeline entries marked D with a link. Do not edit here.
+- date: '2026-11-23'
+  text: 'Comments close and STATE-26 routine uses (u), (v) and (w) take effect unless revised: (w) lets federal, state, territorial, tribal and local agencies and non-profits ("including, but not limited to") on federal verification platforms check identity or citizenship for voter eligibility.'
+  url: https://www.federalregister.gov/documents/2026/10/23/2026-21695/privacy-act-of-1974-system-of-records
+  who: State Department
+- date: '2026-11-23'
+  text: 'DHS release on an HSTF malware ATM ''jackpotting'' plea (conspiracy to commit bank theft; ''damaging a protected computer''). Mullin: ''Thanks to President Trump''s leadership, the Homeland Security Task Force is targeting and removing public safety threats from our communities and ensuring lawbreakers fa…'
+  url: https://www.dhs.gov/news-releases/press-releases
+  who: DHS (Markwayne Mullin); Homeland Security Task Force
+- date: '2026-11-22'
+  text: 'Cross of two government lists (USCIS SAVE agency export of Nov 22; ICE 287(g) participating agencies as of Nov 18): all 28 state election offices registered for SAVE voter checks are in states with at least one 287(g) agreement; the four states whose National Guard holds a 287(g) agreement (Texas, F…'
+  url: https://www.ice.gov/identify-and-arrest/287g
+  who: USCIS SAVE; ICE 287(g)
 - date: '2026-11-20'
   text: 'Executive order "Protecting the Executive''s Privileges and Enhancing Efficiencies in Federal Contracting" (posted Nov 20): all federal contractors and subcontractors "must immediately" "notify the White House and the contracting agencies of any pending or future congressional request respecting the …'
   url: https://www.whitehouse.gov/presidential-actions/2026/11/protecting-the-executives-privileges-and-enhancing-efficiencies-in-federal-contracting/
@@ -7,6 +19,10 @@
   text: 'OPM confirms the Civil Service Rules direct final rule took effect as scheduled on Oct 13, 2026: "OPM received no significant adverse comments."'
   url: https://www.federalregister.gov/documents/2026/11/20/2026-23732/updates-and-amendments-to-the-civil-service-rules
   who: OPM
+- date: '2026-11-20'
+  text: 'National Alliance to End Homelessness v. HUD (1:26-cv-436) and Washington v. HUD (1:26-cv-439), ECF 50: the court vacates OMB''s ''Apportionment Footnotes'' that require HUD''s Continuum of Care money to be obligated only ''on award agreements that include terms and conditions'' consistent with EO 14332 a…'
+  url: https://democracyforward.org/wp-content/uploads/2026/11/gov.uscourts.rid_.62569.50.0.pdf
+  who: U.S. District Court, D.R.I. (Judge Mary S. McElroy); HUD (Scott Turner); OMB
 - date: '2026-11-19'
   text: 'HSGAC nominations hearing, Nov 19, 9:30 a.m., SD-342. Panel I: Michael LoSapio (CISA Director), Eric M. Ueland (Comptroller General, GAO), Michael Chamberlain (Director, Office of Government Ethics), Robert Steffens (USPS Governor), Jeffrey Zisk (Postal Regulatory Commission), Mark Priebe (Education…'
   url: https://www.hsgac.senate.gov/hearings/nominations-16/
@@ -83,19 +99,3 @@
   text: 'CISA''s "CI Fortify" page (as saved Nov 18; Mullin''s Nov 18 written testimony: "Earlier this year, CISA launched CI Fortify"): operators should prepare "to sustain essential operations during a geopolitical conflict," assume third-party connections "will be unreliable" and "threat actors will have so…'
   url: https://www.cisa.gov/topics/industrial-control-systems/ci-fortify
   who: CISA (Acting Director Nick Andersen); Sector Risk Management Agencies
-- date: '2026-11-18'
-  text: DHS and DOJ announce the Threat Disruption Center inside the Homeland Security Task Force's National Coordination Center, working with "more than 30 federal agencies and 440 state and local partners" and using AI tools to "identify distinct components of criminal networks, as well as their victim fo…
-  url: https://www.trmlabs.com/resources/blog/trm-labs-threat-disruption-center
-  who: DHS; DOJ; HSI (Acting EAD John A. Condon); Homeland Security Task Force National Coordination Center; TRM Labs
-- date: '2026-11-18'
-  text: 'U.S. v. Sant (D. Minn.), ECF 326, amicus brief of three Minnesota churches supporting discovery: HSI surveilled each church during Operation Metro Surge. Dec 13, 2025: an undercover agent at a Sunrise Movement meeting at First Universalist wrote "further attendance was determined to be necessary to …'
-  url: https://www.courtlistener.com/docket/73489661/326/united-states-v-sant/
-  who: First Universalist Church of Minneapolis; Hennepin Avenue United Methodist Church; St. John the Evangelist Episcopal Church; HSI; Operation Metro Surge
-- date: '2026-11-18'
-  text: 'CNA v. Mullin (N.D. Cal. 4:26-cv-10680), ECF 107: plaintiffs file a notice of voluntary dismissal without prejudice under Rule 41(a)(1)(A)(i); the court terminates the case Nov 18. (D)'
-  url: https://www.courtlistener.com/docket/74815064/107/california-nurses-association-v-mullin/
-  who: California Nurses Association; National Nurses United; Voto Latino Foundation; San Francisco; Santa Clara County; DHS (Mullin)
-- date: '2026-11-18'
-  text: 'Mullin''s written House Homeland testimony: "Since February, Iranian activity has increasingly targeted the transportation, healthcare, water, energy, and financial services sectors. These operations historically have produced localized and minimally disruptive effects against poorly secured industri…'
-  url: https://homeland.house.gov/wp-content/uploads/2026/11/2026-11-18-HRG-Testimony-1.pdf
-  who: DHS Secretary Markwayne Mullin; DNI Jay Clayton
