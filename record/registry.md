@@ -30,6 +30,7 @@ One entry per federal system, contract vehicle or data feed that touches the ele
 | USC-09 | EO 14399 State Citizenship Lists infrastructure |
 | USC-10 | USCIS Salesforce Customer Relationship Management (a system SAVE queries) |
 | USC-11 | California 20,930-name list (dataset) |
+| USC-12 | E-Verify × SAM.gov contractor match (Task Force to Eliminate Fraud) |
 | ICE-01 | ICM (Investigative Case Management) on Palantir |
 | ICE-02 | ICE Enterprise Lakehouse |
 | ICE-03 | ImmigrationOS and ERO Enforcement Case Management (Palantir) |
@@ -48,6 +49,7 @@ One entry per federal system, contract vehicle or data feed that touches the ele
 | ICE-16 | ICE Enforcement and Removal Operations (ERO): alienage step and ELITE owner |
 | ICE-17 | Unnamed "federal law enforcement systems" HSI used to refine the California list |
 | ICE-18 | "ICE Data Analytics" (named in the LexisNexis requirement; not identified) |
+| ICE-19 | 287(g) agreements (Task Force Model) held by prosecutors, attorneys general and Guard units |
 | COM-01 | Clearview AI (face search) |
 | COM-02 | LexisNexis (RELX) and Thomson Reuters CLEAR (commercial people-search) |
 | COM-03 | OSINT and location tools (Penlink Tangles/Webloc, ShadowDragon, Fivecast, Babel Street, Zignal) |
@@ -74,16 +76,21 @@ One entry per federal system, contract vehicle or data feed that touches the ele
 | CIS-08 | CI3 (classified critical-infrastructure briefing channel) |
 | CIS-09 | HSIN-CI / CI-ISE support (70RCSJ26FR0000058) |
 | CIS-10 | Stakeholder Engagement Division advisory support (AttainX, 70RCSJ26FR0000055) |
+| CIS-11 | CISA 2015 sharing channel (Automated Indicator Sharing; 6 U.S.C. 1501-1510), sunset Dec 11, 2026 |
 | HUD-01 | HUD Enterprise Identity, Credential, and Access Management (EICAM, HUD/OCIO-07) |
 | DOJ-01 | DOJ state voter-roll holdings |
 | DOJ-02 | National Fraud Enforcement Division / NFDC hub |
 | DOJ-03 | DOJ Reconciliation Working Group |
 | DOJ-04 | Prosecution-warning channel to election officials (letters, delivery, legal theory) |
 | FBI-01 | FBI election-crimes lane and the IC3 tipline |
+| FBI-02 | NSPM-7 Joint Mission Center (JMC) and NVE Fusion Cell |
+| FBI-03 | NCIC (National Crime Information Center, FBI CJIS) |
+| NCC-01 | Homeland Security Task Force National Coordination Center (NCC): Threat Disruption Center and the private cyber-operations program |
 | TRE-01 | Treasury Do Not Pay |
 | TRE-02 | Fiscal Service analytics under H.R. 8312 §2 |
 | TRE-03 | Treasury ".032" fraud-tip intake |
 | TRE-04 | America.gov / Login.gov identity proofing |
+| TRE-05 | FinCEN Bank Secrecy Act data and the customer due diligence rule (immigration status, EO 14406) |
 | PRA-01 | PRAC analytics platform |
 | PRA-02 | SSA "yes/no" agreement |
 | SSA-01 | Numident |
@@ -115,6 +122,7 @@ Map flows: 3, 5, 19, 25, 33, 35, 37
 - **Court mentions:** LWV v. DHS (D.D.C., filed Sept 30, 2025): modified SAVE vacated Jun 22, 2026 (D; the Westlaw cite previously listed could not be verified). DHS v. LWV, No. 26A308, SCOTUS stay Sept 25, 2026 (D). LWV/EPIC/LULAC v. DHS, 1:26-cv-03602, filed Oct 15, 2026, seeks deletion of voter information collected under the Voter Data Collection Policy (D). "2026 WL 1784297" is not independently verified (U). CNA v. Mullin ECF 46-1 ¶¶12–16 (D). US v. California complaint fn. 1: the USCIS process "was done independent of SAVE" (D, complaint p. 9 n.1). Bartell Decl. #2 ¶14 (Dkt. 107-2, Oct 26) repeats it: the review "is distinct from" SAVE and SAVE "was not utilized" (D). Arizona AG and Secretary of State v. Maricopa County Recorder, filed Oct 21, 2026: 25 citizens flagged by SAVE as "not eligible"; the Recorder agreed Oct 23 to reinstate them (R, Votebeat, KJZZ).
 - **Status since Jan 20, 2025:** Apr 22, 2025 DHS/USCIS/DOGE "comprehensive optimization" announced (D, AILA posting). May 22, 2025 SSN case creation and bulk upload announced (D, AILA posting; SSA link per PIA-006(d)). Oct 31, 2025 SORN (D). Jun 22, 2026 vacatur (D). Sept 25, 2026 stay, SAVE revived (D). USCIS News & Alerts: "SAVE Functionality Restored," Oct 2, 2026: agencies "can once again create SAVE cases using a full or partial Social Security number and the SAVE bulk upload tool" (D, uscis.gov read Oct 27). "SAVE Records Disposal," Oct 22, 2026: starting Feb 15, 2027 USCIS will dispose of SAVE records dated on or before Dec 31, 2016, under the NARA schedule (D). Apr 30, 2026 bulk CSV gained an optional "Custom Agency Reference" field (D, USCIS alert "New CSV Bulk Upload Template Required for Case Creation," read Oct 27, page last updated May 1, 2026: effective April 30 the template adds an optional "Custom Agency Reference" of up to 40 characters per individual, which stays with the case and comes back in the bulk Response File; older templates are rejected; USCIS says the field helps agencies "align SAVE case results with internal databases and systems of record"). The June 2026 SAVE User Reference Guide (reviewed Jun 23, 2026) describes a "Custom Agency Reference" for internal tracking in single-case creation and in case responses, and lists the minimum bulk-upload CSV fields as name, date of birth, a numeric identifier and the benefit sought; it does not list the field for bulk upload (D). The guide prints the SORN as "DHS/USCIS-044" with the cite 90 FR 48948 (Oct 31, 2025), an apparent typo for -004. USCIS publishes an open dataset of "all SAVE cases" Jan 2016–Jul 2026 (posted Sept 14, 2026) that excludes voter-verification and oversight cases (D, USCIS data page).
 - **Open questions / records (U):** Does the "SAVE → HSI flags shared (2025 deal)" channel really run through SAVE or through the data layer (USC-04/06)? Request: SAVE SOW and PIID for the $70.7M; list processor volumes and error handling; USCIS–SSA interconnection agreement; what the 10 states' full-roll runs returned; the "Custom Agency Reference" field's use; what the Salesforce CRM holds; which bodies hold oversight accounts; whether SAVE → FDNS referrals resumed after the Sept 25 stay.
+- **SAVE agency list (Nov 22, 2026):** USCIS's SAVE agency list export (4,001 registered user agencies) shows 103 registrations under voter benefit categories ("Voter Registration and Voter List Maintenance" and variants): 28 state election offices, 68 Florida county supervisors of elections, the Maricopa, Pima and Yavapai recorders, Utah County, Lancaster and Potter counties in Pennsylvania, and "US Dept of Justice - Civil Rights Division" (D, USCIS SAVE agency list export).
 
 ### USC-02 · PCIS (Person Centric Identity Services: Identity Index, PCER, Identity Resolution Queue)
 Map flows: 17, 59, 60 (planned connections, not current inputs); 14, 52, 61, 64, 65
@@ -233,6 +241,17 @@ Map flows: replaces the removed iLab → ballot suits line (not supported)
 - **Status since Jan 20, 2025:** Delivered Oct 13, 2026, 21 days before the election; a separate batch of more than 17,000 records is under review on a rolling basis (D, Bartell #2 ¶24).
 - **Why it matters {P}:** It is a federal "who is a real voter" list built outside SAVE and outside state systems. The weak point is the commercial SSN step: if Accurint returns no SSN, the SSA and State query "is not submitted" (D, ¶17), so a citizen with no SSN in Accurint is never screened against SSA or State (I as to effect). Benign reading: the multi-field match and two-level review are meant to catch errors, and DHS's re-review found about 189 discrepancies.
 - **Open questions / records (U):** Who applied to the Secretary of State and for what stated purpose; whether the release-letter limits were honored on the onward transfers (I flag); which HSI systems refined the list; the legal basis for the SSA and State queries; whether the "DHS senior counselor" is Bartell (not stated).
+
+### USC-12 · E-Verify × SAM.gov contractor match (Task Force to Eliminate Fraud)
+Map flows: none yet (proposed: E-Verify → SAM.gov match → contracting officers)
+- **Owner:** DHS (E-Verify, run by USCIS, K) and GSA (SAM.gov, the federal contractor registry, K), "in coordination with the White House Task Force to Eliminate Fraud chaired by Vice President JD Vance" (D, DHS release, Nov 19, 2026).
+- **What it does:** Joins two federal databases to flag contractors. The DHS Secretary and GSA letter to Senior Procurement Executives: "By matching up E-Verify and SAM data, we identified a set of contractors that may potentially not be in compliance" with FAR 52.222-54; contracting officers are to issue "a letter of concern" to firms left on the list (D, GSA SPE letter). 1,579 firms holding over $53 billion in contracts were flagged; notices dated Nov 16 give 30 days (to Dec 16) before referral to the contracting officer (D, DHS release).
+- **Vendor / vehicle:** U.
+- **PIA / SORN:** No computer matching agreement or Federal Register matching notice for an E-Verify × SAM match found (U; Privacy Act 5 U.S.C. 552a(o) applies to matches of federal records against non-federal ones, and whether this match qualifies is U).
+- **Inbound feeds:** E-Verify participation records; SAM.gov registrations (D, letter). **Outbound feeds:** contracting officers; possible referral, cancellation, suspension or debarment (D, release).
+- **Status since Jan 20, 2025:** Nov 16, 2026 notices; Nov 19 announcement (D).
+- **Why it matters {P}:** a task-force data match becomes the predicate for a private consequence (a contract) with no published list and no matching notice. Same method as the voter-roll matches: run the join, then whoever runs it decides who gets flagged.
+- **Open questions / records (U):** the list of 1,579 firms; the match criteria; whether a matching agreement exists; whether firms on the list were also named in congressional oversight letters.
 
 ---
 
@@ -418,6 +437,17 @@ Map flows: 169
 - **Inbound feeds:** [169] commercial identity data from the investigative-database subscription (R; COM-02). **Outbound feeds:** U.
 - **Status since Jan 20, 2025:** Named in the Aug–Sept 2026 bridge requirement (R); the Oct 22, 2026 follow-on RFI keeps the requirement open (D).
 - **Open questions / records (U):** What it is, who runs it, what it holds; the full bridge PWS and the follow-on solicitation text.
+
+### ICE-19 · 287(g) agreements (Task Force Model) held by prosecutors, attorneys general and Guard units
+Map flows: none yet (proposed: ICE 287(g) → state prosecutors and Guard units)
+- **Owner:** ICE (D).
+- **What it is:** Memoranda of agreement that give state and local agencies delegated federal immigration powers. "As of November 19, 2026 7:29 am, ICE has signed 2,807 287(g) MOAs with law enforcement agencies in 38 states and two U.S. territories" (185 jail, 581 warrant-service, 2,041 task-force) (D, ICE 287(g) page). The Nov 18 participating-agencies spreadsheet shows 68 agreements signed Nov 1-18 and 152 in October (D).
+- **Who holds task-force agreements beyond police:** five state attorney-general offices (Texas, Jan 30, 2025; Mississippi, Mar 17, 2025; Guam; Louisiana, Jul 30, 2026; Indiana, Sept 25, 2026), 18 district attorneys' offices (two signed after the election: Terry County, Tex., Nov 5; Oklahoma's 22nd District, Nov 18), four National Guards (Texas, Florida, West Virginia, Arkansas) and the Arkansas Crime Information Center (D, ICE spreadsheet).
+- **Vendor / vehicle, PIA / SORN:** U (which ICE systems task-force officers can query, and under which SORN, is U).
+- **Inbound / outbound feeds:** U; task-force officers act under ICE supervision (K).
+- **Status since Jan 20, 2025:** rapid growth; 68 new agreements in the 18 days after Election Day (D).
+- **Why it matters {P}:** prosecutors who can charge election crimes and Guard units that can be called out now hold federal immigration powers. In Mississippi, the attorney general's office has held one since March 2025 (D).
+- **Open questions / records (U):** the MOAs for the AG, DA and Guard holders; their data access; any use around voting or counting sites.
 
 ---
 
@@ -687,6 +717,15 @@ Map flows: none on the map
 - **Open questions / records (U):** SOW and PWS for 70RCSJ26R00000008; whether SED's council support covers election-sector councils; what the Oct 23 DD254 adds (see below). Budget context (D, FY2027 CISA Congressional Justification, Program Change 26): the request eliminates 120 positions (101 FTE) and about $50.1M of Stakeholder Engagement (council management 35, stakeholder engagement 65, international affairs 20) and cuts the Stakeholder Engagement and Requirements line from about $90.2M to $31.2M. A $15M two-year contractor task order for SED signed Sep 30 against a proposed in-house cut: outsourcing, gap-filler, or expectation that Congress will not enact the cut (U, I).
 - **USAspending read Oct 26 (D):** Award type label "Delivery Order" and contract type DELIVERY ORDER, while the description says "TASK ORDER" and the PSC is R408 (Support, Professional: Program Management/Support), a services code; so the label is an FPDS coding convention, not a supplies buy {P}. Not R499 as earlier noted. Parent IDV 47QRCA24DW109 (IDC, multiple award, GSA FAS). 18 offers; extent competed D; commercial procedures not used; Clinger-Cohen "NO"; no federal account linked. Mod P00001 (Oct 23, $0): "ADMIN MOD TO ADD DD254, UPDATE PWS AND CHANGE CO/CS." (full text, read Oct 26; CO/CS = contracting officer / contract specialist). A DD254 is the security classification specification, meaning the work involves classified information or a facility clearance (K, verify); the PWS was updated at the same time. Funding office matches the default code, which resolves the earlier worry (D).
 
+### CIS-11 · CISA 2015 sharing channel (Automated Indicator Sharing; 6 U.S.C. 1501-1510), sunset Dec 11, 2026
+Map flows: none yet (proposed: companies → DHS → other federal agencies, including law enforcement)
+- **Owner:** DHS (CISA) receives; DOJ co-issues the guidance (D).
+- **What it is:** The Cybersecurity Information Sharing Act of 2015 lets non-federal entities share "cyber threat indicators" and "defensive measures" with the federal government with liability protection. DHS and DOJ reissued their guidance in November 2026: "This version adds a reference to the extension of CISA 2015 through December 11, 2026" (Section 2011 of the September 2026 continuing resolution); section 1503(c) authorizes sharing "notwithstanding any other provision of law" (D, DHS-DOJ guidance, Nov 2026). Automated Indicator Sharing (AIS) is the DHS channel (K).
+- **Outbound feeds:** DHS passes indicators on to other federal entities, including law enforcement in some cases (D, guidance).
+- **Status since Jan 20, 2025:** extended by short-term CRs; current sunset Dec 11, 2026 (D). The White House's outage account (Nov 19): companies "are now immediately sharing vulnerabilities because they don't want to be accused of covering up something" (D, White House release).
+- **Why it matters {P}:** the administration's explanation for the outages runs through this channel, and the shield lapses inside the lame duck unless Congress extends it. A lapse or a rewrite changes what private companies hand the government and on what terms.
+- **Open questions / records (U):** whether the extension rides the December funding bill; any change to the law-enforcement use provisions; AIS volume since the outages.
+
 ---
 
 # PART F2 · HUD
@@ -729,6 +768,7 @@ Map flows: 9, 75, 99, 101, 103, 117
 - **Court mentions:** None names the hub.
 - **Status since Jan 20, 2025:** Aug 24, 2026 launch (D).
 - **Open questions / records (U):** Charter; the data-sharing agreements for each inbound flow; whether it holds records or only routes them.
+- **District fraud task forces (Nov 2026):** U.S. attorneys are standing up program-fraud task forces under EO 14395, e.g. the Delaware Program Fraud Task Force ("a whole-of-government effort chaired by Vice President J.D. Vance") and the E.D.N.C. Taxpayer Fraud Task Force ("We will find you, we will prosecute you, and a federal prison cell waits for you") (D, agency releases, Nov 5 and 13).
 
 ### DOJ-03 · DOJ Reconciliation Working Group
 Map flows: none on the map
@@ -764,6 +804,35 @@ Map flows: none numbered; the rebuilt map adds HSI ↔ FBI joint voter work (D),
 - **Status since Jan 20, 2025:** Jan 28, 2026 Fulton seizure (R); Oct 16, 2026 PSA (D); HSI–FBI joint lines of effort in HSI weekly reporting (D, FOIA production).
 - **Open questions / records (U):** How many election-tagged IC3 complaints exist and who can query them; whether IC3 election reports feed the Data Warehouse fields used by DOJ's Election Threats or Fraud task forces; beyond the documented joint HSI work, the FBI role in the DOJ voter-roll and ballot-hold cases (agents interviewing detainees and border crossers for the Washington list are not identified as FBI); whether a Cyber Unified Coordination Group has been stood up for the 2026 election; FBI Data Warehouse and CRS SORN routine uses.
 
+### FBI-02 · NSPM-7 Joint Mission Center (JMC) and NVE Fusion Cell
+Map flows: none yet (proposed: IRS-CI and nine other agencies → JMC → arrests and charges)
+- **Owner:** FBI. Under NSPM-7 "the FBI now oversees the recently created NSPM-7 Joint Mission Center (JMC), which is composed of personnel from 10 agencies" (D, FBI Deputy Director Raia, written testimony to House Homeland Security, Nov 18, 2026).
+- **What it does:** "integrating intelligence, operational support, and financial analysis to proactively identify networks and prosecute domestic terrorists and related criminal actors. In total, JMC efforts to date have resulted in over 200 total arrests and more than 250 indictments or judicial complaints" (D, same). A new "NVE Fusion Cell" sits beside it (D). The FBI co-leads 59 Homeland Security Task Forces with "more than 9,000" personnel (D).
+- **Inbound feeds:** IRS Criminal Investigation: a dozen IRS officials detailed to an FBI-headquarters task force from March 2026 reviewed "subpoenaed Venmo records" of protest arrestees, used "facial recognition and tattoo analysis databases," analyzed nonprofits' Form 990s, referred at least four tax-exempt groups for audit and sat on nine grand juries (R, NYT, Nov 17, quoting an internal IRS-CI memo). Whether that task force is the JMC: U; it works the same NSPM-7 mission {P}.
+- **Targeting language:** DHS's sworn statement the same day lists motivations including "opposition to law and immigration enforcement; extreme views in favor of mass migration and open borders; adherence to radical gender ideology; and anti-Semitism, anti-Americanism, anti-capitalism, or anti-Christianity" (D, Secretary Mullin, written testimony, Nov 18).
+- **PIA / SORN:** U. **Vendor / vehicle:** U.
+- **Status since Jan 20, 2025:** NSPM-7 signed Sept 2025 (D); first official output count Nov 18, 2026 (D).
+- **Why it matters {P}:** this is the organizer-and-opponent lane with a financial-analysis pipe built in. NSPM-7's reach to "funding sources" plus IRS and payment-app data reaches donors and nonprofits, and a terrorism label can strip tax exemption (26 U.S.C. 501(p)).
+- **Open questions / records (U):** the 10 agencies; data systems and sharing agreements; how cases are opened; whether election-related groups are among the targets.
+
+### FBI-03 · NCIC (National Crime Information Center, FBI CJIS)
+Map flows: none yet
+- **Owner:** FBI Criminal Justice Information Services Division (K). "a nationwide database used by federal, state and local law enforcement agencies to share criminal justice information" (R, CNN via Reuters, Nov 20, 2026).
+- **What it holds:** criminal-justice records shared across federal, state and local law enforcement (K); "restricted to law enforcement use but not classified and it is unclear what data was extracted" (R, CNBC, Nov 21). ICE's Mobile Fortify is reported to query NCIC (R; see ICE-12).
+- **Status since Jan 20, 2025:** the FBI is investigating a suspected breach (R, CNN; Reuters: "the second intrusion involving an FBI system in recent months"). On Nov 21 the President said: "Maybe we'll learn about the voter fraud, all the voter fraud that took place" (R, Fox News interview as quoted). On Nov 22 the DNI said: "they have an incident. They're dealing with it in the ordinary course" (D, ABC This Week transcript). On Nov 20 the President signed H.R. 8352, which "authorizes the Department of Justice to exchange criminal identification records with peace officer standards and training agencies" (D, White House).
+- **Why it matters {P}:** a breached federal law-enforcement database, a President tying it to voter fraud, and no official characterization of who did it. Any claim that NCIC held voter or citizenship data would join this breach to the election lane.
+- **Open questions / records (U):** what was taken; whether a FISMA "major incident" notice went to Congress (due within 7 days of the determination); whether CISA asset response engaged; attribution.
+
+### NCC-01 · Homeland Security Task Force National Coordination Center (NCC): Threat Disruption Center and the private cyber-operations program
+Map flows: none yet (proposed: state and local agencies → NCC → approved private companies; TRM Labs → Threat Disruption Center)
+- **Owner:** the National Coordination Center "established pursuant to section 6(d) of Executive Order 14159 of January 20, 2025 (Protecting the American People Against Invasion)" (D, presidential memorandum, Aug 12, 2026), run with DOJ and DHS (D).
+- **Threat Disruption Center (Nov 18, 2026):** DHS and DOJ opened it inside the NCC, working with "more than 30 federal agencies and 440 state and local partners" and AI tools to "identify distinct components of criminal networks, as well as their victim footprints" (R, Washington Sun, citing the release). TRM Labs, "the super intelligence (SI) investigations company," is "the primary private-sector partner," providing "the technology and coordination infrastructure" for an effort "that gives private-sector partners a direct role" (D, TRM release). Bloomberg reports $95 million to TRM; the no-bid award runs to June 30, 2027 (R). Basis: EO 14390 (D).
+- **Private cyber-operations program (Aug 12, 2026):** the NCC "shall create, manage, and maintain a Program to authorize Participating Companies ... to conduct Cyber Surveillance Operations and Cyber Effects Operations against foreign Cyber-Enabled Transnational Criminal Organizations" (D). Companies may take "any threat information" from private firms and have "Federal, State, local, tribal, and territorial agencies" identify targets to them (D). A Cyber Surveillance Operation means "accessing such information systems without authorization from the owner or operator," "with the intent to remain undetected" (D). Any activity "directed at a United States person" needs "any necessary authorization, judicial or otherwise" (D). "a foreign group will be assumed not to be an institutional part of a foreign government ... unless clear intelligence exists establishing such connection" (D). Companies post a bond of at least $1 million (D). Implementing guidance was due within 60 days (about Oct 11); whether it issued: U.
+- **Vendor / vehicle:** TRM Labs (Threat Disruption Center, D/R); participating companies for the cyber program: U.
+- **PIA / SORN:** U.
+- **Why it matters {P}:** one hub built under the "invasion" order now holds a private AI vendor mapping "criminal networks" and a program of licensed private intrusions, fed by state and local agencies. The memo's presumption that attackers are not states puts any incident officials call "not state sponsored" in this lane rather than under the election-interference order.
+- **Open questions / records (U):** the implementing guidance and classified annex; which companies were accepted; the TRM award documents; whether any election-related incident is routed here.
+
 # PART H · Treasury, PRAC, SSA, State, Census, fusion centers
 
 ### TRE-01 · Treasury Do Not Pay
@@ -793,6 +862,15 @@ Map flows: none on the map
 - **What it holds:** Identity-proofing data. Socure is a subcontractor to Xcelerate Solutions on a five-year, $163M Login.gov identity-proofing call order (R, Biometric Update, Jul 2026). Any tie to a wider America.gov effort is unsourced (U).
 - **Who ran it (added Nov 9, 2026):** GSA's acting administrator from Jan 20 to about July 2025 was Stephen Ehikian, a former Salesforce vice president for AI products (D for the appointment, GSA release Jan 22, 2025; R for background, FedScoop). In March 2025 GSA's Technology Transformation Services director told agencies Login.gov is "a critical part of Government-wide efforts to promote efficiency and fight fraud" and that GSA is "working to accelerate Login's roadmap" (R, Nextgov, Mar 4, 2025). Michael Rigas was acting administrator from July 2025; Ehikian left in September 2025 to become CEO of C3 AI (R, Federal News Network); Ed Forst has been administrator since December 2025 (R, Nextgov). Since August 2026, Treasury CIO Sam Corcos, who came in with DOGE, holds three acting GSA posts: head of Technology Transformation Services, deputy commissioner of the Federal Acquisition Service and assistant commissioner of Login.gov (R, FedScoop, Aug 24, 2026). Career facts only; no company named here is shown to have any role in Login.gov decisions.
 - **Open questions / records (U):** Relation, if any, to CISA's Socure order (CIS-04). Treat as parallel unless a source links them.
+
+### TRE-05 · FinCEN Bank Secrecy Act data and the customer due diligence rule (immigration status, EO 14406)
+Map flows: shown on the map as the node "FinCEN BSA" (ICE entries)
+- **Owner:** Treasury, Financial Crimes Enforcement Network (K).
+- **What it is now:** FinCEN proposes changes to the Bank Secrecy Act customer due diligence rule "as directed by" EO 14406: covered banks would keep "the authority, where warranted, to obtain additional information, including information relevant to whether the beneficial owners of legal entity customers possess lawful immigration status and employment authorization in the United States"; comments due Jan 19, 2027 (D, FR Doc. 2026-23614, Nov 19, 2026). EO 14406 sec. 3(b) uses the same words for account holders (D).
+- **Outbound feeds:** BSA reports reach law enforcement through FinCEN's existing channels (K).
+- **Status since Jan 20, 2025:** EO 14406 (May 19, 2026); NPRM Nov 19, 2026 (D).
+- **Why it matters {P}:** banks become an immigration-status checkpoint and a data source, with the result able to reach law enforcement through FinCEN. Same pattern as USC-12: a government frame placed in front of a private decision.
+- **Open questions / records (U):** the final rule; whether status information enters BSA filings; which agencies query it.
 
 ### PRA-01 · PRAC analytics platform
 Map flows: 9, 101 (as drawn)
@@ -899,7 +977,7 @@ Map flows: 18 (notification → CISA)
 | EOIR | as drawn | ICE entries |
 | IRS addresses | as drawn | DHS-06, USC |
 | CMS Medicaid | as drawn | USC entries |
-| FinCEN BSA | as drawn | ICE entries |
+| FinCEN BSA | as drawn | ICE entries; TRE-05 |
 | "Independent sources" (48.2M) | 6 | DHS-06 |
 | Data brokers | as drawn | ICE entries |
 | DOGE teams → Cloudflare (SSA data shared through unapproved Cloudflare; DOJ correction filing, Jan 2026) (R: filing not in hand; Nextgov/The Register) | 31 | DHS-06, PRA-02 |
@@ -969,6 +1047,7 @@ Method: attachments are downloaded from SAM.gov and read in full (text extractio
 For every new document, article or watch item: (1) find the system by ID; (2) compare each stated fact to the entry; (3) if it adds or conflicts, update the entry with a dated line and a mark; (4) if no system fits, add a row; (5) log the change below. Inherited marks are not re-verified unless stated.
 
 ## J7 · Change log
+- 2026-11-22 (weekly maintenance): new entries USC-12 (E-Verify × SAM.gov contractor match), ICE-19 (287(g) task-force agreements held by attorneys general, district attorneys and Guard units), CIS-11 (CISA 2015 sharing channel, sunset Dec 11), FBI-02 (NSPM-7 Joint Mission Center), FBI-03 (NCIC), NCC-01 (National Coordination Center: Threat Disruption Center and the private cyber-operations program) and TRE-05 (FinCEN data and the immigration-status due-diligence proposal). USC-01 adds the SAVE agency list's voter registrations; DOJ-02 adds the district fraud task forces.
 - 2026-11-15 (weekly maintenance): USC-06 gains the program name "Unlawful Voter Initiative" and the American Oversight records suit (Nov 12).
 - 2026-11-12 (sync): USC-01 and DOJ-01: DOJ's SAVE use paused while the Common Cause order stands (D, 1st Cir. 26-1783 reply brief, Nov 6). HUD-01: HUD SAVE rule FR 2026-23003 (D). DOJ-04: court status after Nov 3 and the criminal-side extension (Neff to Scanlan, R; Reitz to Blumenthal, D). DHS-02: LoSapio nomination (R, CyberScoop, Defense One).
 - 2026-11-12 (corrections): DOJ-01 spelling corrected to "Dhillon." Removed retired "vendors are infrastructure" wording from the sources note, the PART C heading and USC-05, USC-10, COM-04 and PRA-01, and two internal notes in this log.
