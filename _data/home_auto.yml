@@ -1,5 +1,5 @@
 # Built by publish.py on every publish (Amanda, Nov 22, 2026: the publisher keeps the week list, the not-seen line and the opinion card current; the lead and the note stay hers in home.yml). Do not edit here.
-built: 2026-11-24T18:49-05:00
+built: 2026-11-24T21:57-05:00
 week_from: Nov 17
 week:
 - date: Nov 23
@@ -29,7 +29,7 @@ week:
   tw: 6
 checked_not_seen: 'Not seen as of Tuesday, Nov 24, 11:30 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
 opinion:
-  title: Put Jay Out There
-  url: https://www.presumptionofirregularity.com/p/put-jay-out-there
-  comment: 'The spy chief did three Sunday shows. Read his answers the way you''d read a witness: what he denies, what he won''t call by its name, and where he leaves the door open.'
-  date: '2026-11-22'
+  title: They Changed the Fine Print (Receipts Inside)
+  url: https://www.presumptionofirregularity.com/p/they-changed-the-fine-print-receipts
+  comment: Login.gov used to promise it would only share your data if you typed your password and said yes. On Oct 28, that sentence disappeared.
+  date: '2026-11-24'

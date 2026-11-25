@@ -33,6 +33,7 @@ routes:
   - 19
   - 22
   - 23
+  - 27
 - id: scaring
   name: 'Elections: scaring voters away'
   rows:
@@ -1347,7 +1348,8 @@ rows:
   status: armed
   note: ''
   hinge: false
-  routes: []
+  routes:
+  - checks
   changed: '2026-11-23'
   newest: a federal appeals court cleared the way for the Army's lead azide detonation in Iowa, after Trump briefly paused it; this replaces the Nov 22 line that the Army would act under its emergency exception while the stay stood (now history). {R}
   watch: ''

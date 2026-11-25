@@ -1,4 +1,18 @@
 # Built by publish.py from the Vault's MASTER/site/posts.tsv and the Substack feed. Do not edit here.
+- date: '2026-11-24'
+  title: They Changed the Fine Print (Receipts Inside)
+  url: https://www.presumptionofirregularity.com/p/they-changed-the-fine-print-receipts
+  subtitle: Login.gov used to promise it would only share your data if you typed your password and said yes. On Oct 28, that sentence disappeared.
+  series: Login.gov
+  part: ''
+  casefiles:
+  - cf-02
+  rows:
+  - 21
+  - 26
+  profile: ''
+  image: ''
+  people: []
 - date: '2026-11-22'
   title: Put Jay Out There
   url: https://www.presumptionofirregularity.com/p/put-jay-out-there
