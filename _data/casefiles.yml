@@ -6,7 +6,7 @@
   dek: Federal cyber law lets the government act on a suspicion and tell Congress only once it’s sure.
   opened: '2026-11-11'
   written: '2026-11-24'
-  updated: '2026-11-24'
+  updated: '2026-11-25'
   state: Open
   tripwires:
   - 1
@@ -106,7 +106,31 @@
     series: What’s the BS, Ru$$?
     part: '1'
     image: titlecard_bsruss-part1_1200x800.png
-  feed: []
+  feed:
+  - date: '2026-11-27'
+    label: Nov 27
+    tw: 17
+    tw_name: The voting-machine claim
+    status: armed
+    html: 'a new FCC "Foreign Adversary Risk Management System" applies the same "foreign adversary" control test to every FCC licensee (row 26). (D, May 13 Federal Register, FR Doc. 2026-09671): the EO 13873 "foreign adversary" technology emergency was continued May 11 through May 2027. (D, National Security Determination, Mar 20; FCC DA 26-278, Mar 23): "routers produced in a foreign country" were added to the FCC Covered List, on a finding that "routers produced abroad" create "unacceptable... national security... risks"; only "Conditional Approvals" exempt a device. <em>Meaning {P}:</em> the test is where a device is made, not who owns the maker. That is the shape a "foreign-made parts" claim against voting equipment would take. Context (D): EO 13873 (May 15, 2019) is the IEEPA national emergency on "foreign adversary" information and communications technology, the route a machine-parts claim would use; the White House''s Nov 20 Davies release lists "Blocked new foreign-made consumer
+      routers deemed a national security threat" as an accomplishment. (D, <a href="https://www.courtlistener.com/docket/75028945/potter-county-republican-party-v-benge/">Potter County ECF 81-84</a>, Nov 19): Judge Kacsmaryk set the hand-count plaintiffs'' preliminary-injunction motion for Nov 23 (response Nov 27, reply Nov 30); the county filed a second motion to dismiss. (D, <a href="https://public-inspection.federalregister.gov/2026-23787.pdf">Federal Register notice 2026-23787</a>, publishes Nov 23): the EAC''s Technical Guidelines Development Committee meets Dec 15 on "the EAC Testing and Certification Program, the National Institute of Standards and Technology (NIST) Voting Program, the Voluntary Voting System Guidelines"; HAVA gives the EAC "decertification" power. Routine annual meeting; the agenda is not posted yet (D). Connecticut ordered recounts in five towns over a tabulator programming error (R, Hartford Courant headline); routine. Potter County: Benge filed a brief supporting
+      her second motion to dismiss (ECF 83, Nov 19) (D, docket). (D, Potter County ECF 78-80, Nov 17): the court let a pro se supporter file an amica brief for the plaintiffs and denied the county''s motion to dismiss as moot after the amended complaint, so the statewide hand-count suit continues on the new complaint. (D, court record and lobbying filings, Nov 18): the Juniper routers are HPE products; HPE closed its purchase of Juniper on July 2, 2025, after a settlement the court found was negotiated with DOJ leadership over the Antitrust Division staff, with HPE contacts at the CIA, the Pentagon and NSA that "should have been disclosed" (D, court order, Aug 12). No official has said the routers were tampered with: FAA Administrator Bedford says there is "zero evidence of anything nefarious," and HPE says the device "functioned as it was configured to by the installer" (R). The FAA says it "has not yet determined the root cause" (D). <em>Watch:</em> any official who moves from "faulty
+      configuration" to "compromised," and any appeal of the HPE judgment (deadline about Nov 30, {P}). {D}'
+  - date: '2026-11-25'
+    label: Nov 25
+    tw: 3
+    tw_name: Emergency declaration
+    status: armed
+    html: 'CISA directives page read in the browser: no new emergency directive (latest ED 26-03; latest BOD 26-04), none naming an election system, DOJ, DHS, SSA, the EAC or a contractor platform. Federal Register API Nov 22-25 for "significant incident," "emergency directive," "major incident," "national security system," "Insurrection Act," "12304," "foreign adversary": 0; current public inspection (136 items): nothing under 6 U.S.C. 677-677c or 44 U.S.C. 3553(h)/3554. No statement that an election incident is under way or "likely to occur imminently." No "major incident" notice to Congress reported for NCIC, CIA/ODNI or FinCEN. New (R, <a href="https://abcnews.com/US/treasurys-fincen-cybersecurity-incident-includes-unauthorized-access-systems/story?id=138432822">ABC</a>, Nov 24-25): FinCEN confirms "unauthorized access to a limited subset of its systems" and took systems offline; its batch filing had been down since about Nov 18 (R, The Deep Dive), during the outages the DNI called patching,
+      not a cyberattack (Nov 17). <em>Meaning {P}:</em> four intrusions, one of them in the system that holds banks'' suspicious activity reports, and still no emergency directive or public "major incident" notice; the incident record is being built outside the public channels the statute uses. Mullin, last 36 hours (DHS releases): "We will never apologize for enforcing our nation''s laws and getting public safety threats off our streets" (Nov 24); on New York: "If Governor Kathy Hochul and Mayor Zohran Mamdani really care about the safety of New Yorkers, they will put an end to these reckless sanctuary policies" (Nov 24); on Abrego Garcia: "Now, this El Salvadoran man cannot terrorize innocent Americans" (Nov 24) (D). The pending bill for this row is still the ROOT CAUSE Act. (R, <a href="https://www.nytimes.com/2026/11/24/us/politics/spy-agencies-computer-network-breaches.html">NYT</a>, Nov 24): the CIA and ODNI found a breach that exposed unclassified information on an open-source intelligence
+      system, with other agencies'' information "also believed to have been exposed"; an ODNI official says there were "no disruptions to critical capabilities"; no attribution. <em>Meaning {P}:</em> the DNI is also acting National Cyber Director, the official the DHS Secretary must consult before a "significant incident" declaration (6 U.S.C. 677b); his own office is now an affected agency. A breach exposing several agencies'' data is the kind that brings a FISMA "major incident" notice to Congress within 7 days; none reported for this one or for NCIC. Clayton on NCIC (R, NYT, quoting ABC, Nov 22): "they have an incident. They''re dealing with it in the ordinary course."'
+  - date: '2026-11-25'
+    label: Nov 25
+    tw: 17
+    tw_name: The voting-machine claim
+    status: armed
+    html: 'RSS "foreign adversary" voting machines, Dominion ES&amp;S federal, hand count lawsuit certification: no new U.S. item beyond Potter County; no CISA advisory naming a vendor, no EO 13873 or Commerce ICTS action on election equipment, no ODNI/FBI machine exam, seizure, DHS "debrief" or "voting logs." New (D, <a href="https://www.courtlistener.com/docket/75028945/88/potter-county-republican-party-v-benge/">Potter County v. Benge, ECF 88-89</a>, Nov 24): Judge Kacsmaryk dismissed the hand-count suit without prejudice for lack of standing. The plaintiffs had argued that Texas machines "contain components manufactured by foreign adversaries"; the court: "Plaintiffs do not have standing to challenge voting machines that have been affected by potentially hostile actors," and the slogan "election security is national security" "cannot be a Trojan horse for circumventing Article III." This replaces the Nov 24 line on the Nov 27/30 briefing schedule. <em>Meaning {P}:</em> the private route
+      to a machine claim failed on standing; the routes that need no standing are executive ones (EO 13873, CISA, a "significant incident").'
   mark: bsruss_square.png
 - id: CF-02
   slug: cf-02
@@ -144,6 +168,22 @@
     tier: ''
   - id: pmurray
     name: Patty Murray
+    now: ''
+    tier: ''
+  - id: clayton
+    name: Jay Clayton
+    now: Director of National Intelligence
+    tier: P
+  - id: sturner
+    name: Scott Turner
+    now: Secretary of Housing and Urban Development
+    tier: M
+  - id: bmurphy_dmass
+    name: Brian E. Murphy
+    now: U.S. District Judge, District of Massachusetts
+    tier: ''
+  - id: jshapiro
+    name: Josh Shapiro
     now: ''
     tier: ''
   posts:
@@ -221,7 +261,7 @@
   dek: Preservation letters, grand-jury subpoenas and civil-rights statutes aimed at the officials who count and certify.
   opened: '2026-11-14'
   written: '2026-11-22'
-  updated: '2026-11-22'
+  updated: '2026-11-24'
   state: Open
   tripwires:
   - 2
@@ -231,6 +271,10 @@
   search: subpoena
   show_newest: true
   people:
+  - id: dbarlow
+    name: David Barlow
+    now: U.S. District Judge, District of Utah
+    tier: ''
   - id: rbarron
     name: Richard Barron
     now: Former elections director, Fulton County, Georgia
@@ -243,8 +287,19 @@
     name: Hugh Raymond Evans
     now: Special agent, FBI
     tier: ''
+  - id: dhenderson
+    name: Deidre Henderson
+    now: Lt. Governor of Utah (R; elected); chief state election official
+    tier: ''
   posts: []
-  feed: []
+  feed:
+  - date: '2026-11-24'
+    label: Nov 24
+    tw: 2
+    tw_name: FBI or DOJ take an election “investigation” or the evidence
+    status: fired
+    html: 'a Georgia judge ordered Fulton County to give the State Election Board unredacted copies of the 2020 election records the FBI seized in January, under a protective order. (R, <a href="https://apnews.com/article/alaska-voter-rolls-noncitizens-justice-department-b3ba0862276b69469a4b72b433db1013">AP</a>, Nov 24): Alaska''s lieutenant governor ended the state''s voter-roll sharing agreement with DOJ; reported: no removals resulted and DOJ flagged no one; legislators ask whether DOJ still holds the data. (D, <a href="https://www.courtlistener.com/docket/72334921/68/united-states-v-henderson/">U.S. v. Henderson, D. Utah 2:26-cv-00166, ECF 68</a>, Oct 23, surfaced Nov 23): Judge Barlow dismissed DOJ''s Civil Rights Act suit for Utah''s voter list with prejudice: "Utah''s SVRL is not subject to a Title III demand," and amendment "would be futile." <em>Meaning {P}:</em> the 52 U.S.C. 20701 route to full state voter files is losing in court; the grand-jury route is what remains. {R} New
+      (R, <a href="https://www.ajc.com/politics/2026/11/fbi-questions-former-fulton-elections-director/">AJC</a>, Nov 21; NYT first): two FBI agents and two federal prosecutors, including Dan Bishop, the U.S. attorney named to prosecute election fraud nationwide, and Hugh Raymond Evans, the agent who signed the Jan 28 Fulton ballot-seizure affidavit, questioned Fulton''s 2020 elections director Richard Barron for more than two hours. NYT (via summary): 10 months after the seizure, 260 analysts assigned, no charges.'
   written_html:
     What's going on: '<p>Before the election, DOJ told election officials in all 50 states to preserve their records for 22 months, ballots included. {R} After it, the pressure moved to grand juries: subpoenas from the U.S. Attorney for the Northern District of California ask county election chiefs how they answered DOJ''s demand to confirm citizenship or set aside the ballots of "suspected aliens." {R}</p>
 

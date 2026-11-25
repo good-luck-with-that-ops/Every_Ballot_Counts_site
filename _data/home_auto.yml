@@ -1,17 +1,12 @@
 # Built by publish.py on every publish (Amanda, Nov 22, 2026: the publisher keeps the week list, the not-seen line and the opinion card current; the lead and the note stay hers in home.yml). Do not edit here.
-built: 2026-11-24T21:57-05:00
-week_from: Nov 17
+built: 2026-11-25T11:22-05:00
+week_from: Nov 18
 week:
 - date: Nov 23
   text: 'Mullin names Gov. Spanberger, who ended Virginia''s 287(g) agreements: "It needs to stop, now." {D}'
   src: DHS release
   url: https://democracyforward.org/wp-content/uploads/2026/11/gov.uscourts.rid_.62569.50.0.pdf
   tw: 22
-- date: Nov 23
-  text: '"Curtis Is Convinced Vought''s Top Deputy Will Uphold GAO''s ''Independence,'' Because He Promised." This replaces the Nov 16 reading of Curtis''s "deep concerns" as his current position; the article is not yet read. {R}'
-  src: Source
-  url: https://lailluminator.com/2026/11/17/repub/campaign-finance/
-  tw: 23
 - date: Nov 23
   text: A federal appeals court cleared the way for the Army's lead azide detonation in Iowa, after Trump briefly paused it; this replaces the Nov 22 line that the Army would act under its emergency exception while the stay stood (now history). {R}
   src: Tripwire 27 on the board
@@ -22,12 +17,12 @@ week:
   src: DHS release
   url: https://www.gsa.gov/system/files/SPE_letter.pdf
   tw: 25
-- date: Nov 17
-  text: A judge barred Bill Essayli from overseeing two criminal cases starting Nov 23 and would not delay the ruling that he serves unlawfully. {R}
-  src: Tripwire 6 on the board
-  url: /tripwires/#row-6
-  tw: 6
-checked_not_seen: 'Not seen as of Tuesday, Nov 24, 11:30 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
+- date: Nov 19
+  text: 'At the HSGAC hearing, CISA nominee Michael LoSapio (Palantir CISO) would not say Biden won in 2020 and said of Jan. 6: "I don''t believe it was an attack... I know what I saw on the news"; no position on the $385 million CISA cut. {R}'
+  src: Cybersecurity Dive
+  url: /tripwires/#row-23
+  tw: 23
+checked_not_seen: 'Not seen as of Wednesday, Nov 25, 11:15 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
 opinion:
   title: They Changed the Fine Print (Receipts Inside)
   url: https://www.presumptionofirregularity.com/p/they-changed-the-fine-print-receipts
