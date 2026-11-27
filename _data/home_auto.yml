@@ -1,30 +1,50 @@
 # Built by publish.py on every publish (Amanda, Nov 22, 2026: the publisher keeps the week list, the not-seen line and the opinion card current; the lead and the note stay hers in home.yml). Do not edit here.
-built: 2026-11-25T11:22-05:00
-week_from: Nov 18
+built: 2026-11-27T03:22-05:00
+week_from: Nov 20
 week:
-- date: Nov 23
-  text: 'Mullin names Gov. Spanberger, who ended Virginia''s 287(g) agreements: "It needs to stop, now." {D}'
-  src: DHS release
-  url: https://democracyforward.org/wp-content/uploads/2026/11/gov.uscourts.rid_.62569.50.0.pdf
-  tw: 22
-- date: Nov 23
-  text: A federal appeals court cleared the way for the Army's lead azide detonation in Iowa, after Trump briefly paused it; this replaces the Nov 22 line that the Army would act under its emergency exception while the stay stood (now history). {R}
-  src: Tripwire 27 on the board
+- date: Nov 27
+  text: The AG "shall pursue Federal jurisdiction and seek the death penalty" for added murder categories and speed executions by "opposing dilatory litigation tactics" and "seeking expedited judicial consideration." {D}
+  src: <a href="https://public-inspection.federalregister.gov/2026-
   url: /tripwires/#row-27
   tw: 27
-- date: Nov 20
-  text: 'DHS launched "Sanctuary Insanity," "a new daily series" naming Democratic-led jurisdictions, starting with Minneapolis and Hennepin County; Mullin: "Sanctuary policies only serve to protect criminal illegal aliens while putting every single American at risk." {D}'
-  src: DHS release
-  url: https://www.gsa.gov/system/files/SPE_letter.pdf
-  tw: 25
-- date: Nov 19
-  text: 'At the HSGAC hearing, CISA nominee Michael LoSapio (Palantir CISO) would not say Biden won in 2020 and said of Jan. 6: "I don''t believe it was an attack... I know what I saw on the news"; no position on the $385 million CISA cut. {R}'
-  src: Cybersecurity Dive
+- date: Nov 26
+  text: '248 "USAID Files" posted on the shuttered agency''s website, announced by Coristine; Vought: "more batches to come." {R}'
+  src: Tripwire 18 on the board
+  url: /tripwires/#row-18
+  tw: 18
+- date: Nov 26
+  text: Grassley received paperwork for Steve Fahey for the N.D. Tex. seat Trump had given T. Elliot Gaiser, head of the Office of Legal Counsel; Cornyn said the White House "was trying to jam him down our throat." (Replaces the Gaiser plan in now history.) {R}
+  src: Tripwire 23 on the board
   url: /tripwires/#row-23
   tw: 23
-checked_not_seen: 'Not seen as of Wednesday, Nov 25, 11:15 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
+- date: Nov 25
+  text: Treasury CIO Sam Corcos, a DOGE hire whose "department is in charge of cybersecurity for the Treasury Department," kept shipping his AI-built game during the FinCEN intrusion. FinCEN has had an acting director since July. {R}
+  src: Tripwire 1 on the board
+  url: /tripwires/#row-1
+  tw: 1
+- date: Nov 25
+  text: The Ninth Circuit paused the order disqualifying Bill Essayli "pending the U.S. Supreme Court's review" of the Nevada (Chattah) case; he continues as First Assistant U.S. Attorney. {R}
+  src: Tripwire 6 on the board
+  url: /tripwires/#row-6
+  tw: 6
+- date: Nov 25
+  text: Two Georgia House Republicans ask state courts to void their losses and order new elections, one citing "at least 93 votes cast by people not eligible." {R}
+  src: <a href="https://georgiarecorder.com/2026/11/25/two-georgia-
+  url: /tripwires/#row-9
+  tw: 9
+- date: Nov 25
+  text: 'Mullin: "Governor Ferguson and his cronies may continue to obstruct us"; a second release says "rioters obstructed ICE vehicles" in Long Beach and that local police "were ordered to stand down." Third straight day of "obstruct" in DHS releases. {D}'
+  src: DHS release
+  url: /tripwires/#row-13
+  tw: 13
+- date: Nov 25
+  text: 'Byrne: "a Michigan town''s election equipment contained a secret (illegal) WiFi device communicating with Shenzhen, China"; Colbeck, whose brief for Lindell''s Election Crime Bureau it rested on, says the signal was "definitively traced to a TV''s HDMI adapter." {R}'
+  src: Tripwire 17 on the board
+  url: /tripwires/#row-17
+  tw: 17
+checked_not_seen: 'Not seen as of Thursday, Nov 26, 11:30 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
 opinion:
-  title: They Changed the Fine Print (Receipts Inside)
-  url: https://www.presumptionofirregularity.com/p/they-changed-the-fine-print-receipts
-  comment: Login.gov used to promise it would only share your data if you typed your password and said yes. On Oct 28, that sentence disappeared.
-  date: '2026-11-24'
+  title: Scott Bessent FARMS More Than Soybeans (Carr Planted the Seeds)
+  url: https://www.presumptionofirregularity.com/p/scott-bessent-farms-more-than-soybeans
+  comment: They wrote it down in 2023. Now every federal form is a data collection engine, and it all ends up at Treasury.
+  date: '2026-11-25'

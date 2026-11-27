@@ -1,4 +1,24 @@
 # Built by publish.py from the Vault's MASTER/site/posts.tsv and the Substack feed. Do not edit here.
+- date: '2026-11-25'
+  title: Scott Bessent FARMS More Than Soybeans (Carr Planted the Seeds)
+  url: https://www.presumptionofirregularity.com/p/scott-bessent-farms-more-than-soybeans
+  subtitle: They wrote it down in 2023. Now every federal form is a data collection engine, and it all ends up at Treasury.
+  series: Login.gov
+  part: '1'
+  casefiles:
+  - cf-02
+  rows:
+  - 1
+  - 17
+  - 26
+  profile: ''
+  image: titlecard_bessent-farms_1200x800.png
+  people:
+  - blanche
+  - mullin
+  - carr
+  - brollins
+  - mcarr_pltr
 - date: '2026-11-24'
   title: They Changed the Fine Print (Receipts Inside)
   url: https://www.presumptionofirregularity.com/p/they-changed-the-fine-print-receipts
@@ -244,7 +264,8 @@
   subtitle: The morning after the election, Democrats didn't hold press conferences. They sent preservation letters. That's what the turnout bought, and it's a better move than it looks.
   series: ''
   part: ''
-  casefiles: []
+  casefiles:
+  - cf-04
   rows:
   - 12
   profile: ''
@@ -274,7 +295,8 @@
   subtitle: I’ve spent fifteen years reading contracts for a living, and the first thing you learn is that the promise is never the interesting part.
   series: ''
   part: ''
-  casefiles: []
+  casefiles:
+  - cf-04
   rows:
   - 8
   profile: ''

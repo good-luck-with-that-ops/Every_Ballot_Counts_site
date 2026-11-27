@@ -1,8 +1,20 @@
 # Built by publish.py: the 25 newest timeline entries marked D with a link. Do not edit here.
+- date: '2026-11-27'
+  text: 'FCC new system of records FCC/OEA-7, "Foreign Adversary Risk Management System (FARMS)" (public inspection 2026-24041, publishing Nov 27): collects whether FCC regulatees "are subject to the control or other influence of a foreign adversary or adversarial country," with control status "made public";…'
+  url: https://public-inspection.federalregister.gov/2026-24041.pdf
+  who: Federal Communications Commission (Office of Economics and Analytics; Public Safety and Homeland Security Bureau)
+- date: '2026-11-27'
+  text: 'USDA reopens comments on the June 25 AFIDA proposed rule (FR Doc. 2026-24143, on public inspection Nov 25, publishing Nov 27): reopened "in response to a request from stakeholders"; "Written comments must be received on or before [INSERT DATE 14 DAYS FROM DATE OF PUBLICATION IN THE FEDERAL REGISTER]…'
+  url: https://public-inspection.federalregister.gov/2026-24143.pdf
+  who: USDA; Stephen A. Vaden (Deputy Secretary of Agriculture, signed)
 - date: '2026-11-25'
   text: 'Executive Order 14439 of Nov 20, "Protecting the Executive''s Privileges and Enhancing Efficiencies in Federal Contracting," published at 91 FR 76627 (FR Doc. 2026-24114): "Protecting this information from unauthorized disclosure, including to members of the Congress, is vital"; "certain congressiona…'
   url: https://www.govinfo.gov/content/pkg/FR-2026-11-25/pdf/2026-24114.pdf
   who: President Trump; OMB; all contracting agencies; Department of Labor (bears publication cost)
+- date: '2026-11-25'
+  text: 'White House release "President Trump Unleashes Whole-of-Government Effort to Protect America''s Critical Infrastructure": the Office of the National Cyber Director "will be integrated into a reorganized White House operational and policy structure"; cyber policy and operations teams "will be reorgani…'
+  url: https://www.whitehouse.gov/releases/2026/11/president-trump-unleashes-whole-of-government-effort-to-protect-americas-critical-infrastructure/
+  who: White House; Office of the National Cyber Director; National Security Council; Homeland Security Council; Jay Clayton (DNI, Super Intelligence Force chair); Kirsten Davies (nominee); Gen. Joshua M. Rudd; CISA; OPM U.S. Tech Force; DOJ; FBI
 - date: '2026-11-24'
   text: NARA notice (FR Doc. 2026-23931, on public inspection Nov 23, publishing Nov 24) of proposed records schedules open for comment, including a governmentwide revision of GRS 6.1, 'Email and Other Electronic Messages Managed Under a Capstone Approach' (DAA-GRS-2027-0001), plus ODNI emergency-management…
   url: https://public-inspection.federalregister.gov/2026-23931.pdf
@@ -20,9 +32,21 @@
   url: https://www.justice.gov/opa/pr/justice-department-announces-largest-ever-crackdown-scammers-targeting-over-800-defendants
   who: DOJ Criminal Division; AG Todd Blanche; FBI Director Kash Patel; AAG A. Tysen Duva; HSI Acting EAD John A. Condon; FTC Chairman Andrew N. Ferguson (Anti-Fraud Task Force Vice Chairman); U.S. Secret Service; USPIS; SEC; FCC; State Department
 - date: '2026-11-24'
+  text: 'FinCEN alert on the BSA E-Filing site (as quoted by ABC, Newsweek): FinCEN is "investigating a cybersecurity incident that resulted in unauthorized access to a limited subset of its systems"; "As a proactive measure, FinCEN has taken some systems offline"; "The BSA E-Filing website remains operation…'
+  url: https://abcnews.com/US/treasurys-fincen-cybersecurity-incident-includes-unauthorized-access-systems/story?id=138432822
+  who: Financial Crimes Enforcement Network (FinCEN), Treasury
+- date: '2026-11-24'
   text: 'Potter County Republican Party v. Benge (N.D. Tex. 2:26-cv-00215), ECF 88-89: second motion to dismiss granted, "The Amended Complaint is DISMISSED without prejudice"; plaintiffs had sought an order that "all lawful paper ballots cast in the federal races ... be hand counted and reconciled" before c…'
   url: https://www.courtlistener.com/docket/75028945/88/potter-county-republican-party-v-benge/
   who: Judge Matthew J. Kacsmaryk (N.D. Tex.); Christy Benge (Potter County elections administrator); Potter County Republican Party
+- date: '2026-11-24'
+  text: 'Trump on Truth Social: "I am pleased to nominate Jim O''Neill to serve as Judge on the United States District Court for the Middle District of North Carolina ... Jim has served as the District Attorney of Forsyth County since 2009, and has been a prosecutor in that office since 1997" (D). O''Neill "lo…'
+  url: https://www.trumpstruth.org/statuses/43721
+  who: President Trump; Jim O'Neill (Forsyth County, N.C., District Attorney; not the HHS Deputy Secretary of the same name); Sens. Thom Tillis and Ted Budd
+- date: '2026-11-24'
+  text: 'The United States files an amicus brief "in support of defendants-appellants and urging reversal" in Red Wine & Blue v. LaRose (6th Cir. 26-3813), backing Ohio''s HB 54 rule that BMV voter registration be offered only to people who show documentary proof of citizenship: a license application is "subm…'
+  url: https://www.courtlistener.com/docket/74762684/red-wine-blue-v-frank-larose/
+  who: DOJ Civil Rights Division (Craig Trainor, Acting AAG; Eric Sell; Andrew G. Braniff); Ohio Secretary of State Frank LaRose; Honest Elections Project (Jason B. Torchinsky); Red Wine & Blue; Ohio Alliance for Retired Americans
 - date: '2026-11-23'
   text: 'Comments close and STATE-26 routine uses (u), (v) and (w) take effect unless revised: (w) lets federal, state, territorial, tribal and local agencies and non-profits ("including, but not limited to") on federal verification platforms check identity or citizenship for voter eligibility.'
   url: https://www.federalregister.gov/documents/2026/10/23/2026-21695/privacy-act-of-1974-system-of-records
@@ -43,6 +67,14 @@
   text: 'Mullin on a Culpeper, Va. detainer: "DHS is calling on Governor Abigail Spanberger and her fellow sanctuary politicians to honor ICE''s detainer ... Under Governor Spanberger''s sanctuary policies, Virginia has become a hotbed of illegal alien crime. It needs to stop, now." The release says Spanberger…'
   url: https://www.dhs.gov/news
   who: DHS (Markwayne Mullin); Gov. Abigail Spanberger (Va.)
+- date: '2026-11-23'
+  text: 'Presidential memorandum for the Attorney General, "Expeditious Enforcement of Capital Sentences and the Pursuit of Justice for Victims of Heinous Crimes" (Nov 23; FR Doc. 2026-24236, special filing Nov 25, publishing Nov 27): the AG "shall pursue Federal jurisdiction and seek the death penalty" for …'
+  url: https://public-inspection.federalregister.gov/2026-24236.pdf
+  who: President Trump; Attorney General (Todd Blanche)
+- date: '2026-11-23'
+  text: 'Stenstrom v. Schmidt (E.D. Pa. 2:26-cv-08946, filed Nov 23, pro se): emergency TRO motion asks for "a conditional seven-day pause in Schmidt''s own remaining PA-5 certification," alleging Delaware County machines "counted his race without the prescribed software check," and seeks Hart Verity 2.7 test…'
+  url: https://www.courtlistener.com/docket/75167735/stenstrom-v-schmidt/
+  who: Gregory Stenstrom; Nick Manganaro; Harry R. Haury; Unite 4 Freedom, Inc. (U4F); Pennsylvania Secretary of the Commonwealth Al Schmidt; Judge Mary Kay Costello (E.D. Pa.); DOJ Civil Rights Division Voting Section (Eric V. Neff, Acting Chief)
 - date: '2026-11-22'
   text: 'Cross of two government lists (USCIS SAVE agency export of Nov 22; ICE 287(g) participating agencies as of Nov 18): all 28 state election offices registered for SAVE voter checks are in states with at least one 287(g) agreement; the four states whose National Guard holds a 287(g) agreement (Texas, F…'
   url: https://www.ice.gov/identify-and-arrest/287g
@@ -67,35 +99,3 @@
   text: 'HSGAC nominations hearing, Nov 19, 9:30 a.m., SD-342. Panel I: Michael LoSapio (CISA Director), Eric M. Ueland (Comptroller General, GAO), Michael Chamberlain (Director, Office of Government Ethics), Robert Steffens (USPS Governor), Jeffrey Zisk (Postal Regulatory Commission), Mark Priebe (Education…'
   url: https://www.hsgac.senate.gov/hearings/nominations-16/
   who: Senate HSGAC (Rand Paul, chair)
-- date: '2026-11-19'
-  text: 'Public inspection for Nov 19: SSA-DOL matching program (FR 2026-23591; FECA payment data to SSA every 28 days for ~40,000 beneficiaries; from Dec 28) and an ED-DoW matching program to identify servicemembers and DoW civilians for PSLF (FR 2026-23616). Both benefit administration. (D)'
-  url: https://public-inspection.federalregister.gov/2026-23591.pdf
-  who: SSA; Department of Labor; Education (FSA); Department of War
-- date: '2026-11-19'
-  text: 'HSGAC nominations hearing, Nov 19, 9:30 am, SD-342: LoSapio (CISA director), Ueland (Comptroller General), Michael Chamberlain (OGE director), Robert Steffens (USPS governor), Jeffrey Zisk (Postal Regulatory Commission), inspector-general nominees Mark Priebe (Education), Dennis Kirk (Interior), Mar…'
-  url: https://www.hsgac.senate.gov/hearings/nominations-16/
-  who: Senate HSGAC (Chair Rand Paul); Michael LoSapio; Eric M. Ueland; Michael Chamberlain; Dennis Kirk; Mark Priebe; Maria D'Avanzo; Robert Steinau; Sens. Thom Tillis, Susan Collins, John Kennedy, Patty Murray
-- date: '2026-11-19'
-  text: Federal contracts performed at Fort Gordon, Ga. (ZIP 30905), home of NSA Georgia (the Georgia Cryptologic Center, which focuses on Europe, Middle East and North Africa intercepts and is staffed by civilian contractors and the Army's 706th Military Intelligence Group, R, Wikipedia) and Army Cyber Com…
-  url: https://www.usaspending.gov/
-  who: Peraton; Microsoft; Leidos; Cyber Engineering and Technical Alliance; Open SAN Consulting (Fort Gordon IT contractors)
-- date: '2026-11-19'
-  text: USAspending shows no federal contracts under the names Calif, depthfirst, Xint, Theori or Chainguard, and no award text naming GOLD EAGLE or Patch the Planet. Trail of Bits, an OpenAI Patch the Planet partner, holds a DOJ Antitrust Division "EXPERT" contract ($1.275M, Jan 2026-Dec 2028, 15JATR26P000…
-  url: https://www.usaspending.gov/award/CONT_AWD_15JATR26P00000009_1501_-NONE-_-NONE-
-  who: Calif; depthfirst; Xint/Theori; Chainguard; Trail of Bits; GOLD EAGLE
-- date: '2026-11-19'
-  text: 'Peraton''s federal work active or modified since Jan 20, 2025 (USAspending): State Department Consular Affairs enterprise support ($741.5M, 47QFCA20F0015) and Consular Systems Modernization ($92.8M, Sept 2024, 19AQMM24F1317); DCSA background-investigation fieldwork ($783M, HS002123F0019); CMS Fraud P…'
-  url: https://www.usaspending.gov/
-  who: Peraton (owned by Veritas Capital)
-- date: '2026-11-19'
-  text: 'FAA''s Modern Skies dashboard (data "current as of 11/16/2026"): "3,651 OF 5,170 TELECOMMUNICATIONS REPLACED"; October: TDM-to-IP (TIR) "MONTHLY COMPLETE 150 Projects / MONTHLY PLANNED 150 Projects," status "GREATER OR EQUAL TO PROJECT PLAN"; "we''re moving at Trump speed." Its local report for El Dor…'
-  url: https://modernskies.faa.gov/
-  who: FAA (Modern Skies dashboard)
-- date: '2026-11-19'
-  text: DHS and GSA, "in coordination with the White House Task Force to Eliminate Fraud chaired by Vice President JD Vance," say 1,579 firms holding over $53 billion in federal contracts are potentially noncompliant with E-Verify (FAR 52.222-54); notices dated Nov 16 give 30 days (to Dec 16) or referral to…
-  url: https://www.gsa.gov/system/files/NPCD_letter.pdf
-  who: DHS (Markwayne Mullin); GSA (Edward C. Forst); White House Task Force to Eliminate Fraud (JD Vance, chair; Scott Brady, executive director); USCIS E-Verify
-- date: '2026-11-19'
-  text: 'FinCEN proposes changes to the Bank Secrecy Act customer due diligence rule "as directed by" EO 14406: covered banks would keep "the authority, where warranted, to obtain additional information, including information relevant to whether the beneficial owners of legal entity customers possess lawful …'
-  url: https://www.federalregister.gov/documents/2026/11/19/2026-23614/customer-due-diligence-requirements-for-covered-financial-institutions
-  who: Treasury; FinCEN
