@@ -1,7 +1,12 @@
 # Built by publish.py on every publish (Amanda, Nov 22, 2026: the publisher keeps the week list, the not-seen line and the opinion card current; the lead and the note stay hers in home.yml). Do not edit here.
-built: 2026-11-27T03:22-05:00
+built: 2026-11-27T10:49-05:00
 week_from: Nov 20
 week:
+- date: Nov 27
+  text: HHS would "establish a regulatory process for de-designating" State Domestic Violence Coalitions, which controls who receives FVPSA money. {D}
+  src: Tripwire 22 on the board
+  url: /tripwires/#row-22
+  tw: 22
 - date: Nov 27
   text: The AG "shall pursue Federal jurisdiction and seek the death penalty" for added murder categories and speed executions by "opposing dilatory litigation tactics" and "seeking expedited judicial consideration." {D}
   src: <a href="https://public-inspection.federalregister.gov/2026-
@@ -12,11 +17,6 @@ week:
   src: Tripwire 18 on the board
   url: /tripwires/#row-18
   tw: 18
-- date: Nov 26
-  text: Grassley received paperwork for Steve Fahey for the N.D. Tex. seat Trump had given T. Elliot Gaiser, head of the Office of Legal Counsel; Cornyn said the White House "was trying to jam him down our throat." (Replaces the Gaiser plan in now history.) {R}
-  src: Tripwire 23 on the board
-  url: /tripwires/#row-23
-  tw: 23
 - date: Nov 25
   text: Treasury CIO Sam Corcos, a DOGE hire whose "department is in charge of cybersecurity for the Treasury Department," kept shipping his AI-built game during the FinCEN intrusion. FinCEN has had an acting director since July. {R}
   src: Tripwire 1 on the board
@@ -33,7 +33,7 @@ week:
   url: /tripwires/#row-9
   tw: 9
 - date: Nov 25
-  text: 'Mullin: "Governor Ferguson and his cronies may continue to obstruct us"; a second release says "rioters obstructed ICE vehicles" in Long Beach and that local police "were ordered to stand down." Third straight day of "obstruct" in DHS releases. {D}'
+  text: 'Mullin: "Governor Ferguson and his cronies may continue to obstruct us"; a second release says "rioters obstructed ICE vehicles" in Long Beach and that local police "were ordered to stand down." Third straight day of "obstruct" in DHS releases (PT-58, PT-65). {D}'
   src: DHS release
   url: /tripwires/#row-13
   tw: 13
@@ -42,7 +42,7 @@ week:
   src: Tripwire 17 on the board
   url: /tripwires/#row-17
   tw: 17
-checked_not_seen: 'Not seen as of Thursday, Nov 26, 11:30 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
+checked_not_seen: 'Not seen as of Friday, Nov 27, 9:45 am ET: any “significant incident” declaration under 6 U.S.C. 677b, or a DHS statement that an election incident is “likely to occur imminently”; any federal finding, advisory or order saying voting machines or their parts are compromised, unsafe or unusable; any official sentence tying a current hack to China, Russia or Iran.'
 opinion:
   title: Scott Bessent FARMS More Than Soybeans (Carr Planted the Seeds)
   url: https://www.presumptionofirregularity.com/p/scott-bessent-farms-more-than-soybeans

@@ -7,6 +7,18 @@
   text: 'USDA reopens comments on the June 25 AFIDA proposed rule (FR Doc. 2026-24143, on public inspection Nov 25, publishing Nov 27): reopened "in response to a request from stakeholders"; "Written comments must be received on or before [INSERT DATE 14 DAYS FROM DATE OF PUBLICATION IN THE FEDERAL REGISTER]…'
   url: https://public-inspection.federalregister.gov/2026-24143.pdf
   who: USDA; Stephen A. Vaden (Deputy Secretary of Agriculture, signed)
+- date: '2026-11-27'
+  text: 'Treasury files a 30-day PRA notice (FR Doc. 2026-24266, filed Nov 27, publishing Nov 30) to keep the Fraud.gov tip form, OMB 1505-0284, as a regular collection: "The Department of the Treasury is launching a government-wide intake and referral portal for members of the public to report suspected was…'
+  url: https://public-inspection.federalregister.gov/2026-24266.pdf
+  who: Treasury Departmental Offices (PRA Clearance Officer Spencer W. Clark); Task Force to Eliminate Fraud
+- date: '2026-11-27'
+  text: 'Five notices (FR Docs. 2026-24243 to 2026-24247, filed Nov 27, publishing Nov 30) open 30-day comment on new SNAP "demonstration project" requests from Tennessee, Iowa, Arkansas, West Virginia and Nebraska to cut foods from SNAP. Tennessee''s notice: "Following the vacatur of Tennessee''s demonstratio…'
+  url: https://public-inspection.federalregister.gov/2026-24243.pdf
+  who: USDA Food and Nutrition Administration (Acting Administrator Shiela Corley); Brooke Rollins; Tennessee, Iowa, Arkansas, West Virginia, Nebraska
+- date: '2026-11-27'
+  text: ACF proposed rule "Further Reducing Bureaucracy and Burden" (FR Doc. 2026-24239, publishing Nov 30) rewrites the Family Violence Prevention and Services Act regulations and would "establish a regulatory process for de-designating organizations that no longer carry out the functions required of a Sta…
+  url: https://public-inspection.federalregister.gov/2026-24239.pdf
+  who: HHS Administration for Children and Families
 - date: '2026-11-25'
   text: 'Executive Order 14439 of Nov 20, "Protecting the Executive''s Privileges and Enhancing Efficiencies in Federal Contracting," published at 91 FR 76627 (FR Doc. 2026-24114): "Protecting this information from unauthorized disclosure, including to members of the Congress, is vital"; "certain congressiona…'
   url: https://www.govinfo.gov/content/pkg/FR-2026-11-25/pdf/2026-24114.pdf
@@ -15,6 +27,10 @@
   text: 'White House release "President Trump Unleashes Whole-of-Government Effort to Protect America''s Critical Infrastructure": the Office of the National Cyber Director "will be integrated into a reorganized White House operational and policy structure"; cyber policy and operations teams "will be reorgani…'
   url: https://www.whitehouse.gov/releases/2026/11/president-trump-unleashes-whole-of-government-effort-to-protect-americas-critical-infrastructure/
   who: White House; Office of the National Cyber Director; National Security Council; Homeland Security Council; Jay Clayton (DNI, Super Intelligence Force chair); Kirsten Davies (nominee); Gen. Joshua M. Rudd; CISA; OPM U.S. Tech Force; DOJ; FBI
+- date: '2026-11-25'
+  text: 'DNC v. Trump, D.D.C. 1:26-cv-03506 (ECF 37, Nov 25): Judge AliKhan denies a preliminary injunction and stay against the taxpayer-funded White House ads after the election, for lack of irreparable harm, while saying "nothing in this opinion should be construed to cast doubt on the DNC''s likelihood of…'
+  url: https://www.courtlistener.com/docket/74932638/37/democratic-national-committee-v-trump/
+  who: Judge Loren L. AliKhan (D.D.C.); DNC; President Trump; White House Office; OMB; DHS (Holly Mehringer, Senior Official Performing the Duties of the CFO)
 - date: '2026-11-24'
   text: NARA notice (FR Doc. 2026-23931, on public inspection Nov 23, publishing Nov 24) of proposed records schedules open for comment, including a governmentwide revision of GRS 6.1, 'Email and Other Electronic Messages Managed Under a Capstone Approach' (DAA-GRS-2027-0001), plus ODNI emergency-management…
   url: https://public-inspection.federalregister.gov/2026-23931.pdf
@@ -47,6 +63,10 @@
   text: 'The United States files an amicus brief "in support of defendants-appellants and urging reversal" in Red Wine & Blue v. LaRose (6th Cir. 26-3813), backing Ohio''s HB 54 rule that BMV voter registration be offered only to people who show documentary proof of citizenship: a license application is "subm…'
   url: https://www.courtlistener.com/docket/74762684/red-wine-blue-v-frank-larose/
   who: DOJ Civil Rights Division (Craig Trainor, Acting AAG; Eric Sell; Andrew G. Braniff); Ohio Secretary of State Frank LaRose; Honest Elections Project (Jason B. Torchinsky); Red Wine & Blue; Ohio Alliance for Retired Americans
+- date: '2026-11-24'
+  text: 'CFTC final rule "Data Reporting Requirements for Certain Event Contracts" (FR Doc. 2026-24209, issued Nov 24, filed for Nov 30): "certain fully collateralized event contracts" are reported under parts 15-18 "rather than the reporting regulations contained in certain sections of parts 38, 39, 43 and …'
+  url: https://public-inspection.federalregister.gov/2026-24209.pdf
+  who: CFTC (Chairman Selig; sole vote); Kalshi; Polymarket
 - date: '2026-11-23'
   text: 'Comments close and STATE-26 routine uses (u), (v) and (w) take effect unless revised: (w) lets federal, state, territorial, tribal and local agencies and non-profits ("including, but not limited to") on federal verification platforms check identity or citizenship for voter eligibility.'
   url: https://www.federalregister.gov/documents/2026/10/23/2026-21695/privacy-act-of-1974-system-of-records
@@ -75,27 +95,7 @@
   text: 'Stenstrom v. Schmidt (E.D. Pa. 2:26-cv-08946, filed Nov 23, pro se): emergency TRO motion asks for "a conditional seven-day pause in Schmidt''s own remaining PA-5 certification," alleging Delaware County machines "counted his race without the prescribed software check," and seeks Hart Verity 2.7 test…'
   url: https://www.courtlistener.com/docket/75167735/stenstrom-v-schmidt/
   who: Gregory Stenstrom; Nick Manganaro; Harry R. Haury; Unite 4 Freedom, Inc. (U4F); Pennsylvania Secretary of the Commonwealth Al Schmidt; Judge Mary Kay Costello (E.D. Pa.); DOJ Civil Rights Division Voting Section (Eric V. Neff, Acting Chief)
-- date: '2026-11-22'
-  text: 'Cross of two government lists (USCIS SAVE agency export of Nov 22; ICE 287(g) participating agencies as of Nov 18): all 28 state election offices registered for SAVE voter checks are in states with at least one 287(g) agreement; the four states whose National Guard holds a 287(g) agreement (Texas, F…'
-  url: https://www.ice.gov/identify-and-arrest/287g
-  who: USCIS SAVE; ICE 287(g)
-- date: '2026-11-20'
-  text: 'Executive order "Protecting the Executive''s Privileges and Enhancing Efficiencies in Federal Contracting" (posted Nov 20): all federal contractors and subcontractors "must immediately" "notify the White House and the contracting agencies of any pending or future congressional request respecting the …'
-  url: https://www.whitehouse.gov/presidential-actions/2026/11/protecting-the-executives-privileges-and-enhancing-efficiencies-in-federal-contracting/
-  who: President Trump; White House; OMB; all contracting agencies
-- date: '2026-11-20'
-  text: 'OPM confirms the Civil Service Rules direct final rule took effect as scheduled on Oct 13, 2026: "OPM received no significant adverse comments."'
-  url: https://www.federalregister.gov/documents/2026/11/20/2026-23732/updates-and-amendments-to-the-civil-service-rules
-  who: OPM
-- date: '2026-11-20'
-  text: 'National Alliance to End Homelessness v. HUD (1:26-cv-436) and Washington v. HUD (1:26-cv-439), ECF 50: the court vacates OMB''s ''Apportionment Footnotes'' that require HUD''s Continuum of Care money to be obligated only ''on award agreements that include terms and conditions'' consistent with EO 14332 a…'
-  url: https://democracyforward.org/wp-content/uploads/2026/11/gov.uscourts.rid_.62569.50.0.pdf
-  who: U.S. District Court, D.R.I. (Judge Mary S. McElroy); HUD (Scott Turner); OMB
-- date: '2026-11-20'
-  text: D.D.C. dismisses the second (Nov 20) and third (Nov 23) suits against the Endangered Species Committee's "national security exemption" for Gulf oil and gas, after a Nov 16 dismissal, holding "only the federal courts of appeals may hear challenges to the Committee's exemption decisions" (DOJ release)…
-  url: https://www.justice.gov/opa/pr/federal-court-dismisses-second-and-third-challenges-national-security-exemption-energy
-  who: DOJ ENRD; Endangered Species Committee; D.D.C.
-- date: '2026-11-19'
-  text: 'HSGAC nominations hearing, Nov 19, 9:30 a.m., SD-342. Panel I: Michael LoSapio (CISA Director), Eric M. Ueland (Comptroller General, GAO), Michael Chamberlain (Director, Office of Government Ethics), Robert Steffens (USPS Governor), Jeffrey Zisk (Postal Regulatory Commission), Mark Priebe (Education…'
-  url: https://www.hsgac.senate.gov/hearings/nominations-16/
-  who: Senate HSGAC (Rand Paul, chair)
+- date: '2026-11-23'
+  text: The President signs H.R. 4930, which (White House summary) "expands U.S. Customs and Border Protection's authority to share information about imports suspected of violating United States intellectual-property-rights with the rights holders, online marketplaces, shippers, and other stakeholders" (sig…
+  url: https://www.whitehouse.gov/briefings-statements/2026/11/congressional-bills-h-r-1550-h-r-4930-and-h-r-8552-signed-into-law/
+  who: President Trump; Congress; CBP
